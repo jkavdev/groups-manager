@@ -1,0 +1,18 @@
+.card-titulo {
+    font-weight: 300;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+    font-size: 2rem;
+}
+.image-box-tag {
+    font-size: 12px;
+    text-align: left;
+    color: #ffffff;
+    background-color: #e91e63;
+    padding: 0 8px;
+    margin-bottom: 15px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+}

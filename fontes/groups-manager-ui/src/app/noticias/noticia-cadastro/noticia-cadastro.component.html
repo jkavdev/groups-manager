@@ -1,0 +1,47 @@
+<div class="container">
+
+  <form autocomplete="off" #noticiaForm="ngForm" (ngSubmit)="salvar(noticiaForm)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Nova Notícia</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Título</label>
+        <input type="text" pInputText name="titulo" [(ngModel)]="noticia.titulo" #titulo="ngModel" required />
+        <app-message [control]="titulo" error="required" text="Informe o título da notícia"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Exibir notícia a público</label>
+        <p-toggleButton name="publica" [(ngModel)]="noticia.publica" pTooltip="{{noticia.publica ? 'Qualquer um terá acesso a esta notícia' : 'Somente integrantes do grupo terão acesso a esta notícia'}}" tooltipPosition="top"
+          onLabel="Sim" offLabel="Não" onIcon="fas fa-eye" offIcon="fas fa-eye-slash"></p-toggleButton>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tópicos</label>
+        <p-multiSelect [options]="topicos" name="topicos" [(ngModel)]="noticia.topicos" required></p-multiSelect>
+        <!-- <app-message [control]="topicos" error="required" text="Informe o tópico da notícia"></app-message> -->
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Grupo</label>
+        <p-dropdown [autoWidth]="false" [options]="grupos" placeholder="Selecione" name="grupo" [(ngModel)]="noticia.grupo.id" #grupo="ngModel"></p-dropdown>
+        <app-message [control]="grupo" error="required" text="Informe o grupo da notícia"></app-message>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Notícia</label>
+        <p-editor [style]="{'height':'320px'}" name="corpoNoticia" [(ngModel)]="noticia.corpo" #corpoNoticia="ngModel"></p-editor>
+        <app-message [control]="corpoNoticia" error="required" text="Informe o grupo da notícia"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button type="submit" pButton label="Salvar" [disabled]="!noticiaForm.valid"></button>
+        <a pButton label="Limpar" (click)="limpar(noticiaForm)"></a>
+        <a routerLink="/noticias">Voltar para a Pesquisa</a>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

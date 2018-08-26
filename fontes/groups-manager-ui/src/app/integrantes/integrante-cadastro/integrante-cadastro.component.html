@@ -1,0 +1,52 @@
+<div class="container">
+
+  <form autocomplete="off" #integranteForm="ngForm" (ngSubmit)="salvar(integranteForm)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Novo Integrante</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="integrante.nome" #nome="ngModel" required />
+        <app-message [control]="nome" error="required" text="Informe o nome do integrante"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Celular</label>
+        <p-inputMask mask="(99) 99999-9999" name="celular" [(ngModel)]="integrante.celular" #celular="ngModel" required></p-inputMask>
+        <app-message [control]="celular" error="required" text="Informe um número para contato"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Email</label>
+        <input type="email" pInputText name="email" [(ngModel)]="integrante.email" #email="ngModel" required />
+        <app-message [control]="email" error="required" text="Informe nome do Grupo"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Data de Nascimento</label>
+        <p-calendar name="dataNascimento" [(ngModel)]="integrante.dataNascimento" #dataNascimento="ngModel" required></p-calendar>
+        <app-message [control]="dataNascimento" error="required" text="Informe a data de nascimento do integrante"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Sexo</label>
+        <p-selectButton [options]="sexos" name="sexo" #sexo="ngModel" [(ngModel)]="integrante.sexo"></p-selectButton>
+        <app-message [control]="sexo" error="required" text="Informe cpf do integrante"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>CPF</label>
+        <p-inputMask mask="999.999.999-99" name="cpf" [(ngModel)]="integrante.cpf" #cpf="ngModel" required (onComplete)="validar(cpf.value)" slotChar=""></p-inputMask>
+        <app-message [control]="cpf" error="required" text="Informe cpf do integrante"></app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button type="submit" pButton label="Salvar" [disabled]="integranteForm.invalid"></button>
+        <a pButton label="Limpar" (click)="limpar(integranteForm)"></a>
+        <a routerLink="/integrantes">Voltar para a Pesquisa</a>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="ui-g-12">
+    <h1>Notícias</h1>
+  </div>
+  <div class="ui-g-12">
+    <a pButton label="Nova" routerLink="/noticias/nova"></a>
+  </div>
+
+  <div *ngFor="let grupo of noticias">
+    <div class="ui-g-12 ui-md-6">
+      <p-card>
+        <p-header>
+          <h3 class="card-titulo">{{grupo.nome}}</h3>
+        </p-header>
+        <p-accordion>
+          <div *ngFor="let noticia of grupo.noticias">
+            <p-accordionTab>
+              <p-header>
+                <span #header>
+                  {{noticia.titulo}}
+                </span>
+              </p-header>
+              <div class="image-box-content">
+                <img library="serenity-layout" src="assets/images/gradient-waters.png" style="width: 100%;">
+                <h3>{{noticia.titulo}}</h3>
+                <div class="image-box-tag">
+                  <div *ngFor="let topico of noticia.topicos">
+                    {{topico.descricao}}
+                  </div>
+                </div>
+                <div [innerHTML]="noticia.corpo"></div>
+              </div>
+              <p-footer>
+                <div class="image-box-footer">
+                  <a pButton icon="far fa-thumbs-up" pTooltip="Marcar como útil" tooltipPosition="top" (click)="marcarComoUtil(noticia.id)"></a>
+                  <a pButton icon="far fa-thumbs-down" pTooltip="Marcar não como útil" tooltipPosition="top" (click)="marcarComoNaoUtil(noticia.id)"></a>
+                </div>
+              </p-footer>
+            </p-accordionTab>
+          </div>
+        </p-accordion>
+      </p-card>
+    </div>
+  </div>
+</div>

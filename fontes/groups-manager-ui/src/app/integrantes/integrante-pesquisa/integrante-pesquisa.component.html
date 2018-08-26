@@ -1,0 +1,67 @@
+<div class="container">
+
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12">
+        <h1>Integrantes</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <input type="text" pInputText name="nome" placeholder="Nome do Integrante" [(ngModel)]="filtro.nome" />
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <input type="text" pInputText name="grupo" placeholder="Nome do Grupo" [(ngModel)]="filtro.grupo" />
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <p-dataTable [value]="integrantes" [paginator]="true" [rows]="5" [responsive]="true">
+          <p-column field="nome" header="Nome"></p-column>
+          <p-column field="celular" header="Celular"></p-column>
+          <p-column field="membroDaIgreja" header="Membro da Igreja">
+            <ng-template let-integrante="rowData" pTemplate="body">
+              <div [pTooltip]="integrante.membroDaIgreja ? '' : 'Integrante não participa da igreja'" tooltipPosition="top">
+                {{ integrante.membroDaIgreja ? 'Sim' : 'Não' }}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column field="outraIgreja" header="Nome da Igreja">
+            <ng-template let-integrante="rowData" pTemplate="body">
+              <div [pTooltip]="integrante.membroDeOutraIgreja ? '' : 'Igreja do Integrante'" tooltipPosition="top">
+                {{ integrante.outraIgreja }}
+              </div>
+            </ng-template>
+          </p-column>
+          <p-column field="cadastroEfetivado" header="Efetivado">
+            <ng-template let-integrante="rowData" pTemplate="body">
+              <a href="javascript:;" (click)="efetivar(integrante)" [pTooltip]="integrante.cadastroEfetivado ? 'Cadastro efetivado' : 'Efetivar cadastro'"
+                tooltipPosition="top">
+                {{ integrante.cadastroEfetivado ? 'Sim' : 'Não' }}
+              </a>
+            </ng-template>
+          </p-column>
+          <p-column styleClass="col-acoes">
+            <ng-template pTemplate="body">
+              <a pButton icon="fa-pencil" pTooltip="Editar" pTooltipPosition="top"></a>
+              <button pButton icon="fa-trash" pTooltip="Excluir" pTooltipPosition="top"></button>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Novo" routerLink="/integrantes/novo"></a>
+    </div>
+
+  </div>
+
+</div>
