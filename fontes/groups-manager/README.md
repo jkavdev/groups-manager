@@ -1,11 +1,16 @@
 # Groups Manager #
 
-* Projeto Gerenciador de Grupos e Eventos Religiosos
-	
-# Rodando o projeto
+# Executando a API
 
-* Para rodar o projeto back, é necessário
+* Dependências
 
-	    mysql rodando na porta 3306
+* MySQL
+
+        mysql rodando na porta 3306
+        usuario e senhas do banco user=jkavdev pass=123456, ou alterar arquivo `application.properties`
+	    
+* Executando o projeto
+
+        para executar o projeto rode o `main` da classe `GroupsManagerApplication` 	    
 
 
