@@ -1,23 +1,25 @@
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da criança',  'Pastoral', 'Grupo de crianças');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da saúde',  'Pastoral', 'Grupo de saúde');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da educação',  'Pastoral', 'Grupo de educação');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da juventude',  'Pastoral', 'Grupo de juventude');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da comunicação',  'Pastoral', 'Grupo de comunicação');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da sobriedade',  'Pastoral', 'Grupo de sobriedade');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral do menor',  'Pastoral', 'Grupo de menor');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da liturgia',  'Pastoral', 'Grupo de liturgia');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da catequese',  'Pastoral', 'Grupo de catequese');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da familiar',  'Pastoral', 'Grupo familiar');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Pastoral da carcerária',  'Pastoral', 'Grupo de carcerária');
+INSERT INTO igreja(nome) VALUES('Católica'), ('Pastoral'), ('Presbiteriana');
 
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Encontro de Casais com Cristo',  'Católica', 'Grupo de Casais');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Apostolado da Oração',  'Católica', 'Grupo de Oração');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Renovação Carismática Católica',  'Católica', 'Grupo de Renovação');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Mãe Rainha',  'Católica', 'Grupo de Mães');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Terço dos Homens',  'Católica', 'Grupo de Homens');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da criança',  1, 'Grupo de crianças');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da saúde',  1, 'Grupo de saúde');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da educação',  1, 'Grupo de educação');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da juventude',  1, 'Grupo de juventude');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da comunicação',  1, 'Grupo de comunicação');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da sobriedade',  1, 'Grupo de sobriedade');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral do menor',  1, 'Grupo de menor');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da liturgia',  1, 'Grupo de liturgia');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da catequese',  1, 'Grupo de catequese');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da familiar',  1, 'Grupo familiar');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da carcerária',  1, 'Grupo de carcerária');
 
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Comunidade Canção Nova',  'Presbiteriana', 'Grupo de Canção');
-INSERT INTO grupo(nome, igreja, objetivo)  VALUES('Oração Paroquiais',  'Presbiteriana', 'Grupo de Paroquiais');    
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Encontro de Casais com Cristo',  2, 'Grupo de Casais');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Apostolado da Oração',  2, 'Grupo de Oração');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Renovação Carismática Católica',  2, 'Grupo de Renovação');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Mãe Rainha',  2, 'Grupo de Mães');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Terço dos Homens',  2, 'Grupo de Homens');
+
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Comunidade Canção Nova',  3, 'Grupo de Canção');
+INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Oração Paroquiais',  3, 'Grupo de Paroquiais');
 
 insert into integrante(nome, celular, email, senha, sexo, data_nascimento, cpf, membro_da_igreja, membro_de_outra_igreja, nome_da_outra_igreja, cadastro_efetivado) values ('Jhonatan', '12345678', 'jhonatan@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1, null, null, 1), ('Caic', '12345678', 'caic@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1, null, null, 1), ('Lucas', '12345678', 'lucas@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1, null, null, 1), ('Marcia', '12345678', 'marcia@gmail.com', '123456', 'FEMININO', now(), '54022418214', 0, 1, 'Presbiteriana', 0), ('Gabriela', '12345678', 'gabriela@gmail.com', '123456', 'FEMININO', now(), '54022418214', 0, 1, 'Católica', 0);
   
