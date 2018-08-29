@@ -26,30 +26,33 @@ import br.com.jkavdev.groups.utils.ServiceMap;
 @RequestMapping("/grupos")
 public class GrupoController implements ServiceMap {
 
-	@Autowired
-	private GrupoService grupoService;
-	@Autowired
-	private ApplicationEventPublisher publisher;
+    @Autowired
+    private GrupoService grupoService;
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
-	@GetMapping(params = "pesquisa")
-	private List<Grupo> filtrar(GrupoFilter filter) {
-		return grupoService.filtrar(filter);
-	}
-	@DeleteMapping("{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	private void remover(@PathVariable Long id) {
-		grupoService.remover(id);
-	}
-	@PostMapping
-	public ResponseEntity<Grupo> criar(@Valid @RequestBody Grupo grupo, HttpServletResponse response) {
-		Grupo grupoSalvo = grupoService.salvar(grupo);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, grupoSalvo.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(grupoSalvo);
-	}
-	@PutMapping("{idGrupo}/adicionarintegrante/{idIntegrante}")
-	@ResponseStatus(HttpStatus.OK)
-	public void adicionarIntegrante(@PathVariable Long idGrupo, @PathVariable Long idIntegrante) {
-		grupoService.adicionarIntegrante(idGrupo, idIntegrante);
-	}
+    @GetMapping(params = "pesquisa")
+    private List<Grupo> filtrar(GrupoFilter filter) {
+        return grupoService.filtrar(filter);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    private void remover(@PathVariable Long id) {
+        grupoService.remover(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<GrupoDTO> criar(@Valid @RequestBody GrupoDTO grupo, HttpServletResponse response) {
+        Grupo grupoSalvo = grupoService.salvar(Grupo.from(grupo));
+        publisher.publishEvent(new RecursoCriadoEvent(this, response, grupoSalvo.getId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(GrupoDTO.from(grupoSalvo));
+    }
+
+    @PutMapping("{idGrupo}/adicionarintegrante/{idIntegrante}")
+    @ResponseStatus(HttpStatus.OK)
+    public void adicionarIntegrante(@PathVariable Long idGrupo, @PathVariable Long idIntegrante) {
+        grupoService.adicionarIntegrante(idGrupo, idIntegrante);
+    }
 
 }

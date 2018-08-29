@@ -51,7 +51,11 @@ public class Grupo {
     }
 
     public Grupo(Long id, String nome, String objetivo, String igreja) {
+        this(nome, objetivo, igreja);
         this.id = id;
+    }
+
+    public Grupo(String nome, String objetivo, String igreja) {
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = new Igreja(igreja);
@@ -63,6 +67,10 @@ public class Grupo {
         empty.objetivo = "";
         empty.igreja = Igreja.empty();
         return empty;
+    }
+
+    public static Grupo from(GrupoDTO dto) {
+        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja());
     }
 
     public Long getId() {

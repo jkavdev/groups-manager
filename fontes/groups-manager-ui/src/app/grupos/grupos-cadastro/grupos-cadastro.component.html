@@ -8,22 +8,26 @@
         <h1>Novo Grupo</h1>
       </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome do Grupo</label>
-        <input type="text" pInputText name="nome" [(ngModel)]="grupo.nome" #nome="ngModel" required minlength="5" />
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText name="nome" [(ngModel)]="grupo.nome" #nome="ngModel" required minlength="5"
+          placeholder="Informe o nome do grupo"/>
         <app-message [control]="nome" error="required" text="Informe nome do Grupo"></app-message>
         <app-message [control]="nome" error="minlength" text="Mínimo de {{nome.errors?.minlength?.requiredLength}} caracteres"></app-message>
       </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome da Igreja</label>
-        <input type="text" pInputText [(ngModel)]="grupo.igreja" name="nomeIgreja" #nomeIgreja="ngModel" required minlength="10" />
-        <app-message [control]="nomeIgreja" error="required" text="Informe nome da Igreja"></app-message>
-        <app-message [control]="nomeIgreja" error="minlength" text="Mínimo de {{nomeIgreja.errors?.minlength?.requiredLength}} caracteres"></app-message>
+      <div class="ui-g-12 ui-fluid">
+        <label>Objetivo</label>
+        <textarea pInputTextarea autoResize="false" [(ngModel)]="grupo.objetivo" name="objetivo" #objetivo="ngModel" required minlength="10"
+                  placeholder="Informe o objetivo do grupo"></textarea>
+        <app-message [control]="objetivo" error="required" text="Informe objetivo do grupo"></app-message>
+        <app-message [control]="objetivo" error="minlength" text="Mínimo de {{objetivo.errors?.minlength?.requiredLength}} caracteres"></app-message>
       </div>
       <div class="ui-g-12 ui-fluid">
-        <label>Objetivo do Grupo</label>
-        <textarea pInputTextarea autoResize="false" [(ngModel)]="grupo.objetivo" name="objetivo" #objetivo="ngModel" required></textarea>
-        <app-message [control]="objetivo" error="required" text="Informe objetivo do grupo"></app-message>
+        <label>Nome da Igreja</label>
+        <input type="text" pInputText [(ngModel)]="grupo.igreja" name="nomeIgreja" #nomeIgreja="ngModel" required minlength="10"
+               placeholder="Informe o nome da igreja"/>
+        <app-message [control]="nomeIgreja" error="required" text="Informe nome da Igreja"></app-message>
+        <app-message [control]="nomeIgreja" error="minlength" text="Mínimo de {{nomeIgreja.errors?.minlength?.requiredLength}} caracteres"></app-message>
       </div>
 
       <div class="ui-g-12">
