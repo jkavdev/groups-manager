@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { ToastyService } from 'ng2-toasty';
-import { ConfirmationService } from 'primeng/components/common/api';
+import {ToastyService} from 'ng2-toasty';
+import {ConfirmationService} from 'primeng/components/common/api';
 
-import { GrupoService, GrupoFiltro } from '../grupo.service';
-import { ErrorHandlerService } from '../../core/error-handler.service';
+import {GrupoService, GrupoFiltro} from '../grupo.service';
+import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-grupos-pesquisa',
@@ -25,6 +25,7 @@ export class GruposPesquisaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pesquisar();
   }
 
   pesquisar() {

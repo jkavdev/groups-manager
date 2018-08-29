@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequestMapping("/grupos")
 public class GrupoController implements ServiceMap {
@@ -32,8 +34,10 @@ public class GrupoController implements ServiceMap {
     private ApplicationEventPublisher publisher;
 
     @GetMapping(params = "pesquisa")
-    private List<Grupo> filtrar(GrupoFilter filter) {
-        return grupoService.filtrar(filter);
+    private List<GrupoDTO> filtrar(GrupoFilter filter) {
+        return grupoService.filtrar(filter).stream()
+                .map(g -> GrupoDTO.from(g))
+                .collect(toList());
     }
 
     @DeleteMapping("{id}")
