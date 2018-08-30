@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import {Integrante} from "../core/model";
 
 export class IntegranteFiltro {
   nome: string;
@@ -15,7 +16,8 @@ export class IntegranteService {
 
   integrantesUrl = 'http://localhost:8086/integrantes';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   pesquisar(filtro: IntegranteFiltro): Promise<any> {
     const params = new URLSearchParams();
@@ -27,7 +29,13 @@ export class IntegranteService {
       params.set('grupo', filtro.grupo);
     }
 
-    return this.http.get(`${this.integrantesUrl}?pesquisa`, { search: filtro })
+    return this.http.get(`${this.integrantesUrl}?pesquisa`, {search: filtro})
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  salvar(integrante: Integrante): Promise<any> {
+    return this.http.post(`${this.integrantesUrl}`, integrante)
       .toPromise()
       .then(resp => resp.json());
   }
