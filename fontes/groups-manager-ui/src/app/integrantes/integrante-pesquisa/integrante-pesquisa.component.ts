@@ -13,6 +13,8 @@ export class IntegrantePesquisaComponent implements OnInit {
 
   filtro = new IntegranteFiltro();
   integrantes = [];
+  dataset = [];
+
 
   constructor(
     private integranteService: IntegranteService,
@@ -23,6 +25,8 @@ export class IntegrantePesquisaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.integranteService.pesquisar(this.filtro)
+      .then(dataset => this.dataset = dataset);
   }
 
   pesquisar() {

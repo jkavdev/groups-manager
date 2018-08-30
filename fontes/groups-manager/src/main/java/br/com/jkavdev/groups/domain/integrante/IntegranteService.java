@@ -32,7 +32,7 @@ public class IntegranteService {
 		return integranteRepository.save(integrante);
 	}
 
-	public List<Integrante> filtrar(IntegranteFilter filter) {
+	public List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter) {
 		return integranteRepository.filtrar(filter);
 	}
 

@@ -25,7 +25,7 @@ public class IntegranteController implements ServiceMap {
     private ApplicationEventPublisher publisher;
 
     @GetMapping(params = "pesquisa")
-    public List<Integrante> filtrar(IntegranteFilter filter) {
+    public List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter) {
         return integranteService.filtrar(filter);
     }
 

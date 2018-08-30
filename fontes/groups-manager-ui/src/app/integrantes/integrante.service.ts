@@ -37,7 +37,10 @@ export class IntegranteService {
   salvar(integrante: Integrante): Promise<any> {
     return this.http.post(`${this.integrantesUrl}`, integrante)
       .toPromise()
-      .then(resp => resp.json());
+      .then(resp => {
+        console.log(resp.json());
+        return resp.json()
+      });
   }
 
   efetivar(id: any): Promise<any> {

@@ -1,5 +1,6 @@
 package br.com.jkavdev.groups.domain.integrante;
 
+import br.com.jkavdev.groups.domain.grupo.Grupo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.br.CPF;
@@ -7,6 +8,8 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -37,6 +40,9 @@ public class Integrante {
 
     @Column(name = "cadastro_efetivado")
     private Boolean cadastroEfetivado;
+
+    @ManyToMany(mappedBy = "integrantes")
+    private Collection<Grupo> grupos = new HashSet<>();
 
     private Integrante() {
     }
@@ -96,6 +102,10 @@ public class Integrante {
 
     public Integer getIdade() {
         return idade;
+    }
+
+    public Collection<Grupo> getGrupos() {
+        return grupos;
     }
 
     public void efetivarCadastro() {

@@ -11,6 +11,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {InputMaskModule} from 'primeng/inputmask';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {SpinnerModule} from 'primeng/spinner';
+import {FieldsetModule} from 'primeng/fieldset';
 
 import {SharedModule} from '../shared/shared.module';
 
@@ -33,6 +34,7 @@ import {CalendarModule} from 'primeng/calendar';
     SelectButtonModule,
     CalendarModule,
     SpinnerModule,
+    FieldsetModule,
 
     SharedModule
   ],

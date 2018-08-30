@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IntegranteRepositoryQuery {
 
-	List<Integrante> filtrar(IntegranteFilter filter);
+	List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter);
 
 }
