@@ -105,6 +105,10 @@ public class Grupo {
         return Collections.unmodifiableCollection(integrantes);
     }
 
+    public Collection<Evento> getEventos() {
+        return eventos;
+    }
+
     public Collection<Noticia> getNoticias() {
         return noticias;
     }

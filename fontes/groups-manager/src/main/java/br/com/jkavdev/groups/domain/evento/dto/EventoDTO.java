@@ -1,5 +1,7 @@
 package br.com.jkavdev.groups.domain.evento.dto;
 
+import br.com.jkavdev.groups.domain.evento.Evento;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -20,6 +22,16 @@ public class EventoDTO {
         this.descricao = descricao;
         this.objetivo = objetivo;
         this.valor = valor;
+    }
+    public EventoDTO(LocalDateTime data, String descricao, String objetivo, BigDecimal valor) {
+        this.data = data;
+        this.descricao = descricao;
+        this.objetivo = objetivo;
+        this.valor = valor;
+    }
+
+    public static EventoDTO from(Evento evento) {
+        return new EventoDTO(evento.getData(), evento.getDescricao(), evento.getObjetivo(), evento.getValor());
     }
 
     public Long getId() {

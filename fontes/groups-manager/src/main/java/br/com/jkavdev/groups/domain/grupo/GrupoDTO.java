@@ -1,10 +1,15 @@
 package br.com.jkavdev.groups.domain.grupo;
 
+import br.com.jkavdev.groups.domain.evento.dto.EventoDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class GrupoDTO {
 
@@ -16,6 +21,7 @@ public class GrupoDTO {
     private String igreja;
     @NotNull
     private StatusGrupoDTO status;
+    List<EventoDTO> eventos = new ArrayList<>();
 
     public GrupoDTO() {
     }
@@ -29,6 +35,12 @@ public class GrupoDTO {
 
     public static GrupoDTO from(Grupo grupo) {
         return new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupoDTO.from(grupo.getStatusGrupo()));
+    }
+
+    public static GrupoDTO comEventos(Grupo grupo) {
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", null);
+        dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
+        return dto;
     }
 
     public String getNome() {
@@ -61,6 +73,14 @@ public class GrupoDTO {
 
     public void setStatus(StatusGrupoDTO status) {
         this.status = status;
+    }
+
+    public List<EventoDTO> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<EventoDTO> eventos) {
+        this.eventos = eventos;
     }
 
     @Override
