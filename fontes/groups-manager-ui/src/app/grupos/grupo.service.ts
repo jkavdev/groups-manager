@@ -2,10 +2,17 @@ import {Injectable} from '@angular/core';
 import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import {Grupo} from '../core/model';
+import {Grupo, StatusGrupo} from '../core/model';
 
 export class GrupoFiltro {
   nome: string;
+}
+
+export interface GrupoSummary {
+  nome;
+  status: StatusGrupo
+  objetivo;
+  igreja;
 }
 
 @Injectable()
@@ -25,7 +32,7 @@ export class GrupoService {
 
     return this.http.get(`${this.gruposUrl}?pesquisa`, {search: filtro})
       .toPromise()
-      .then(resp => resp.json());
+      .then(resp => <GrupoSummary[]> resp.json());
   }
 
   excluir(codigo: number): Promise<any> {

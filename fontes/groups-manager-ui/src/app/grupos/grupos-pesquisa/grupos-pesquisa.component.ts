@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {ToastyService} from 'ng2-toasty';
 import {ConfirmationService} from 'primeng/components/common/api';
 
-import {GrupoService, GrupoFiltro} from '../grupo.service';
+import {GrupoFiltro, GrupoService, GrupoSummary} from '../grupo.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
@@ -14,7 +14,7 @@ import {ErrorHandlerService} from '../../core/error-handler.service';
 export class GruposPesquisaComponent implements OnInit {
 
   filtro = new GrupoFiltro();
-  grupos = [];
+  grupos: GrupoSummary[];
 
   constructor(
     private grupoService: GrupoService,
@@ -30,7 +30,10 @@ export class GruposPesquisaComponent implements OnInit {
 
   pesquisar() {
     this.grupoService.pesquisar(this.filtro)
-      .then(grupos => this.grupos = grupos)
+      .then(grupos => {
+        this.toasty.success('Busca realizada!');
+        this.grupos = grupos;
+      })
       .catch(erro => this.errorHandler.handle(erro));
   }
 

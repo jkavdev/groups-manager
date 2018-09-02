@@ -11,6 +11,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {TooltipModule} from 'primeng/tooltip';
 import {DropdownModule} from 'primeng/dropdown';
 import {MessageModule} from 'primeng/message';
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/panel';
 
 import {SharedModule} from '../shared/shared.module';
 
@@ -31,6 +33,8 @@ import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.compone
     TooltipModule,
     DropdownModule,
     MessageModule,
+    DataViewModule,
+    PanelModule,
 
     SharedModule
   ],
