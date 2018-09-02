@@ -23,6 +23,7 @@ public class GrupoRepositoryImpl implements GrupoRepositoryQuery {
         Session session = manager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Grupo.class);
         criteria.setFetchMode("igreja", FetchMode.JOIN);
+        criteria.setFetchMode("statusGrupo", FetchMode.JOIN);
 
         if (StringUtils.hasText(filter.getNome())) {
             criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
