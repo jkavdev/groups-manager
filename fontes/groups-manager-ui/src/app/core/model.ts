@@ -3,6 +3,11 @@ export class Grupo {
   nome: string;
   igreja: string;
   objetivo: string;
+  status: StatusGrupo;
+}
+export class StatusGrupo {
+  id: number;
+  nome: string;
 }
 
 export class Noticia {

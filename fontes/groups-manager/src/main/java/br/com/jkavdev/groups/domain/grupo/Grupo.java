@@ -30,6 +30,10 @@ public class Grupo {
     @JoinColumn(name = "igreja_id")
     private Igreja igreja;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_grupo_id")
+    private StatusGrupo statusGrupo;
+
     @ManyToMany
     @JoinTable(
             name = "grupo_integrante",
@@ -50,15 +54,11 @@ public class Grupo {
         this.id = id;
     }
 
-    public Grupo(Long id, String nome, String objetivo, String igreja) {
-        this(nome, objetivo, igreja);
-        this.id = id;
-    }
-
-    public Grupo(String nome, String objetivo, String igreja) {
+    public Grupo(String nome, String objetivo, String igreja, StatusGrupo status) {
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = new Igreja(igreja);
+        this.statusGrupo = status;
     }
 
     public static Grupo empty() {
@@ -70,7 +70,7 @@ public class Grupo {
     }
 
     public static Grupo from(GrupoDTO dto) {
-        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja());
+        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja(), StatusGrupo.from(dto.getStatus()));
     }
 
     public Long getId() {
@@ -95,6 +95,10 @@ public class Grupo {
 
     public String getObjetivo() {
         return objetivo;
+    }
+
+    public StatusGrupo getStatusGrupo() {
+        return statusGrupo;
     }
 
     public Collection<Integrante> getIntegrantes() {

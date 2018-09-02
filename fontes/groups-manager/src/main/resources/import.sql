@@ -1,25 +1,28 @@
 INSERT INTO igreja(nome) VALUES('Católica'), ('Pastoral'), ('Presbiteriana');
 
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da criança',  1, 'Grupo de crianças');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da saúde',  1, 'Grupo de saúde');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da educação',  1, 'Grupo de educação');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da juventude',  1, 'Grupo de juventude');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da comunicação',  1, 'Grupo de comunicação');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da sobriedade',  1, 'Grupo de sobriedade');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral do menor',  1, 'Grupo de menor');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da liturgia',  1, 'Grupo de liturgia');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da catequese',  1, 'Grupo de catequese');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da familiar',  1, 'Grupo familiar');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Pastoral da carcerária',  1, 'Grupo de carcerária');
+INSERT INTO status_grupo(nome) VALUES ('POM');
+INSERT INTO status_grupo(nome) VALUES ('GAM');
 
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Encontro de Casais com Cristo',  2, 'Grupo de Casais');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Apostolado da Oração',  2, 'Grupo de Oração');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Renovação Carismática Católica',  2, 'Grupo de Renovação');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Mãe Rainha',  2, 'Grupo de Mães');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Terço dos Homens',  2, 'Grupo de Homens');
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da criança',  1, 'Grupo de crianças', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da saúde',  1, 'Grupo de saúde', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da educação',  1, 'Grupo de educação', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da juventude',  1, 'Grupo de juventude', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da comunicação',  1, 'Grupo de comunicação', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da sobriedade',  1, 'Grupo de sobriedade', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral do menor',  1, 'Grupo de menor', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da liturgia',  1, 'Grupo de liturgia', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da catequese',  1, 'Grupo de catequese', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da familiar',  1, 'Grupo familiar', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da carcerária',  1, 'Grupo de carcerária', 1);
 
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Comunidade Canção Nova',  3, 'Grupo de Canção');
-INSERT INTO grupo(nome, igreja_id, objetivo)  VALUES('Oração Paroquiais',  3, 'Grupo de Paroquiais');
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Encontro de Casais com Cristo',  2, 'Grupo de Casais', 2);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Apostolado da Oração',  2, 'Grupo de Oração', 2);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Renovação Carismática Católica',  2, 'Grupo de Renovação', 2);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Mãe Rainha',  2, 'Grupo de Mães', 2);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Terço dos Homens',  2, 'Grupo de Homens', 2);
+
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Comunidade Canção Nova',  3, 'Grupo de Canção', 2);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Oração Paroquiais',  3, 'Grupo de Paroquiais', 2);
 
 insert into integrante(nome, celular, email, senha, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Jhonatan', '12345678', 'jhonatan@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1), ('Caic', '12345678', 'caic@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1), ('Lucas', '12345678', 'lucas@gmail.com', '123456', 'MASCULINO', now(), '54022418214', 1), ('Marcia', '12345678', 'marcia@gmail.com', '123456', 'FEMININO', now(), '54022418214', 0), ('Gabriela', '12345678', 'gabriela@gmail.com', '123456', 'FEMININO', now(), '54022418214', 1);
   

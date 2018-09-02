@@ -27,6 +27,10 @@ public class GrupoService {
         grupoRepository.deleteById(id);
     }
 
+    public List<StatusGrupo> todosStatus(){
+        return grupoRepository.allStatusGrupos();
+    }
+
     public List<Grupo> filtrar(GrupoFilter filter) {
         return grupoRepository.filtrar(filter);
     }

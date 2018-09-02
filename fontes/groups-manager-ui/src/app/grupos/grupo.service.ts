@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { Grupo } from '../core/model';
+import {Grupo} from '../core/model';
 
 export class GrupoFiltro {
   nome: string;
@@ -13,7 +13,8 @@ export class GrupoService {
 
   gruposUrl = 'http://localhost:8086/grupos';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   pesquisar(filtro: GrupoFiltro): Promise<any> {
     const params = new URLSearchParams();
@@ -22,7 +23,7 @@ export class GrupoService {
       params.set('nome', filtro.nome);
     }
 
-    return this.http.get(`${this.gruposUrl}?pesquisa`, { search: filtro })
+    return this.http.get(`${this.gruposUrl}?pesquisa`, {search: filtro})
       .toPromise()
       .then(resp => resp.json());
   }
@@ -31,6 +32,12 @@ export class GrupoService {
     return this.http.delete(`${this.gruposUrl}/${codigo}`)
       .toPromise()
       .then(() => null)
+  }
+
+  todosStatus(): Promise<any> {
+    return this.http.get(`${this.gruposUrl}/status`)
+      .toPromise()
+      .then(resp => {console.log(resp.json()); return resp.json()});
   }
 
   salvar(grupo: Grupo): Promise<any> {

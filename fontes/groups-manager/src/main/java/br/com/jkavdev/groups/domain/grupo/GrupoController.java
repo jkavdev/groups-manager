@@ -40,9 +40,16 @@ public class GrupoController implements ServiceMap {
                 .collect(toList());
     }
 
+    @GetMapping("/status")
+    public List<StatusGrupoDTO> todosStatus() {
+        return grupoService.todosStatus().stream()
+                .map(g -> StatusGrupoDTO.from(g))
+                .collect(toList());
+    }
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    private void remover(@PathVariable Long id) {
+    public void remover(@PathVariable Long id) {
         grupoService.remover(id);
     }
 
