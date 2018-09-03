@@ -1,6 +1,6 @@
 package br.com.jkavdev.groups.domain.evento.dto;
 
-import br.com.jkavdev.groups.domain.evento.Evento;
+import br.com.jkavdev.groups.domain.evento.entity.Evento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
