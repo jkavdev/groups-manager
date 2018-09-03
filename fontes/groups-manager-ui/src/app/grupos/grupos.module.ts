@@ -13,11 +13,13 @@ import {DropdownModule} from 'primeng/dropdown';
 import {MessageModule} from 'primeng/message';
 import {DataViewModule} from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
+import {ScheduleModule} from 'primeng/schedule';
 
 import {SharedModule} from '../shared/shared.module';
 
 import {GruposCadastroComponent} from './grupos-cadastro/grupos-cadastro.component';
 import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.component';
+import {GruposEventosComponent} from './grupos-eventos/grupos-eventos.component';
 
 @NgModule({
   imports: [
@@ -35,12 +37,14 @@ import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.compone
     MessageModule,
     DataViewModule,
     PanelModule,
+    ScheduleModule,
 
     SharedModule
   ],
   declarations: [
     GruposCadastroComponent,
-    GruposPesquisaComponent
+    GruposPesquisaComponent,
+    GruposEventosComponent
   ],
   exports: []
 })

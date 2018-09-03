@@ -4,6 +4,7 @@ import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,7 +34,12 @@ public class GrupoController implements ServiceMap {
 
     @GetMapping("/{grupoId}/eventos")
     public GrupoDTO getEventos(@PathVariable("grupoId") Long groupoId) {
-        return GrupoDTO.comEventos(grupoService.comEventos(groupoId));
+        Optional<Grupo> opGrupo = grupoService.comEventos(groupoId);
+
+        if (!opGrupo.isPresent())
+            throw new EmptyResultDataAccessException(1);
+
+        return GrupoDTO.comEventos(opGrupo.get());
     }
 
     @GetMapping("/status")

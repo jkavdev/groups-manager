@@ -39,7 +39,7 @@ public class GrupoService {
         return grupoRepository.save(grupo);
     }
 
-    public Grupo comEventos(Long id){
+    public Optional<Grupo> comEventos(Long id){
         return grupoRepository.findByIdFetchEventos(id);
     }
 

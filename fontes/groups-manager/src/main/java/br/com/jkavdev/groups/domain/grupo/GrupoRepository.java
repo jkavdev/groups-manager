@@ -20,8 +20,8 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>, GrupoReposi
 	@Query("SELECT g FROM Grupo g LEFT JOIN FETCH g.integrantes inte WHERE g.id = ?1")
 	Optional<Grupo> findByIdFetchIntegrantes(Long idGrupo);
 
-	@Query("SELECT g FROM Grupo g LEFT JOIN FETCH g.eventos inte WHERE g.id = ?1")
-	Grupo findByIdFetchEventos(Long idGrupo);
+	@Query("SELECT g FROM Grupo g LEFT JOIN FETCH g.eventos e LEFT JOIN FETCH e.endereco inte WHERE g.id = ?1")
+    Optional<Grupo> findByIdFetchEventos(Long idGrupo);
 
     @Query("FROM StatusGrupo")
 	List<StatusGrupo> allStatusGrupos();

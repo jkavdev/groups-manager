@@ -34,10 +34,11 @@
             </div>
           </div>
           <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="far fa-calendar" style="margin-top:0"
-                    pTooltip="Ver eventos" tooltipPosition="top"></button>
-            <button pButton type="button" icon="fas fa-users" style="margin-top:0"
-                    pTooltip="Ver integrantes" tooltipPosition="top"></button>
+            <a pButton type="button" icon="far fa-calendar" style="margin-top:0"
+                    pTooltip="Ver eventos" tooltipPosition="top"
+                    [routerLink]="['/grupos/', grupo.id, 'eventos']"></a>
+            <a pButton type="button" icon="fas fa-users" style="margin-top:0"
+                    pTooltip="Ver integrantes" tooltipPosition="top"></a>
           </div>
         </div>
       </ng-template>
@@ -47,8 +48,9 @@
             <img src="assets/images/{{grupo.status.nome}}.png" style="width: 120px;">
             <div class="car-detail">{{grupo.nome}}</div>
             <hr class="ui-widget-content" style="border-top:0">
-            <button pButton type="button" icon="far fa-calendar" style="margin-top:0"
-                    pTooltip="Ver eventos" tooltipPosition="top"></button>
+            <a pButton type="button" icon="far fa-calendar" style="margin-top:0"
+               pTooltip="Ver eventos" tooltipPosition="top"
+               [routerLink]="['/grupos', grupo.id, 'eventos']"></a>
             <button pButton type="button" icon="fas fa-users" style="margin-top:0"
                     pTooltip="Ver integrantes" tooltipPosition="top"></button>
           </p-panel>

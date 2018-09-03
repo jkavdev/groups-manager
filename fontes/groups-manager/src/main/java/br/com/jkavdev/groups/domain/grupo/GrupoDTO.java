@@ -13,6 +13,7 @@ import static java.util.stream.Collectors.toList;
 
 public class GrupoDTO {
 
+    private Long id;
     @NotBlank
     private String objetivo;
     @NotBlank
@@ -34,13 +35,23 @@ public class GrupoDTO {
     }
 
     public static GrupoDTO from(Grupo grupo) {
-        return new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupoDTO.from(grupo.getStatusGrupo()));
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupoDTO.from(grupo.getStatusGrupo()));
+        dto.setId(grupo.getId());
+        return dto;
     }
 
     public static GrupoDTO comEventos(Grupo grupo) {
         GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", null);
         dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
         return dto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

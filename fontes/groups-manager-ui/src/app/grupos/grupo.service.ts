@@ -9,6 +9,7 @@ export class GrupoFiltro {
 }
 
 export interface GrupoSummary {
+  id;
   nome;
   status: StatusGrupo
   objetivo;
@@ -44,7 +45,13 @@ export class GrupoService {
   todosStatus(): Promise<any> {
     return this.http.get(`${this.gruposUrl}/status`)
       .toPromise()
-      .then(resp => {console.log(resp.json()); return resp.json()});
+      .then(resp => resp.json());
+  }
+
+  comEventos(id: number): Promise<any> {
+    return this.http.get(`${this.gruposUrl}/${id}/eventos`)
+      .toPromise()
+      .then(resp => resp.json());
   }
 
   salvar(grupo: Grupo): Promise<any> {
