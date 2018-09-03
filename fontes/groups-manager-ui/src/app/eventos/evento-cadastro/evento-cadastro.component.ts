@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Endereco, ViacepService} from '@brunoc/ngx-viacep';
+import {ToastyService} from 'ng2-toasty';
 
-import { SelectItem } from 'primeng/api';
-import { Dropdown } from 'primeng/dropdown';
-import { ViacepService, Endereco, CepError } from '@brunoc/ngx-viacep';
-import { ToastyService } from 'ng2-toasty';
-
-import { Noticia, Evento } from '../../core/model';
-import { EventoService } from '../evento.service';
+import {Evento} from '../../core/model';
+import {EventoService} from '../evento.service';
+import {GrupoService} from "../../grupos/grupo.service";
+import {ErrorHandlerService} from "../../core/error-handler.service";
 
 @Component({
   selector: 'app-evento-cadastro',
@@ -25,8 +24,11 @@ export class EventoCadastroComponent implements OnInit {
   constructor(
     private viacepService: ViacepService,
     private eventoService: EventoService,
+    private grupoService: GrupoService,
     private toasty: ToastyService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private errorHandler: ErrorHandlerService,
   ) { }
 
   ngOnInit() {

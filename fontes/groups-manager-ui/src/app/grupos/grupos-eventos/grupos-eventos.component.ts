@@ -20,7 +20,6 @@ export class GruposEventosComponent implements OnInit {
   constructor(
     private grupoService: GrupoService,
     private route: ActivatedRoute,
-    private router: Router,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
   ) {

@@ -25,21 +25,22 @@ import br.com.jkavdev.groups.utils.ServiceMap;
 @RestController
 @RequestMapping("/eventos")
 public class EventoController implements ServiceMap {
-	
-	@Autowired
-	private EventoService eventoService;
-	@Autowired
-	private ApplicationEventPublisher publisher;
-	
-	@PostMapping
-	public ResponseEntity<Evento> salvar(@Valid @RequestBody Evento evento, HttpServletResponse response) {
-		Evento eventoSalvo = eventoService.salvar(evento);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, eventoSalvo.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(eventoSalvo);
-	}
-	@GetMapping(params = "pesquisa")
-	private List<EventoDTO> filtrar(EventoFilter filter) {
-		return eventoService.filtrar(filter);
-	}
+
+    @Autowired
+    private EventoService eventoService;
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
+    @PostMapping
+    public ResponseEntity<Evento> salvar(@Valid @RequestBody Evento evento, HttpServletResponse response) {
+        Evento eventoSalvo = eventoService.salvar(evento);
+        publisher.publishEvent(new RecursoCriadoEvent(this, response, eventoSalvo.getId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(eventoSalvo);
+    }
+
+    @GetMapping(params = "pesquisa")
+    private List<EventoDTO> filtrar(EventoFilter filter) {
+        return eventoService.filtrar(filter);
+    }
 
 }
