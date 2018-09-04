@@ -32,10 +32,10 @@ public class EventoController implements ServiceMap {
     private ApplicationEventPublisher publisher;
 
     @PostMapping
-    public ResponseEntity<Evento> salvar(@Valid @RequestBody Evento evento, HttpServletResponse response) {
-        Evento eventoSalvo = eventoService.salvar(evento);
+    public ResponseEntity<EventoDTO> salvar(@Valid @RequestBody EventoDTO evento, HttpServletResponse response) {
+        Evento eventoSalvo = eventoService.salvar(Evento.from(evento));
         publisher.publishEvent(new RecursoCriadoEvent(this, response, eventoSalvo.getId()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(eventoSalvo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(evento);
     }
 
     @GetMapping(params = "pesquisa")

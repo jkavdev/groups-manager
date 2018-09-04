@@ -1,28 +1,43 @@
 package br.com.jkavdev.groups.domain.evento.dto;
 
 import br.com.jkavdev.groups.domain.evento.entity.Evento;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.lang.NonNull;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class EventoDTO {
 
     private Long id;
+    @NonNull
     private LocalDateTime data;
+    @NotBlank
     private String descricao;
+    @NotBlank
     private String objetivo;
+    @NonNull
     private BigDecimal valor;
-    private int lotacaoMaxima;
+    @NonNull
+    private Integer lotacaoMaxima;
 
-    public EventoDTO() {}
+    @NonNull
+    private Long grupoId;
 
-    public EventoDTO(Long id, LocalDateTime data, String descricao, String objetivo, BigDecimal valor) {
-        this.id = id;
-        this.data = data;
-        this.descricao = descricao;
-        this.objetivo = objetivo;
-        this.valor = valor;
+    @NonNull
+    private EnderecoDTO endereco;
+
+    public EventoDTO() {
     }
+
+    //usado por filtrar
+    public EventoDTO(Long id, LocalDateTime data, String descricao, String objetivo, BigDecimal valor) {
+        this(data, descricao, objetivo, valor);
+        this.id = id;
+    }
+
     public EventoDTO(LocalDateTime data, String descricao, String objetivo, BigDecimal valor) {
         this.data = data;
         this.descricao = descricao;
@@ -72,5 +87,43 @@ public class EventoDTO {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public Integer getLotacaoMaxima() {
+        return lotacaoMaxima;
+    }
+
+    public void setLotacaoMaxima(Integer lotacaoMaxima) {
+        this.lotacaoMaxima = lotacaoMaxima;
+    }
+
+    public Long getGrupoId() {
+        return grupoId;
+    }
+
+    public void setGrupoId(Long grupoId) {
+        this.grupoId = grupoId;
+    }
+
+    public EnderecoDTO getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoDTO endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("id", id)
+                .append("data", data)
+                .append("descricao", descricao)
+                .append("objetivo", objetivo)
+                .append("valor", valor)
+                .append("lotacaoMaxima", lotacaoMaxima)
+                .append("grupoId", grupoId)
+                .append(endereco)
+                .toString();
     }
 }

@@ -74,6 +74,10 @@ public class Grupo {
         return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja(), StatusGrupo.from(dto.getStatus()));
     }
 
+    public static Grupo from(Long id) {
+        return new Grupo(id);
+    }
+
     public Long getId() {
         return id;
     }
