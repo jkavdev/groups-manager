@@ -22,7 +22,7 @@
       <ng-template let-grupo pTemplate="listItem">
         <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
           <div class="ui-g-12 ui-md-3" style="text-align:center">
-            <img src="assets/images/{{grupo.status.nome}}.png" style="width: 120px;">
+            <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
           </div>
           <div class="ui-g-12 ui-md-8 car-details">
             <div class="ui-g">
@@ -45,7 +45,7 @@
       <ng-template let-grupo pTemplate="gridItem">
         <div style="padding:.5em" class="ui-g-12 ui-md-3">
           <p-panel [header]="grupo.status.nome" [style]="{'text-align':'center'}">
-            <img src="assets/images/{{grupo.status.nome}}.png" style="width: 120px;">
+            <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
             <div class="car-detail">{{grupo.nome}}</div>
             <hr class="ui-widget-content" style="border-top:0">
             <a pButton type="button" icon="far fa-calendar" style="margin-top:0"

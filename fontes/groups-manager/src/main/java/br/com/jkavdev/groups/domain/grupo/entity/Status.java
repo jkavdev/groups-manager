@@ -2,7 +2,11 @@ package br.com.jkavdev.groups.domain.grupo.entity;
 
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//Apenas para gerar o ddl com o hibernate
 
 @Entity
 @Table(name = "status_grupo")
@@ -10,7 +14,6 @@ import javax.persistence.*;
 public class Status {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;

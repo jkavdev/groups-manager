@@ -6,9 +6,13 @@ export class Grupo {
   status: StatusGrupo;
   eventos: Evento[] = [];
 }
+
 export class StatusGrupo {
   id: number;
   nome: string;
+  imageName: string;
+  status: string;
+  descricao: string;
 }
 
 export class Noticia {

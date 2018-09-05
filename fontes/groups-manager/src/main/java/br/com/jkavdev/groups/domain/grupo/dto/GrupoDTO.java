@@ -23,27 +23,29 @@ public class GrupoDTO {
     @NotBlank
     private String igreja;
     @NotNull
+    private Long statusGrupoId;
     private StatusGrupo status;
     List<EventoDTO> eventos = new ArrayList<>();
 
     public GrupoDTO() {
     }
 
-    private GrupoDTO(String nome, String objetivo, String igreja, StatusGrupo status) {
+    private GrupoDTO(String nome, String objetivo, String igreja, Long status) {
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = igreja;
-        this.status = status;
+        this.statusGrupoId = status;
+        this.status = StatusGrupo.from(status);
     }
 
     public static GrupoDTO from(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupo.from(grupo.getStatusGrupoId()));
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), grupo.getStatusGrupoId());
         dto.setId(grupo.getId());
         return dto;
     }
 
     public static GrupoDTO comEventos(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", StatusGrupo.from(grupo.getStatusGrupoId()));
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", grupo.getStatusGrupoId());
         dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
         return dto;
     }
@@ -80,6 +82,14 @@ public class GrupoDTO {
         this.igreja = igreja;
     }
 
+    public Long getStatusGrupoId() {
+        return statusGrupoId;
+    }
+
+    public void setStatusGrupoId(Long statusGrupoId) {
+        this.statusGrupoId = statusGrupoId;
+    }
+
     public StatusGrupo getStatus() {
         return status;
     }
@@ -102,7 +112,7 @@ public class GrupoDTO {
                 .append("nome", nome)
                 .append("objetivo", objetivo)
                 .append("igreja", igreja)
-                .append(status)
+                .append("statusGrupoId", statusGrupoId)
                 .toString();
     }
 }
