@@ -1,74 +1,64 @@
 package br.com.jkavdev.groups.domain.grupo.entity;
 
-import br.com.jkavdev.groups.domain.grupo.dto.StatusGrupoDTO;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.dao.EmptyResultDataAccessException;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.util.Objects;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-@Entity
-@Table(name = "status_grupo")
-public class StatusGrupo {
+import static java.util.stream.Collectors.*;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public enum StatusGrupo {
 
-    @NotBlank
-    private String nome;
+    PASTORAL_DO_DIZIMO("PASTORAIS", "Pastoral do Dizimo", "descricao", 1L),
+    PASTORAL_FAMILIAR("PASTORAIS", "Pastoral Familiar", "descricao", 2L),
+    PASTORAL_DA_CRIANÇA("PASTORAIS", "Pastoral da Criança", "descricao", 3L),
+    VICENTINOS("PASTORAIS", "Vicentinos", "descricao", 4L),
+    GAM("MOVIMENTO", "GAM", "descricao", 5L),
+    EJOC("MOVIMENTO", "EJOC", "descricao", 6L),
+    AJUC("MOVIMENTO", "AJUC", "descricao", 7L);
 
-    public StatusGrupo() {
-    }
+    public static final Map<Long, StatusGrupo> statuses = Stream.of(StatusGrupo.values())
+            .collect(toMap(StatusGrupo::getId, Function.identity()));
 
-    public StatusGrupo(String nome) {
+    private final String status;
+    private final String nome;
+    private final String descricao;
+    private final Long id;
+
+    StatusGrupo(String status, String nome, String descricao, Long id) {
+        this.status = status;
         this.nome = nome;
-    }
-
-    public StatusGrupo(Long id, String nome) {
+        this.descricao = descricao;
         this.id = id;
-        this.nome = nome;
     }
 
-    public static StatusGrupo from(StatusGrupoDTO status) {
-        return new StatusGrupo(status.getId(), status.getNome());
+    public static Long idValidado(Long statusId) {
+        Optional<StatusGrupo> grupo = Optional.ofNullable(statuses.get(statusId));
+        grupo.orElseThrow(() -> new EmptyResultDataAccessException(0));
+        return grupo.get().getId();
     }
 
-    public Long getId() {
-        return id;
+    public static StatusGrupo from(Long id) {
+        return statuses.get(id);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getStatus() {
+        return status;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        StatusGrupo that = (StatusGrupo) o;
-        return Objects.equals(nome, that.nome);
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append("id", id)
-                .append("nome", nome)
-                .toString();
-    }
 }

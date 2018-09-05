@@ -72,14 +72,6 @@ public class Noticia {
 		this.grupo = grupo;
 	}
 
-	public static Noticia empty() {
-		Noticia empty = new Noticia();
-		empty.titulo = "";
-		empty.corpo = "";
-		empty.grupo = Grupo.empty();
-		return empty;
-	}
-
 	public Long getId() {
 		return id;
 	}

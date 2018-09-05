@@ -31,9 +31,8 @@ public class Grupo {
     @JoinColumn(name = "igreja_id")
     private Igreja igreja;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_grupo_id")
-    private StatusGrupo statusGrupo;
+    @Column(name = "status_grupo_id", nullable = false)
+    private Long statusGrupoId;
 
     @ManyToMany
     @JoinTable(
@@ -43,10 +42,10 @@ public class Grupo {
     private Collection<Integrante> integrantes = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")
-    private Collection<Evento> eventos = Collections.emptySet();
+    private Collection<Evento> eventos = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")
-    private Collection<Noticia> noticias = Collections.emptySet();
+    private Collection<Noticia> noticias = new HashSet<>();
 
     private Grupo() {
     }
@@ -55,23 +54,16 @@ public class Grupo {
         this.id = id;
     }
 
-    public Grupo(String nome, String objetivo, String igreja, StatusGrupo status) {
+    public Grupo(String nome, String objetivo, String igreja, Long statusId) {
+        statusGrupoId = StatusGrupo.idValidado(statusId);
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = new Igreja(igreja);
-        this.statusGrupo = status;
-    }
-
-    public static Grupo empty() {
-        Grupo empty = new Grupo();
-        empty.nome = "";
-        empty.objetivo = "";
-        empty.igreja = Igreja.empty();
-        return empty;
+        this.statusGrupoId = statusId;
     }
 
     public static Grupo from(GrupoDTO dto) {
-        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja(), StatusGrupo.from(dto.getStatus()));
+        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getIgreja(), dto.getStatus().getId());
     }
 
     public static Grupo from(Long id) {
@@ -102,8 +94,8 @@ public class Grupo {
         return objetivo;
     }
 
-    public StatusGrupo getStatusGrupo() {
-        return statusGrupo;
+    public Long getStatusGrupoId() {
+        return statusGrupoId;
     }
 
     public Collection<Integrante> getIntegrantes() {

@@ -2,6 +2,7 @@ package br.com.jkavdev.groups.domain.grupo.dto;
 
 import br.com.jkavdev.groups.domain.evento.dto.EventoDTO;
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -22,13 +23,13 @@ public class GrupoDTO {
     @NotBlank
     private String igreja;
     @NotNull
-    private StatusGrupoDTO status;
+    private StatusGrupo status;
     List<EventoDTO> eventos = new ArrayList<>();
 
     public GrupoDTO() {
     }
 
-    private GrupoDTO(String nome, String objetivo, String igreja, StatusGrupoDTO status) {
+    private GrupoDTO(String nome, String objetivo, String igreja, StatusGrupo status) {
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = igreja;
@@ -36,13 +37,13 @@ public class GrupoDTO {
     }
 
     public static GrupoDTO from(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupoDTO.from(grupo.getStatusGrupo()));
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), StatusGrupo.from(grupo.getStatusGrupoId()));
         dto.setId(grupo.getId());
         return dto;
     }
 
     public static GrupoDTO comEventos(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", null);
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", StatusGrupo.from(grupo.getStatusGrupoId()));
         dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
         return dto;
     }
@@ -79,11 +80,11 @@ public class GrupoDTO {
         this.igreja = igreja;
     }
 
-    public StatusGrupoDTO getStatus() {
+    public StatusGrupo getStatus() {
         return status;
     }
 
-    public void setStatus(StatusGrupoDTO status) {
+    public void setStatus(StatusGrupo status) {
         this.status = status;
     }
 

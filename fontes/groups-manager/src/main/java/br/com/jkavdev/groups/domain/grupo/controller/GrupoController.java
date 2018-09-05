@@ -1,10 +1,10 @@
 package br.com.jkavdev.groups.domain.grupo.controller;
 
 import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
+import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
-import br.com.jkavdev.groups.domain.grupo.dto.StatusGrupoDTO;
-import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,10 +49,8 @@ public class GrupoController implements ServiceMap {
     }
 
     @GetMapping("/status")
-    public List<StatusGrupoDTO> todosStatus() {
-        return grupoService.todosStatus().stream()
-                .map(g -> StatusGrupoDTO.from(g))
-                .collect(toList());
+    public List<StatusGrupo> todosStatus() {
+        return Arrays.asList(StatusGrupo.values());
     }
 
     @DeleteMapping("{id}")

@@ -1,0 +1,6 @@
+CREATE TABLE status_grupo(
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  status VARCHAR(15) NOT NULL,
+  nome VARCHAR(50) NOT NULL,
+  descricao VARCHAR(255) NOT NULL
+);

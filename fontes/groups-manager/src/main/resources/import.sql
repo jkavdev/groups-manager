@@ -1,7 +1,12 @@
 INSERT INTO igreja(nome) VALUES('Católica'), ('Pastoral'), ('Presbiteriana');
 
-INSERT INTO status_grupo(nome) VALUES ('POM');
-INSERT INTO status_grupo(nome) VALUES ('GAM');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (1, 'PASTORAIS', 'Pastoral do Dizimo', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (2, 'PASTORAIS', 'Pastoral Familiar', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (3, 'PASTORAIS', 'Pastoral da Criança', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (4, 'PASTORAIS', 'Vicentinos', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (5, 'MOVIMENTO', 'GAM', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (6, 'MOVIMENTO', 'EJOC', 'descricao');
+INSERT INTO status_grupo(id, status, nome, descricao) VALUES (7, 'MOVIMENTO', 'AJUC', 'descricao');
 
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da criança',  1, 'Grupo de crianças', 1);
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id)  VALUES('Pastoral da saúde',  1, 'Grupo de saúde', 1);

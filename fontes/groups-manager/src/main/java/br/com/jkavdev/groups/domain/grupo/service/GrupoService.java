@@ -1,9 +1,8 @@
 package br.com.jkavdev.groups.domain.grupo.service;
 
+import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
-import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
-import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
 import br.com.jkavdev.groups.exceptionhandler.NegocioException;
@@ -31,10 +30,6 @@ public class GrupoService {
         grupoRepository.deleteById(id);
     }
 
-    public List<StatusGrupo> todosStatus(){
-        return grupoRepository.allStatusGrupos();
-    }
-
     public List<Grupo> filtrar(GrupoFilter filter) {
         return grupoRepository.filtrar(filter);
     }
@@ -43,7 +38,7 @@ public class GrupoService {
         return grupoRepository.save(grupo);
     }
 
-    public Optional<Grupo> comEventos(Long id){
+    public Optional<Grupo> comEventos(Long id) {
         return grupoRepository.findByIdFetchEventos(id);
     }
 
