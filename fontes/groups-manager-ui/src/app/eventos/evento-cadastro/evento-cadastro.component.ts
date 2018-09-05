@@ -40,6 +40,9 @@ export class EventoCadastroComponent implements OnInit {
       { label: 'GO', value: 1 },
       { label: 'DF', value: 2 }
     ]
+
+    console.log(this.route.snapshot.params['id']);
+
   }
 
   salvar(form: FormControl) {

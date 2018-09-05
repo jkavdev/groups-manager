@@ -5,10 +5,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.*;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusGrupo {
@@ -21,14 +21,15 @@ public enum StatusGrupo {
     EJOC("MOVIMENTO", "EJOC", "descricao", 6L, "EJOC"),
     AJUC("MOVIMENTO", "AJUC", "descricao", 7L, "AJUC");
 
-    public static final Map<Long, StatusGrupo> statuses = Stream.of(StatusGrupo.values())
-            .collect(toMap(StatusGrupo::getId, Function.identity()));
+    public static final Map<Long, StatusGrupo> statuses =
+            Stream.of(StatusGrupo.values())
+            .collect(toMap(StatusGrupo::getId, identity()));
 
     private final String status;
     private final String nome;
     private final String descricao;
     private final Long id;
-    private String imageName;
+    private final String imageName;
 
     StatusGrupo(String status, String nome, String descricao, Long id, String imageName) {
         this.status = status;

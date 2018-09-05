@@ -47,6 +47,7 @@ public class GrupoDTO {
     public static GrupoDTO comEventos(Grupo grupo) {
         GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", grupo.getStatusGrupoId());
         dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
+        dto.setId(grupo.getId());
         return dto;
     }
 
