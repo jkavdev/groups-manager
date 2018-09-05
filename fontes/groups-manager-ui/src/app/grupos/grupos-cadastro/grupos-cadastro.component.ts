@@ -36,7 +36,7 @@ export class GruposCadastroComponent implements OnInit {
       .then(status => {
         this.statusGrupo = [];
         this.statusGrupo.push({label: 'Selecione um Status Grupo', value: null});
-        status.forEach(status => this.statusGrupo.push({label: status.nome, value: status}));
+        status.forEach(status => this.statusGrupo.push({label: status.nome, value: status.id}));
       })
       .catch(erro => this.errorHandler.handle(erro));
   }

@@ -13,7 +13,7 @@
           <label>Status do Grupo</label>
         </div>
         <div class="ui-g-12">
-          <p-dropdown name="status" [options]="statusGrupo" [(ngModel)]="grupo.status" #status="ngModel" [autoWidth]="false" required></p-dropdown>
+          <p-dropdown name="status" [options]="statusGrupo" [(ngModel)]="grupo.statusGrupoId" #status="ngModel" [autoWidth]="false" required></p-dropdown>
           <app-message [control]="status" error="required" text="Informe Status do Grupo"></app-message>
         </div>
       </div>

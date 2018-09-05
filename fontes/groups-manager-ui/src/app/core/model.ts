@@ -3,7 +3,7 @@ export class Grupo {
   nome: string;
   igreja: string;
   objetivo: string;
-  status: StatusGrupo;
+  statusGrupoId: number;
   eventos: Evento[] = [];
 }
 
