@@ -28,7 +28,7 @@ public class Grupo {
     private String objetivo;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "igreja_id")
+    @JoinColumn(name = "igreja_id", foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
     private Igreja igreja;
 
     @Column(name = "status_grupo_id", nullable = false)
@@ -38,7 +38,7 @@ public class Grupo {
     @JoinTable(
             name = "grupo_integrante",
             joinColumns = @JoinColumn(name = "grupo_id"), foreignKey = @ForeignKey(name = "fk_grupo_integrante_grupo_id"),
-            inverseJoinColumns = @JoinColumn(name = "integrante_id"), inverseForeignKey = @ForeignKey(name = "fk_integrante_id"))
+            inverseJoinColumns = @JoinColumn(name = "integrante_id"), inverseForeignKey = @ForeignKey(name = "fk_grupo_integrante_integrante_id"))
     private Collection<Integrante> integrantes = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")

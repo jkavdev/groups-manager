@@ -37,7 +37,7 @@ public class Evento {
 
     @NotNull
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "endereco_id", foreignKey = @ForeignKey(name = "fk_endereco_id"))
+    @JoinColumn(name = "endereco_id", foreignKey = @ForeignKey(name = "fk_evento_endereco_id"))
     private Endereco endereco;
 
     @NotNull
