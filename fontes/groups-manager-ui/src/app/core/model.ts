@@ -41,7 +41,8 @@ export class Evento {
   valor: string;
   lotacaoMaxima: number;
   endereco = new Endereco();
-  grupo = new Grupo();
+  grupo: Grupo;
+  grupoId: number;
 }
 
 export class Integrante {

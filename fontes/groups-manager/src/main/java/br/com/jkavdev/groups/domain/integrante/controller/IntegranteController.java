@@ -48,8 +48,7 @@ public class IntegranteController implements ServiceMap {
     }
 
     /***
-     *
-     * @param cpf
+     * @param filter
      * Como o hibernate tem o validador para o @CPF
      * Temos um servico que recebe uma string como CPF
      * Quando atribuido o valor ao parametro o hibernate validator

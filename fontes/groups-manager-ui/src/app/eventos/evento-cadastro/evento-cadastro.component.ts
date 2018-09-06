@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+
 import {Endereco, ViacepService} from '@brunoc/ngx-viacep';
 import {ToastyService} from 'ng2-toasty';
+import {SelectItem} from "primeng/api";
 
 import {Evento} from '../../core/model';
 import {EventoService} from '../evento.service';
-import {GrupoService} from "../../grupos/grupo.service";
+import {GrupoFiltro, GrupoService} from "../../grupos/grupo.service";
 import {ErrorHandlerService} from "../../core/error-handler.service";
 
 @Component({
@@ -16,7 +18,7 @@ import {ErrorHandlerService} from "../../core/error-handler.service";
 })
 export class EventoCadastroComponent implements OnInit {
 
-  grupos = [];
+  grupos: SelectItem[];
   ufs = [];
   endereco: Endereco;
   evento = new Evento();
@@ -29,20 +31,33 @@ export class EventoCadastroComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-    this.grupos = [
-      { label: 'GAM', value: 1 },
-      { label: 'Movimento', value: 2 }
-    ]
-    this.ufs = [
-      { label: 'GO', value: 1 },
-      { label: 'DF', value: 2 }
-    ]
-
+    this.buscarGrupos();
+    this.buscarUFs();
     console.log(this.route.snapshot.params['id']);
+  }
 
+  buscarGrupos() {
+    this.grupoService.pesquisar(new GrupoFiltro())
+      .then(grupos => {
+        this.grupos = [];
+        this.grupos.push({label: 'Selecione um Grupo', value: null});
+        grupos.forEach(grupo => this.grupos.push({label: grupo.nome, value: grupo.id}));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  buscarUFs() {
+    this.eventoService.ufs()
+      .then(ufs => {
+        this.ufs = [];
+        this.ufs.push({label: 'Selecione o Estado', value: null});
+        ufs.forEach(uf => this.ufs.push({label: '(' + uf.descricao + ')' + ' - ' + uf.sigla, value: uf}));
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: FormControl) {

@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { EventoFiltro } from './evento-pesquisa/evento-pesquisa.component';
+import {EventoFiltro} from './evento-pesquisa/evento-pesquisa.component';
 
 @Injectable()
 export class EventoService {
 
   eventosUrl = 'http://localhost:8086/eventos';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   salvar(evento: any): Promise<any> {
     return this.http.post(`${this.eventosUrl}`, evento)
@@ -29,7 +30,13 @@ export class EventoService {
       params.ate = filtro.ate.toLocaleString('pt-BR')
     }
 
-    return this.http.get(`${this.eventosUrl}?pesquisa`, { search: params })
+    return this.http.get(`${this.eventosUrl}?pesquisa`, {search: params})
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  ufs(): Promise<any> {
+    return this.http.get(`${this.eventosUrl}/ufs`)
       .toPromise()
       .then(resp => resp.json());
   }

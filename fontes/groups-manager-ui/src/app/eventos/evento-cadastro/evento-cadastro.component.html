@@ -29,7 +29,7 @@
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Grupo</label>
-        <p-dropdown [autoWidth]="false" [options]="grupos" name="grupo" [(ngModel)]="evento.grupo" #grupo="ngModel" required placeholder="Selecione"></p-dropdown>
+        <p-dropdown [autoWidth]="false" [options]="grupos" name="grupo" [(ngModel)]="evento.grupoId" #grupo="ngModel" required></p-dropdown>
         <app-message [control]="grupo" error="required" text="Informe o Grupo"></app-message>
       </div>
       <div class="ui-g-12 ui-fluid">
@@ -69,9 +69,10 @@
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>UF</label>
-        <p-dropdown [autoWidth]="false" [options]="ufs" name="uf" [(ngModel)]="evento.endereco.uf" #uf="ngModel" required placeholder="Selecione"></p-dropdown>
+        <p-dropdown [autoWidth]="false" [options]="ufs" name="uf" [(ngModel)]="evento.endereco.uf" #uf="ngModel" required></p-dropdown>
         <app-message [control]="uf" error="required" text="Informe o estado do Evento"></app-message>
       </div>
+
       <div class="ui-g-12 ui-fluid">
         <label>Complemento</label>
         <textarea pInputTextarea autoResize="false" name="complemento" [(ngModel)]="evento.endereco.complemento" #complemento="ngModel"></textarea>
