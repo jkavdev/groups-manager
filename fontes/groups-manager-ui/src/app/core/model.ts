@@ -5,6 +5,7 @@ export class Grupo {
   objetivo: string;
   statusGrupoId: number;
   eventos: Evento[] = [];
+  integrantes: Integrante[];
 }
 
 export class StatusGrupo {
@@ -38,6 +39,7 @@ export class Evento {
   data: Date;
   descricao: string;
   motivo: string;
+  objetivo: string;
   valor: string;
   lotacaoMaxima: number;
   endereco = new Endereco();

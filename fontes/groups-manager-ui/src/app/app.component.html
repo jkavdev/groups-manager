@@ -1,27 +1,22 @@
 <div id="wrapper">
 
-  <header id="header">
-    <app-header></app-header>
-  </header>
+  <app-header></app-header>
 
-  <section id="menu">
-    <section>
-      <app-menu></app-menu>
-    </section>
-  </section>
+  <app-menu></app-menu>
 
   <div id="main">
-    <article class="post">
-      <router-outlet></router-outlet>
-    </article>
-
-    <ng2-toasty></ng2-toasty>
-
-    <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao>
-      <p-footer>
-        <button type="button" pButton icon="fa-check" label="Sim" (click)="confirmacao.accept()"></button>
-        <button type="button" pButton icon="fa-times" label="Não" (click)="confirmacao.reject()"></button>
-      </p-footer>
-    </p-confirmDialog>
+    <router-outlet></router-outlet>
   </div>
+
+  <app-footer></app-footer>
+
+  <ng2-toasty></ng2-toasty>
+
+  <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao>
+    <p-footer>
+      <button type="button" pButton icon="fa-check" label="Sim" (click)="confirmacao.accept()"></button>
+      <button type="button" pButton icon="fa-times" label="Não" (click)="confirmacao.reject()"></button>
+    </p-footer>
+  </p-confirmDialog>
+
 </div>

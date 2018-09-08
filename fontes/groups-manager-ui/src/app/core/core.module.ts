@@ -6,19 +6,19 @@ import localePt from '@angular/common/locales/pt';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import {ToastyModule} from 'ng2-toasty';
-
 import {ViacepModule} from '@brunoc/ngx-viacep';
 
-import {NavbarComponent} from './navbar/navbar.component';
 import {ErrorHandlerService} from './error-handler.service';
 import {GrupoService} from '../grupos/grupo.service';
 import {IntegranteService} from '../integrantes/integrante.service';
 import {TopicoService} from '../topicos/topico.service';
 import {NoticiaService} from '../noticias/noticia.service';
 import {EventoService} from '../eventos/evento.service';
+import {NavbarComponent} from './navbar/navbar.component';
 import {PaginaNaoEncontradaComponent} from './pagina-nao-encontrada.component';
 import {MenuComponent} from './menu/menu.component';
 import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
 
 registerLocaleData(localePt);
 
@@ -35,12 +35,14 @@ registerLocaleData(localePt);
     NavbarComponent,
     PaginaNaoEncontradaComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   exports: [
     NavbarComponent,
     MenuComponent,
     HeaderComponent,
+    FooterComponent,
     ToastyModule,
     ConfirmDialogModule
   ],
