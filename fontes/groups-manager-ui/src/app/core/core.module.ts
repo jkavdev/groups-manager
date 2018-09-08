@@ -1,22 +1,24 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {LOCALE_ID, NgModule} from '@angular/core';
+import {CommonModule, registerLocaleData} from '@angular/common';
+import {RouterModule} from '@angular/router';
 import localePt from '@angular/common/locales/pt';
 
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
-import { ToastyModule } from 'ng2-toasty';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import {ToastyModule} from 'ng2-toasty';
 
-import { ViacepModule } from '@brunoc/ngx-viacep';
+import {ViacepModule} from '@brunoc/ngx-viacep';
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { ErrorHandlerService } from './error-handler.service';
-import { GrupoService } from '../grupos/grupo.service';
-import { IntegranteService } from '../integrantes/integrante.service';
-import { TopicoService } from '../topicos/topico.service';
-import { NoticiaService } from '../noticias/noticia.service';
-import { EventoService } from '../eventos/evento.service';
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {ErrorHandlerService} from './error-handler.service';
+import {GrupoService} from '../grupos/grupo.service';
+import {IntegranteService} from '../integrantes/integrante.service';
+import {TopicoService} from '../topicos/topico.service';
+import {NoticiaService} from '../noticias/noticia.service';
+import {EventoService} from '../eventos/evento.service';
+import {PaginaNaoEncontradaComponent} from './pagina-nao-encontrada.component';
+import {MenuComponent} from './menu/menu.component';
+import {HeaderComponent} from './header/header.component';
 
 registerLocaleData(localePt);
 
@@ -31,10 +33,14 @@ registerLocaleData(localePt);
   ],
   declarations: [
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    MenuComponent,
+    HeaderComponent
   ],
   exports: [
     NavbarComponent,
+    MenuComponent,
+    HeaderComponent,
     ToastyModule,
     ConfirmDialogModule
   ],
@@ -46,7 +52,8 @@ registerLocaleData(localePt);
     TopicoService,
     NoticiaService,
     EventoService,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+}
