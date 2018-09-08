@@ -54,9 +54,8 @@ export class GruposCadastroComponent implements OnInit {
 
   limpar(form: FormControl) {
     form.reset();
-
     this.grupo = new Grupo();
-    this.router.navigate(['/grupos/novo'])
+    this.router.navigate(['/grupos/novo']);
   }
 
 }

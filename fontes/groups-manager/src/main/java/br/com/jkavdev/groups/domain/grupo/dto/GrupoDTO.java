@@ -20,7 +20,6 @@ public class GrupoDTO {
     private String objetivo;
     @NotBlank
     private String nome;
-    @NotBlank
     private String igreja;
     @NotNull
     private Long statusGrupoId;

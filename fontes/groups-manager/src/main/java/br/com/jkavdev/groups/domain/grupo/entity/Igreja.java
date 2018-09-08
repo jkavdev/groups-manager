@@ -2,6 +2,7 @@ package br.com.jkavdev.groups.domain.grupo.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.result.NoMoreReturnsException;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,21 +13,23 @@ import java.util.Objects;
 @Entity
 public class Igreja {
 
+    private static final String NOME = "Pastoral";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String nome = NOME;
 
-    public Igreja() {
+    private Igreja() {
     }
 
     public Igreja(String nome) {
         this.nome = nome;
     }
 
-    public static Igreja empty() {
-        return new Igreja("");
+    public static Igreja PASTORAL() {
+        return new Igreja(NOME);
     }
 
     public Long getId() {
