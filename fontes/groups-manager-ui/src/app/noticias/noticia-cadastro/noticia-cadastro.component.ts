@@ -22,6 +22,7 @@ export class NoticiaCadastroComponent implements OnInit {
   grupos = [];
   corpoNoticia: string = '<div>Hello World!</div><div>PrimeNG <b>Editor</b> Rocks</div><div><br></div>';
   noticia = new Noticia();
+  verNoticia = false;
 
   constructor(
     private topicoService: TopicoService,
@@ -61,7 +62,7 @@ export class NoticiaCadastroComponent implements OnInit {
 
   limpar(form: FormControl) {
     form.reset();
-
+    this.verNoticia = false;
     this.noticia = new Noticia();
     this.router.navigate(['/noticias/nova'])
   }

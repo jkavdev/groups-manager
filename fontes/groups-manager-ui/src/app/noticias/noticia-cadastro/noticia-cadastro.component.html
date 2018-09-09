@@ -28,16 +28,28 @@
         <p-dropdown [autoWidth]="false" [options]="grupos" placeholder="Selecione" name="grupo" [(ngModel)]="noticia.grupo.id" #grupo="ngModel"></p-dropdown>
         <app-message [control]="grupo" error="required" text="Informe o grupo da notícia"></app-message>
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+          <ul class="actions fit">
+            <a (click)="verNoticia = false" class="button fit small">Escrever</a>
+            <a (click)="verNoticia = true" class="button fit small">Ver</a>
+          </ul>
+      </div>
+      <div class="ui-g-12 ui-fluid" [hidden]="verNoticia">
         <label>Notícia</label>
         <p-editor [style]="{'height':'320px'}" name="corpoNoticia" [(ngModel)]="noticia.corpo" #corpoNoticia="ngModel"></p-editor>
         <app-message [control]="corpoNoticia" error="required" text="Informe o grupo da notícia"></app-message>
       </div>
 
+      <div class="ui-g-12 ui-fluid" [hidden]="!verNoticia">
+        <div [innerHTML]="noticia.corpo"></div>
+      </div>
+
       <div class="ui-g-12">
-        <button type="submit" pButton label="Salvar" [disabled]="!noticiaForm.valid"></button>
-        <a pButton label="Limpar" (click)="limpar(noticiaForm)"></a>
-        <a routerLink="/noticias">Voltar para a Pesquisa</a>
+        <ul class="actions fit small">
+          <button class="button fit large" type="submit" [disabled]="noticiaForm.invalid">Salvar Notícia</button>
+          <a class="button fit large" (click)="limpar(noticiaForm)">Limpar Formulário</a>
+          <a class="button fit large" routerLink="/noticias">Voltar para a Pesquisa</a>
+        </ul>
       </div>
 
     </div>
