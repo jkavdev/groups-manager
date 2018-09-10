@@ -2,6 +2,7 @@ package br.com.jkavdev.groups.domain.grupo.dto;
 
 import br.com.jkavdev.groups.domain.evento.dto.EventoDTO;
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.entity.Igrejas;
 import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -32,7 +33,7 @@ public class GrupoDTO {
     private GrupoDTO(String nome, String objetivo, Long status) {
         this.nome = nome;
         this.objetivo = objetivo;
-        this.igreja = igreja;
+        this.igreja = Igrejas.MENINO_DEUS.getIgreja();
         this.statusGrupoId = status;
         this.status = StatusGrupo.from(status);
     }
