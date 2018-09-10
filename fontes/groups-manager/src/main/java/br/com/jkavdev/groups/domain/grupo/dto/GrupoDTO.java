@@ -29,7 +29,7 @@ public class GrupoDTO {
     public GrupoDTO() {
     }
 
-    private GrupoDTO(String nome, String objetivo, String igreja, Long status) {
+    private GrupoDTO(String nome, String objetivo, Long status) {
         this.nome = nome;
         this.objetivo = objetivo;
         this.igreja = igreja;
@@ -38,13 +38,13 @@ public class GrupoDTO {
     }
 
     public static GrupoDTO from(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getIgreja().getNome(), grupo.getStatusGrupoId());
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getStatusGrupoId());
         dto.setId(grupo.getId());
         return dto;
     }
 
     public static GrupoDTO comEventos(Grupo grupo) {
-        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), "", grupo.getStatusGrupoId());
+        GrupoDTO dto = new GrupoDTO(grupo.getNome(), grupo.getObjetivo(), grupo.getStatusGrupoId());
         dto.setEventos(grupo.getEventos().stream().map(e -> EventoDTO.from(e)).collect(toList()));
         dto.setId(grupo.getId());
         return dto;

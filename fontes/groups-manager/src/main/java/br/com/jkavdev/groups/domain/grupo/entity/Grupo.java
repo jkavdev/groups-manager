@@ -27,9 +27,8 @@ public class Grupo {
     @NotBlank
     private String objetivo;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "igreja_id", foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
-    private Igreja igreja;
+    @Column(name = "igreja_id", nullable = false)
+    private Long igreja;
 
     @Column(name = "status_grupo_id", nullable = false)
     private Long statusGrupoId;
@@ -54,16 +53,16 @@ public class Grupo {
         this.id = id;
     }
 
-    public Grupo(String nome, String objetivo, String igreja, Long statusId) {
+    public Grupo(String nome, String objetivo, Long statusId) {
         statusGrupoId = StatusGrupo.idValidado(statusId);
         this.nome = nome;
         this.objetivo = objetivo;
-        this.igreja = new Igreja(igreja);
+        this.igreja = Igrejas.MENINO_DEUS.getId();
         this.statusGrupoId = statusId;
     }
 
     public static Grupo from(GrupoDTO dto) {
-        return new Grupo(dto.getNome(), dto.getObjetivo(), Igreja.PASTORAL().getNome(), dto.getStatusGrupoId());
+        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getStatusGrupoId());
     }
 
     public static Grupo from(Long id) {
@@ -86,8 +85,8 @@ public class Grupo {
         this.nome = nome;
     }
 
-    public Igreja getIgreja() {
-        return igreja;
+    public Igrejas getIgreja() {
+        return Igrejas.MENINO_DEUS;
     }
 
     public String getObjetivo() {

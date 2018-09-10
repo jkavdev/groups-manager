@@ -1,63 +1,23 @@
 package br.com.jkavdev.groups.domain.grupo.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.hibernate.result.NoMoreReturnsException;
+import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.Collection;
+
+//Apenas para gerar o ddl com o hibernate
 
 @Entity
+@Immutable
 public class Igreja {
 
-    private static final String NOME = "Pastoral";
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome = NOME;
+    private String nome;
 
-    private Igreja() {
-    }
+    @OneToMany
+    @JoinColumn(name = "igreja_id", foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
+    private Collection<Grupo> grupos;
 
-    public Igreja(String nome) {
-        this.nome = nome;
-    }
-
-    public static Igreja PASTORAL() {
-        return new Igreja(NOME);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Igreja igreja = (Igreja) o;
-        return Objects.equals(nome.toUpperCase(), igreja.nome.toUpperCase());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome.toUpperCase());
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append("id", id)
-                .append("nome", nome)
-                .toString();
-    }
 }
