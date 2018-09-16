@@ -15,7 +15,7 @@ estabelecidas.
 
 A arquitetura utilizada na aplicação é o padrão arquitetural Model-View-Controller (MVC), que é adotada nos frameworks Angular e Spring.
 
-* Model - A camada model é responsável pela regras de negócio da aplicação e a as regras para manipulação de dados. ]
+* Model - A camada model é responsável pela regras de negócio da aplicação e a as regras para manipulação de dados.
 Esta representa as informações abstraídas do mundo real definindo como tais informações são armazenadas no banco de dados e 
 suas relações desempenhadas.
 
@@ -25,7 +25,7 @@ suas relações desempenhadas.
 Model e renderização das Views, com informações procedentes da Model.
 
 ![alt text](mvc-logo.png)
-Figura 1. Diagrama do padrão MVC
+Figura 1. Diagrama do padrão MVC.
 
 O diagrama pode ser descrito da seguinte maneira:
 
@@ -50,63 +50,64 @@ Estes frameworks utilizam a lógica MVC(Model-View-Controller), tal lógica perm
 ### 3.1 Tecnologias Utilizadas
 
 ![alt text](microservices_architecture_diagram.png)
-Figura 1. Diagrama de estrutura da aplicacao Groups Manager
+Figura 1. Diagrama de estrutura da aplicacao Groups Manager.
 
 O diagrama pode ser descrito da seguinte maneira:
 
-* 1 - Tem-se uma aplicacao que consumira os servicos atraves de requisicoes `HTTP`, no formato de `JSON`
+* 1 - Tem-se uma aplicação que consumira os serviços através de requisições `HTTP`, no formato de `JSON`.
 
-* 2 - Tem-se uma aplicacao que recebe estas requisicoes `HTTP`, onde fara o processamento das requisicao, podendo acessar o banco de dados. 
+* 2 - Tem-se uma aplicação que recebe estas requisições `HTTP`, onde fará o processamento das requisiçães, podendo acessar o banco de dados. 
 Finalizando com uma resposta no forma de `JSON`.
 
 A Aplicação Groups Manager foi divida em dois Projetos:
 
 ### ``groups-manager``
 
-* ``groups-manager`` sera o projeto `backend` que disponibilizara os servicos a serem consumidos no projeto `frontend`.
-o projeto ``groups-manager`` utilizara o `java` como linguagem de alto nivel.
-Sendo utilizado os seguintes frameworks para a ajudar no desenvolvimento dos servicos a serem disponibilizados:
+* ``groups-manager`` será o projeto `backend` que disponibilizará os serviços a serem consumidos no projeto `frontend`.
+o projeto ``groups-manager`` utilizará o `java` como linguagem de alto nível.
+Sendo utilizado os seguintes frameworks para a ajudar no desenvolvimento dos serviços a serem disponibilizados:
 
-* Hibernate/JPA - Framerwok ORM de abstracao das entidades do banco de dados para a aplicacao java
+* Hibernate/JPA - Framerwok ORM de abstração das entidades do banco de dados para à aplicacao java.
 
-* H2 - Banco de dados em Memoria, sera utilizado para os testes da aplicacao
+* H2 - Banco de dados em memória, sera utilizado para os testes da aplicação.
 
 * Spring Framework - sera utilizado varios modulos da plataforma Spring, tais como: 
-Spring Data, para abstracao de acesso aos dados do banco de dados, 
-Spring MVC, para disponibilizacao dos servicos WEB
-Spring Boot, para a integracao dos modulos do Spring de uma forma mais produtiva, sendo muito facil utilizar os modulos do spring sem muita configurao
+Spring Data, para abstração de acesso aos dados do banco de dados.
+Spring MVC, para disponibilização dos serviços WEB.
+Spring Boot, para a integração dos módulos do Spring de uma forma mais produtiva, sendo muito fácil utilizar os modulos do spring sem muita configuração.
 
 ![alt text](spring-architecture.png)
-Figura 1. Ecossistema Spring
+Figura 1. Ecossistema Spring.
 
 
 ### ``groups-manager-ui``
 
-* ``groups-manager-ui`` sera o projeto `frontend` que consumira os servicos a disponibilizados pelo `backend`.
-o projeto ``groups-manager-ui`` utilizara `HTML5 e Javascrip` como linguagens de alto nivel.
-Sendo utilizado os seguintes frameworks para a ajudar no desenvolvimento dos servicos a serem disponibilizados:
+* ``groups-manager-ui`` será o projeto `frontend` que consumirá os serviços disponibilizados pelo `backend`.
+O projeto ``groups-manager-ui`` utilizará `HTML5 e Javascrip` como linguagens de alto nível.
+Sendo utilizado os seguintes frameworks para a ajudar no desenvolvimento dos serviços a serem disponibilizados:
 
 * Angular - É um framework que permite desenvolver aplicações web e mobile. com performance e rapidez, boa comunidade e documentação.
 É um framework mantido pelo Google, sendo um dos frameworks frontend mais utilizado no mercado atualmente.
 
 ![alt text](MVC-Architecture-is-Perfect.jpg)
-Figura 1. Ecossistema Angular
+Figura 1. Ecossistema Angular.
 
-* PrimeNG - É um framework que disponibiliza varios componentes prontos e faceis de ser utilizados com o angular.
+* PrimeNG - É um framework que disponibiliza vários componentes prontos e fáceis de ser utilizados com o angular.
 
 ![alt text](primeng-logo.png)
-Figura 1. Logo PrimeNG
+Figura 1. Logo PrimeNG.
 
 ### 3.1 Diagrama de Classes
 
 ![alt text](diagrama-de-classes.png)
-Figura 1. Diagrama de classes
+Figura 1. Diagrama de classes.
 
 ### 3.2 Banco de dados
 
-O projeto utiliza o sistema gerenciamento de banco de dados H2 para o ambiente de desenvolvimento. No ambiente de produção é utilizado outro sistema de banco de dados, o MySQL.
+O projeto utiliza o sistema gerenciamento de banco de dados H2 para o ambiente de desenvolvimento. 
+No ambiente de produção é utilizado outro sistema de banco de dados, o MySQL.
 
 O MySQL foi adotado em ambiente de produção devido a facilidade de ser utilizado, liberdade Open Source.
 
 ![alt text](mysql-logo.jpg)
-Figura 1. Banco de dados MySQL
+Figura 1. Banco de dados MySQL.
