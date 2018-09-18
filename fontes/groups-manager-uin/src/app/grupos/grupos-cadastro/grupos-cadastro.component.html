@@ -1,5 +1,7 @@
 <div class="container">
 
+  <form [formGroup]="grupoForm" (ngSubmit)="onSubmit(grupoForm.value)">
+
       <div class="ui-g">
 
         <div class="ui-g-12">
@@ -8,24 +10,37 @@
 
         <div class="ui-g-12 ui-fluid">
             <label>Status do Grupo</label>
-            <input type="text" pInputText name="status" required minlength="5"/>
+          <input pInputText type="text" formControlName="status" placeholder="Informe Status do Grupo"/>
+          <p-message severity="error" text="Informe Status do Grupo!" *ngIf="!grupoForm.controls['status'].valid && grupoForm.controls['status'].dirty"></p-message>
         </div>
 
         <div class="ui-g-12 ui-fluid">
             <label>Nome</label>
-            <input type="text" pInputText name="nome" required minlength="5"
-                   placeholder="Informe o nome do grupo"/>
+          <input pInputText type="text" formControlName="nome" placeholder="Informe o nome do grupo" minlength="5"/>
+          <p-message severity="error"
+                     [text]="grupoForm.controls['nome'].errors['required']
+                     ? 'Informe nome do Grupo'
+                     : grupoForm.controls['nome'].errors['minlength']
+                     ? 'Mínimo de 5 caracteres' : ''"
+                     *ngIf="!grupoForm.controls['nome'].valid&&grupoForm.controls['nome'].dirty"></p-message>
         </div>
 
         <div class="ui-g-12 ui-fluid">
             <label>Objetivo</label>
-          <textarea pInputTextarea autoResize="false"  name="objetivo"  required minlength="10"
+          <textarea pInputTextarea autoResize="false" formControlName="objetivo"
                     placeholder="Informe o objetivo do grupo"></textarea>
+          <p-message severity="error"
+                     [text]="grupoForm.controls['objetivo'].errors['required']
+                     ? 'Informe o objetivo do grupo'
+                     : grupoForm.controls['objetivo'].errors['minlength']
+                     ? 'Mínimo de 10 caracteres' : ''"
+                     *ngIf="!grupoForm.controls['objetivo'].valid&&grupoForm.controls['objetivo'].dirty"></p-message>
         </div>
 
         <div class="ui-g-12 ui-fluid">
           <div class="ui-g-12 ui-md-3">
-            <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Salvar Grupo" class="ui-button-rounded"></button>
+            <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Grupo" class="ui-button-rounded"
+                    [disabled]="!grupoForm.valid"></button>
           </div>
           <div class="ui-g-12 ui-md-4">
             <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar" class="ui-button-rounded ui-button-secondary"></button>
@@ -35,6 +50,14 @@
           </div>
         </div>
 
+        <div style="text-align:center;margin-top:20px" *ngIf="submetido">
+          Form Submitted
+          <br>
+          {{diagnostic}}
+        </div>
+
       </div>
+
+  </form>
 
 </div>

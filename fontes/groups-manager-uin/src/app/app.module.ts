@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
@@ -11,6 +12,8 @@ import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
 import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
+import {MessageModule} from 'primeng/components/message/message';
+import {ToastModule} from 'primeng/components/toast/toast';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './core/navbar/navbar.component';
@@ -27,6 +30,8 @@ import {GruposCadastroComponent} from './grupos/grupos-cadastro/grupos-cadastro.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
 
     InputTextModule,
     ButtonModule,
@@ -36,7 +41,9 @@ import {GruposCadastroComponent} from './grupos/grupos-cadastro/grupos-cadastro.
     MegaMenuModule,
     TieredMenuModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    MessageModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
