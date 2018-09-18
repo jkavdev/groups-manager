@@ -26,7 +26,7 @@
           <label>Nome</label>
         </div>
         <div class="ui-g-12">
-          <input pInputText type="text" formControlName="nome" placeholder="Informe o nome do grupo" minlength="5"/>
+          <input pInputText formControlName="nome" placeholder="Informe o nome do grupo"/>
           <p-message severity="error"
                      [text]="grupoForm.controls['nome'].errors['required']
                      ? 'Informe nome do Grupo'

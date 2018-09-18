@@ -26,3 +26,8 @@ label {
 .ui-dataview-header.ui-widget-header.ui-corner-top{
   border: none !important;
 }
+
+/*para cadastro de grupo*/
+.ui-message.ui-widget.ui-corner-all.ui-message-error.ng-star-inserted{
+  margin-top: 4px;
+}
