@@ -2,20 +2,28 @@
 
   <form [formGroup]="grupoForm" (ngSubmit)="onSubmit(grupoForm.value)">
 
-      <div class="ui-g">
+    <div class="ui-g">
 
+      <div class="ui-g-12">
+        <h1>Novo Grupo</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
         <div class="ui-g-12">
-          <h1>Novo Grupo</h1>
+          <label>Status do Grupo</label>
         </div>
-
-        <div class="ui-g-12 ui-fluid">
-            <label>Status do Grupo</label>
+        <div class="ui-g-12">
           <input pInputText type="text" formControlName="status" placeholder="Informe Status do Grupo"/>
-          <p-message severity="error" text="Informe Status do Grupo!" *ngIf="!grupoForm.controls['status'].valid && grupoForm.controls['status'].dirty"></p-message>
+          <p-message severity="error" text="Informe Status do Grupo!"
+                     *ngIf="!grupoForm.controls['status'].valid && grupoForm.controls['status'].dirty"></p-message>
         </div>
+      </div>
 
-        <div class="ui-g-12 ui-fluid">
-            <label>Nome</label>
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12">
+          <label>Nome</label>
+        </div>
+        <div class="ui-g-12">
           <input pInputText type="text" formControlName="nome" placeholder="Informe o nome do grupo" minlength="5"/>
           <p-message severity="error"
                      [text]="grupoForm.controls['nome'].errors['required']
@@ -24,9 +32,13 @@
                      ? 'Mínimo de 5 caracteres' : ''"
                      *ngIf="!grupoForm.controls['nome'].valid&&grupoForm.controls['nome'].dirty"></p-message>
         </div>
+      </div>
 
-        <div class="ui-g-12 ui-fluid">
-            <label>Objetivo</label>
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12">
+          <label>Objetivo</label>
+        </div>
+        <div class="ui-g-12">
           <textarea pInputTextarea autoResize="false" formControlName="objetivo"
                     placeholder="Informe o objetivo do grupo"></textarea>
           <p-message severity="error"
@@ -36,27 +48,30 @@
                      ? 'Mínimo de 10 caracteres' : ''"
                      *ngIf="!grupoForm.controls['objetivo'].valid&&grupoForm.controls['objetivo'].dirty"></p-message>
         </div>
-
-        <div class="ui-g-12 ui-fluid">
-          <div class="ui-g-12 ui-md-3">
-            <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Grupo" class="ui-button-rounded"
-                    [disabled]="!grupoForm.valid"></button>
-          </div>
-          <div class="ui-g-12 ui-md-4">
-            <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar" class="ui-button-rounded ui-button-secondary"></button>
-          </div>
-          <div class="ui-g-12 ui-md-5">
-            <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa" class="ui-button-rounded ui-button-secondary"></button>
-          </div>
-        </div>
-
-        <div style="text-align:center;margin-top:20px" *ngIf="submetido">
-          Form Submitted
-          <br>
-          {{diagnostic}}
-        </div>
-
       </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+          <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Grupo" class="ui-button-rounded"
+                  [disabled]="!grupoForm.valid"></button>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                  class="ui-button-rounded ui-button-secondary"></button>
+        </div>
+        <div class="ui-g-12 ui-md-5">
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
+                  class="ui-button-rounded ui-button-secondary"></button>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:20px" *ngIf="submetido">
+        Form Submitted
+        <br>
+        {{diagnostic}}
+      </div>
+
+    </div>
 
   </form>
 
