@@ -7,14 +7,19 @@ import {ButtonModule} from 'primeng/components/button/button';
 import {DataViewModule} from 'primeng/components/dataview/dataview';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
+import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
+import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
+import {MenuItem} from 'primeng/api';
 
 import {AppComponent} from './app.component';
-import { GruposPesquisaComponent } from './grupos/grupos-pesquisa/grupos-pesquisa.component';
+import {GruposPesquisaComponent} from './grupos/grupos-pesquisa/grupos-pesquisa.component';
+import {NavbarComponent} from './core/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GruposPesquisaComponent
+    GruposPesquisaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,9 @@ import { GruposPesquisaComponent } from './grupos/grupos-pesquisa/grupos-pesquis
     ButtonModule,
     DataViewModule,
     PanelModule,
-    TooltipModule
+    TooltipModule,
+    MegaMenuModule,
+    TieredMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
