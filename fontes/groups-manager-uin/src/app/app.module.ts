@@ -9,17 +9,20 @@ import {PanelModule} from 'primeng/components/panel/panel';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
 import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
-import {MenuItem} from 'primeng/api';
+import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 
 import {AppComponent} from './app.component';
-import {GruposPesquisaComponent} from './grupos/grupos-pesquisa/grupos-pesquisa.component';
 import {NavbarComponent} from './core/navbar/navbar.component';
+import {GruposPesquisaComponent} from './grupos/grupos-pesquisa/grupos-pesquisa.component';
+import {GruposCadastroComponent} from './grupos/grupos-cadastro/grupos-cadastro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GruposPesquisaComponent,
-    NavbarComponent
+    NavbarComponent,
+    GruposCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,9 @@ import {NavbarComponent} from './core/navbar/navbar.component';
     PanelModule,
     TooltipModule,
     MegaMenuModule,
-    TieredMenuModule
+    TieredMenuModule,
+    DropdownModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
