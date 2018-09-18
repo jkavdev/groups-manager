@@ -1,5 +1,7 @@
 <div class="container">
 
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
   <form [formGroup]="grupoForm" (ngSubmit)="onSubmit(grupoForm.value)">
 
     <div class="ui-g">
@@ -13,7 +15,7 @@
           <label>Status do Grupo</label>
         </div>
         <div class="ui-g-12">
-          <input pInputText type="text" formControlName="status" placeholder="Informe Status do Grupo"/>
+          <p-dropdown [options]="statusGrupo" formControlName="status" [autoWidth]="false"></p-dropdown>
           <p-message severity="error" text="Informe Status do Grupo!"
                      *ngIf="!grupoForm.controls['status'].valid && grupoForm.controls['status'].dirty"></p-message>
         </div>
@@ -63,12 +65,6 @@
           <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
                   class="ui-button-rounded ui-button-secondary"></button>
         </div>
-      </div>
-
-      <div style="text-align:center;margin-top:20px" *ngIf="submetido">
-        Form Submitted
-        <br>
-        {{diagnostic}}
       </div>
 
     </div>

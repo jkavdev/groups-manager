@@ -11,12 +11,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 export class GruposCadastroComponent implements OnInit {
 
   grupoForm: FormGroup;
-  submetido: boolean;
-  statuses: SelectItem[];
+  statusGrupo: SelectItem[];
 
-  constructor(
-    private fb: FormBuilder,
-    private messageServico: MessageService) {
+  constructor(private fb: FormBuilder,
+              private messageServico: MessageService) {
   }
 
   ngOnInit() {
@@ -26,19 +24,15 @@ export class GruposCadastroComponent implements OnInit {
       'status': new FormControl('', Validators.required)
     });
 
-    this.statuses = [];
-    this.statuses.push({label: 'Selecione Status do Grupo', value: ''});
-    this.statuses.push({label: 'Movimento', value: 'MOVIMENTO'});
-    this.statuses.push({label: 'Pastoral', value: 'PASTORAL'});
+    this.statusGrupo = [];
+    this.statusGrupo.push({label: 'Selecione Status do Grupo', value: null});
+    this.statusGrupo.push({label: 'Movimento', value: 'MOVIMENTO'});
+    this.statusGrupo.push({label: 'Pastoral', value: 'PASTORAL'});
   }
 
   onSubmit(value: string) {
-    this.submetido = true;
     this.messageServico.add({severity: 'info', summary: 'Success', detail: 'Submetido'});
   }
 
-  get diagnostic(){
-    return JSON.stringify(this.grupoForm.value);
-  }
 
 }
