@@ -9,10 +9,12 @@ import {PanelModule} from 'primeng/components/panel/panel';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 
 import {AppComponent} from './app.component';
+import { GruposPesquisaComponent } from './grupos/grupos-pesquisa/grupos-pesquisa.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GruposPesquisaComponent
   ],
   imports: [
     BrowserModule,
