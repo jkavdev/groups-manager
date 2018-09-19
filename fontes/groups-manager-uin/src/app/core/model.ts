@@ -23,7 +23,7 @@ export class Evento {
   objetivo: string;
   valor: string;
   lotacaoMaxima: number;
-  endereco = new Endereco();
+  endereco: Endereco;
   grupo: Grupo;
   grupoId: number;
 }

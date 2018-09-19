@@ -35,4 +35,10 @@ export class EventoService {
       .toPromise()
       .then(resp => resp.json());
   }
+
+  salvar(evento: any): Promise<any> {
+    return this.http.post(`${this.eventosUrl}`, evento)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }

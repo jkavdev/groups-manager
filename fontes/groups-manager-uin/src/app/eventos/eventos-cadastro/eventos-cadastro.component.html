@@ -12,58 +12,80 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Data do Evento</label>
-        <p-calendar showTime="true" hourFormat="24" dataType="string" dateFormat="dd/mm/yy" formControlName="data" placeholder="Data início do evento"></p-calendar>
+        <p-calendar showTime="true" hourFormat="24" dateFormat="dd/mm/yy"
+                    formControlName="data" placeholder="Data início do evento" ></p-calendar>
+        <p-message severity="error" text="Informe a data!"
+                   *ngIf="!eventoForm.controls['data'].valid && eventoForm.controls['data'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Descrição do Evento</label>
         <input pInputText formControlName="descricao"/>
+        <p-message severity="error" text="Informe a descrição!"
+                   *ngIf="!eventoForm.controls['descricao'].valid && eventoForm.controls['descricao'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Valor do Evento</label>
+        <label>Valor</label>
         <input pInputText formControlName="valor"/>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Lotação Máxima</label>
         <p-spinner size="100" formControlName="lotacaoMaxima"></p-spinner>
+        <p-message severity="error" text="Informe a lotação máxima!"
+                   *ngIf="!eventoForm.controls['lotacaoMaxima'].valid && eventoForm.controls['lotacaoMaxima'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Grupo</label>
-        <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="grupo.id"></p-dropdown>
+        <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="grupoId"></p-dropdown>
+        <p-message severity="error" text="Informe o Grupo!"
+                   *ngIf="!eventoForm.controls['grupoId'].valid && eventoForm.controls['grupoId'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Objetivo do Evento</label>
         <textarea pInputTextarea autoResize="false" formControlName="objetivo"></textarea>
+        <p-message severity="error" text="Informeo o objetivo!"
+                   *ngIf="!eventoForm.controls['objetivo'].valid && eventoForm.controls['objetivo'].dirty"></p-message>
       </div>
 
       <div class="ui-g-12">
         <h2>Endereço do Evento</h2>
       </div>
 
-      <div class="ui-g-12 ui-md-2 ui-fluid">
+      <div class="ui-g-12 ui-md-3 ui-fluid">
         <label>CEP</label>
-        <p-inputMask mask="99.999-999" nformControlName="endereco.cep"></p-inputMask>
+        <input pInputText formControlName="endereco.cep"/>
+        <p-message severity="error" text="Informe o cep!"
+                   *ngIf="!eventoForm.controls['endereco.cep'].valid && eventoForm.controls['endereco.cep'].dirty"></p-message>
       </div>
-      <div class="ui-g-12 ui-md-10 ui-fluid">
+      <div class="ui-g-12 ui-md-9 ui-fluid">
         <label>Logradouro</label>
         <input pInputText formControlName="endereco.logradouro"/>
+        <p-message severity="error" text="Informe o logradouro!"
+                   *ngIf="!eventoForm.controls['endereco.logradouro'].valid && eventoForm.controls['endereco.logradouro'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Unidade</label>
-        <input pInputText formControlName="endereco.numero"/>
+        <input pInputText formControlName="endereco.unidade"/>
+        <p-message severity="error" text="Informe o numero!"
+                   *ngIf="!eventoForm.controls['endereco.unidade'].valid && eventoForm.controls['endereco.unidade'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Bairro</label>
         <input pInputText formControlName="endereco.bairro"/>
+        <p-message severity="error" text="Informe o bairro!"
+                   *ngIf="!eventoForm.controls['endereco.bairro'].valid && eventoForm.controls['endereco.bairro'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Cidade</label>
-        <input pInputText formControlName="endereco.cidade"/>
+        <input pInputText formControlName="endereco.localidade"/>
+        <p-message severity="error" text="Informe a cidade!"
+                   *ngIf="!eventoForm.controls['endereco.localidade'].valid && eventoForm.controls['endereco.localidade'].dirty"></p-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>UF</label>
-        <p-dropdown [autoWidth]="false" [options]="ufs" ></p-dropdown>
+        <p-dropdown [options]="ufs" formControlName="endereco.uf" [autoWidth]="false"></p-dropdown>
+        <p-message severity="error" text="Informe o estado!"
+                   *ngIf="!eventoForm.controls['endereco.uf'].valid && eventoForm.controls['endereco.uf'].dirty"></p-message>
       </div>
-
       <div class="ui-g-12 ui-fluid">
         <label>Complemento</label>
         <textarea pInputTextarea autoResize="false" formControlName="endereco.complemento"></textarea>

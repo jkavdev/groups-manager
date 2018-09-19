@@ -5,7 +5,7 @@ import {MessageService, SelectItem} from 'primeng/api';
 
 import {EventoService} from '../evento.service';
 import {GrupoService} from '../../grupos/grupo.service';
-import {Endereco, Evento} from '../../core/model';
+import {Evento} from '../../core/model';
 import {GrupoFilter} from '../../core/filters';
 
 
@@ -19,7 +19,7 @@ export class EventosCadastroComponent implements OnInit {
 
   eventoForm: FormGroup;
   grupos: SelectItem[];
-  ufs = [];
+  ufs: SelectItem[];
   evento = new Evento();
 
   constructor(private fb: FormBuilder,
@@ -29,21 +29,24 @@ export class EventosCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.eventoForm = this.fb.group({
-      'data': new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-      'descricao': new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
-      'valor': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'objetivo': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
+      'data': new FormControl('', Validators.required),
+      'descricao': new FormControl('', Validators.required),
+      'valor': new FormControl(''),
+      'objetivo': new FormControl('', Validators.required),
       'lotacaoMaxima': new FormControl('', Validators.required),
-      'grupo.id': new FormControl('', Validators.required),
-      'endereco.cep': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'endereco.logradouro': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'endereco.numero': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'endereco.bairro': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'endereco.cidade': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)])),
-      'endereco.complemento': new FormControl('', Validators.compose([Validators.required, Validators.minLength(10)]))
+      'grupoId': new FormControl('', Validators.required),
+      'endereco.uf': new FormControl('', Validators.required),
+      'endereco.cep': new FormControl('', Validators.required),
+      'endereco.logradouro': new FormControl('', Validators.required),
+      'endereco.unidade': new FormControl('', Validators.required),
+      'endereco.bairro': new FormControl('', Validators.required),
+      'endereco.localidade': new FormControl('', Validators.required),
+      'endereco.complemento': new FormControl('', Validators.required)
     });
     this.buscarGrupos();
     this.buscarUFs();
+    console.log(this.grupos);
+    console.log(this.ufs);
   }
 
   buscarGrupos() {
@@ -58,21 +61,26 @@ export class EventosCadastroComponent implements OnInit {
 
   buscarUFs() {
     this.eventoService.ufs()
-      .then(ufs => {
+      .then(ufs1 => {
         this.ufs = [];
         this.ufs.push({label: 'Selecione o Estado', value: null});
-        ufs.forEach(uf => this.ufs.push({label: '(' + uf.descricao + ')' + ' - ' + uf.sigla, value: uf}));
+        ufs1.forEach(uf => this.ufs.push({label: uf.descricao, value: uf.sigla}));
       })
       .catch(erro => console.log((erro)));
   }
 
   salvar(evento: any) {
     console.log(evento);
+    this.eventoService.salvar(evento)
+      .then(() => {
+        console.log(evento);
+      });
   }
 
   limpar() {
-    console.log(JSON.parse(this.eventoForm.value));
-    this.eventoForm.reset();
+    // console.log(JSON.stringify(this.eventoForm));
+    console.log(JSON.stringify(this.eventoForm.value));
+    // this.eventoForm.reset();
 
     /**
      * nao eh necessario

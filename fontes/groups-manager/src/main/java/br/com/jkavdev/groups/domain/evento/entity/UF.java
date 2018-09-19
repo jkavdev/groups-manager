@@ -36,7 +36,7 @@ public enum UF {
     private final String descricao;
     private final String sigla;
 
-    UF(String descricao, String sigla) {
+    UF(String sigla, String descricao) {
         this.descricao = descricao;
         this.sigla = sigla;
     }
