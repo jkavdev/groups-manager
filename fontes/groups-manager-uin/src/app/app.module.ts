@@ -6,6 +6,7 @@ import {HttpModule} from '@angular/http';
 
 import {CoreModule} from './core/core.module';
 import {GruposModule} from './grupos/grupos.module';
+import {EventosModule} from './eventos/eventos.module';
 
 import {AppComponent} from './app.component';
 
@@ -21,7 +22,8 @@ import {AppComponent} from './app.component';
     HttpModule,
 
     CoreModule,
-    GruposModule
+    GruposModule,
+    EventosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

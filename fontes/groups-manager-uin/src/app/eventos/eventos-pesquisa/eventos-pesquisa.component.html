@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="ui-g">
+
+    <div class="ui-g-12">
+        <div class="ui-g-12">
+          <h1>Eventos</h1>
+        </div>
+
+        <div class="ui-g-12" style="padding: 0;">
+          <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-g-5">
+              <p-calendar showTime="true" hourFormat="24" name="de" [(ngModel)]="filtro.de" #de="ngModel" placeholder="Data início do evento"></p-calendar>
+            </div>
+            <div class="ui-g-12 ui-g-1">
+              <label>até</label>
+            </div>
+            <div class="ui-g-12 ui-g-5">
+              <p-calendar showTime="true" hourFormat="24" name="ate" [(ngModel)]="filtro.ate" #de="ngModel" placeholder="Data fim do evento"></p-calendar>
+            </div>
+          </div>
+        </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-8">
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Eventos" class="ui-button-rounded"
+                  (click)="pesquisarEventos()"></button>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Evento" class="ui-button-rounded"></button>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let evento of eventos" class="ui-g-12">
+
+      <div class="ui-g-12">
+        <div class="ui-g-12 ui-md-4" style="text-align: center;">
+          <img src="assets/images/icon-evento.png" style="width: 210px;">
+        </div>
+        <div class="ui-g-12 ui-md-8">
+          <h3>
+            <span>{{evento.descricao}}</span>
+            <br />
+            <small>{{evento.data | date:'HH:mm dd/MM/yyyy'}}</small>
+          </h3>
+          <p>{{evento.objetivo}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

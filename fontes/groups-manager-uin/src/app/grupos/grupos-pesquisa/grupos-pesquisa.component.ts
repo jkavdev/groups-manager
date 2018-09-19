@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GrupoFilter, GrupoService} from '../grupo.service';
+
+import {GrupoService} from '../grupo.service';
+import {GrupoFilter} from '../../core/filters';
 
 @Component({
   selector: 'app-grupos-pesquisa',

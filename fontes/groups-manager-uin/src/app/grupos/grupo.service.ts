@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Grupo} from '../core/model';
 
-export class GrupoFilter {
-  nome: string;
-}
+import {Grupo} from '../core/model';
+import {GrupoFilter} from '../core/filters';
 
 @Injectable({
   providedIn: 'root'
