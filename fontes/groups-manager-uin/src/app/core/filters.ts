@@ -1,5 +1,5 @@
 export class EventoFilter {
-  de: Date;
+  de: string;
   ate: Date;
 }
 

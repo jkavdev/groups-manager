@@ -9,7 +9,7 @@
         <div class="ui-g-12" style="padding: 0;">
           <div class="ui-g ui-fluid">
             <div class="ui-g-12 ui-g-5">
-              <p-calendar showTime="true" [locale]="pt" hourFormat="24" dateFormat="dd/mm/yy" name="de" [(ngModel)]="filtro.de" #de="ngModel" placeholder="Data início do evento"></p-calendar>
+              <p-calendar showTime="true" [locale]="pt" hourFormat="24" dataType="string" dateFormat="dd/mm/yy" name="de" [(ngModel)]="filtro.de" #de="ngModel" placeholder="Data início do evento"></p-calendar>
             </div>
             <div class="ui-g-12 ui-g-1">
               <label>até</label>
@@ -22,7 +22,7 @@
 
       <div class="ui-g-12 ui-fluid">
         <div class="ui-g-12 ui-md-8">
-          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Eventos" class="ui-button-rounded"
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Eventos" class="ui-button-rounded ui-button-secondary"
                   (click)="pesquisarEventos()"></button>
         </div>
         <div class="ui-g-12 ui-md-4">

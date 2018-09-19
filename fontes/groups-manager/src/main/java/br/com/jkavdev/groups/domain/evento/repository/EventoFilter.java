@@ -2,12 +2,13 @@ package br.com.jkavdev.groups.domain.evento.repository;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class EventoFilter {
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime de;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")

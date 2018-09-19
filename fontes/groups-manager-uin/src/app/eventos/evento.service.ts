@@ -18,7 +18,7 @@ export class EventoService {
       'ate': '',
     };
     if (filtro.de) {
-      params.de = filtro.de.toLocaleString('pt-BR');
+      params.de = filtro.de;
     }
     if (filtro.ate) {
       params.ate = filtro.ate.toLocaleString('pt-BR');
