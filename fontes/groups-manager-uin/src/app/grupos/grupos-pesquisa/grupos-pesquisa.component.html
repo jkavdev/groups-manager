@@ -6,12 +6,13 @@
     </div>
 
     <div class="ui-g-12 ui-fluid">
-      <input type="text" pInputText placeholder="Informe o nome do grupo"/>
+      <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
     </div>
 
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-12 ui-md-8">
-        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos" class="ui-button-rounded"></button>
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos" class="ui-button-rounded"
+        (click)="pesquisarGrupos()"></button>
       </div>
       <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo" class="ui-button-rounded"></button>
@@ -22,7 +23,8 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataView #dv [value]="grupos" [paginator]="true" [rows]="5" paginatorPosition="both">
+      <p-dataView #dv [value]="grupos" [paginator]="true" [rows]="5" paginatorPosition="both"
+                  emptyMessage="Nenhum grupo encontrado.">
         <ng-template let-grupo pTemplate="listItem">
           <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
