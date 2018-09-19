@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
+import {Grupo} from '../core/model';
 
 export class GrupoFilter {
   nome: string;
@@ -23,6 +24,18 @@ export class GrupoService {
     }
 
     return this.http.get(`${this.gruposUrl}?pesquisa`, {search: filtro})
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  todosStatusGrupos(): Promise<any> {
+    return this.http.get(`${this.gruposUrl}/status`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  salvar(grupo: Grupo): Promise<any> {
+    return this.http.post(`${this.gruposUrl}`, grupo)
       .toPromise()
       .then(resp => resp.json());
   }

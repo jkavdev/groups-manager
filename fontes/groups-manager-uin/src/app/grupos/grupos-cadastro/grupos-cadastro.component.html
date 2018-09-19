@@ -2,7 +2,7 @@
 
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
-  <form [formGroup]="grupoForm" (ngSubmit)="onSubmit(grupoForm.value)">
+  <form [formGroup]="grupoForm" (ngSubmit)="salvar(grupoForm.value)">
 
     <div class="ui-g">
 
@@ -15,9 +15,9 @@
           <label>Status do Grupo</label>
         </div>
         <div class="ui-g-12">
-          <p-dropdown [options]="statusGrupo" formControlName="status" [autoWidth]="false"></p-dropdown>
+          <p-dropdown [options]="statusGrupo" formControlName="statusGrupoId" [autoWidth]="false"></p-dropdown>
           <p-message severity="error" text="Informe Status do Grupo!"
-                     *ngIf="!grupoForm.controls['status'].valid && grupoForm.controls['status'].dirty"></p-message>
+                     *ngIf="!grupoForm.controls['statusGrupoId'].valid && grupoForm.controls['statusGrupoId'].dirty"></p-message>
         </div>
       </div>
 
@@ -59,7 +59,7 @@
         </div>
         <div class="ui-g-12 ui-md-4">
           <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
-                  class="ui-button-rounded ui-button-secondary"></button>
+                  class="ui-button-rounded ui-button-secondary" (click)="limpar()"></button>
         </div>
         <div class="ui-g-12 ui-md-5">
           <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
