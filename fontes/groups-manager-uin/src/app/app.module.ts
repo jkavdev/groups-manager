@@ -3,19 +3,14 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {ButtonModule} from 'primeng/components/button/button';
-import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
-import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
-
+import {CoreModule} from './core/core.module';
 import {GruposModule} from './grupos/grupos.module';
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './core/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,11 +18,8 @@ import {NavbarComponent} from './core/navbar/navbar.component';
     ReactiveFormsModule,
     FormsModule,
 
-    GruposModule,
-
-    ButtonModule,
-    MegaMenuModule,
-    TieredMenuModule,
+    CoreModule,
+    GruposModule
   ],
   providers: [],
   bootstrap: [AppComponent]
