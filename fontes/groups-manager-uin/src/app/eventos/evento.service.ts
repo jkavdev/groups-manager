@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
 import {EventoFilter} from '../core/filters';
@@ -10,7 +10,8 @@ export class EventoService {
 
   eventosUrl = 'http://localhost:8086/eventos';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   pesquisar(filtro: EventoFilter): Promise<any> {
     const params = {
@@ -25,6 +26,12 @@ export class EventoService {
     }
 
     return this.http.get(`${this.eventosUrl}?pesquisa`, {search: params})
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  ufs(): Promise<any> {
+    return this.http.get(`${this.eventosUrl}/ufs`)
       .toPromise()
       .then(resp => resp.json());
   }

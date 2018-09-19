@@ -1,0 +1,91 @@
+<div class="container">
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <form autocomplete="off" [formGroup]="eventoForm" (ngSubmit)="salvar(eventoForm.value)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Novo Evento</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Data do Evento</label>
+        <p-calendar showTime="true" hourFormat="24" dataType="string" dateFormat="dd/mm/yy" formControlName="data" placeholder="Data início do evento"></p-calendar>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Descrição do Evento</label>
+        <input pInputText formControlName="descricao"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Valor do Evento</label>
+        <input pInputText formControlName="valor"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Lotação Máxima</label>
+        <p-spinner size="100" formControlName="lotacaoMaxima"></p-spinner>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Grupo</label>
+        <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="grupo.id"></p-dropdown>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Objetivo do Evento</label>
+        <textarea pInputTextarea autoResize="false" formControlName="objetivo"></textarea>
+      </div>
+
+      <div class="ui-g-12">
+        <h2>Endereço do Evento</h2>
+      </div>
+
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+        <label>CEP</label>
+        <p-inputMask mask="99.999-999" nformControlName="endereco.cep"></p-inputMask>
+      </div>
+      <div class="ui-g-12 ui-md-10 ui-fluid">
+        <label>Logradouro</label>
+        <input pInputText formControlName="endereco.logradouro"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Unidade</label>
+        <input pInputText formControlName="endereco.numero"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Bairro</label>
+        <input pInputText formControlName="endereco.bairro"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Cidade</label>
+        <input pInputText formControlName="endereco.cidade"/>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>UF</label>
+        <p-dropdown [autoWidth]="false" [options]="ufs" ></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Complemento</label>
+        <textarea pInputTextarea autoResize="false" formControlName="endereco.complemento"></textarea>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+          <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Grupo" class="ui-button-rounded"
+                  [disabled]="!eventoForm.valid"></button>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                  class="ui-button-rounded ui-button-secondary" (click)="limpar()"></button>
+        </div>
+        <div class="ui-g-12 ui-md-5">
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
+                  class="ui-button-rounded ui-button-secondary"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

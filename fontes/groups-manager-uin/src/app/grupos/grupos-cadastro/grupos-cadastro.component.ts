@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {MessageService, SelectItem} from 'primeng/api';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {GrupoService} from '../grupo.service';
-import {Grupo} from '../../core/model';
 
 @Component({
   selector: 'app-grupos-cadastro',
