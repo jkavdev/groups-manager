@@ -11,11 +11,13 @@
 
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-12 ui-md-8">
-        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos" class="ui-button-rounded"
-        (click)="pesquisarGrupos()"></button>
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos"
+                class="ui-button-rounded"
+                (click)="pesquisarGrupos()"></button>
       </div>
       <div class="ui-g-12 ui-md-4">
-        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo" class="ui-button-rounded"></button>
+        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo"
+                class="ui-button-rounded"></button>
       </div>
     </div>
 
@@ -40,11 +42,20 @@
               </div>
             </div>
             <div class="ui-g-12 ui-md-1">
-              <div class="ui-g-offset-4">
-                <a pButton type="button" icon="pi pi-users" style="margin-right: 15px"
-                   pTooltip="Ver Integrantes" tooltipPosition="top"></a>
-                <a pButton type="button" icon="pi pi-calendar" style="margin-top: 5px"
+              <div class="ui-g-12 ui-fluid">
+                <button pButton type="button" icon="pi pi-users" class=" ui-button-info"
+                        style="width: 100%; min-width: 40px; border-radius: 15px;"
+                        pTooltip="Ver Integrantes" tooltipPosition="top"></button>
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <a pButton type="button" icon="pi pi-calendar" class="ui-button-info"
+                   style="width: 100%; min-width: 40px; border-radius: 15px;"
                    pTooltip="Ver Eventos" tooltipPosition="top"></a>
+              </div>
+              <div class="ui-g-12 ui-fluid">
+                <a pButton type="button" icon="pi pi-trash" class="ui-button-danger"
+                   style="width: 100%; min-width: 40px; border-radius: 15px;"
+                   pTooltip="Remover Grupo" tooltipPosition="top"></a>
               </div>
             </div>
           </div>
