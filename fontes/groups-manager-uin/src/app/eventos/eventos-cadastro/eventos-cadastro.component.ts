@@ -28,6 +28,17 @@ export class EventosCadastroComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const endereco = this.fb.group({
+      'uf': new FormControl('', Validators.required),
+      'cep': new FormControl('', Validators.required),
+      'logradouro': new FormControl('', Validators.required),
+      'unidade': new FormControl('', Validators.required),
+      'bairro': new FormControl('', Validators.required),
+      'complemento': new FormControl('', Validators.required),
+      'localidade': new FormControl('', Validators.required)
+    });
+
     this.eventoForm = this.fb.group({
       'data': new FormControl('', Validators.required),
       'descricao': new FormControl('', Validators.required),
@@ -35,13 +46,7 @@ export class EventosCadastroComponent implements OnInit {
       'objetivo': new FormControl('', Validators.required),
       'lotacaoMaxima': new FormControl('', Validators.required),
       'grupoId': new FormControl('', Validators.required),
-      'endereco.uf': new FormControl('', Validators.required),
-      'endereco.cep': new FormControl('', Validators.required),
-      'endereco.logradouro': new FormControl('', Validators.required),
-      'endereco.unidade': new FormControl('', Validators.required),
-      'endereco.bairro': new FormControl('', Validators.required),
-      'endereco.localidade': new FormControl('', Validators.required),
-      'endereco.complemento': new FormControl('', Validators.required)
+      'endereco': endereco
     });
     this.buscarGrupos();
     this.buscarUFs();
@@ -69,18 +74,18 @@ export class EventosCadastroComponent implements OnInit {
       .catch(erro => console.log((erro)));
   }
 
-  salvar(evento: any) {
-    console.log(evento);
-    this.eventoService.salvar(evento)
+  salvar(form: FormControl) {
+    console.log(form);
+    console.log(this.evento);
+    this.eventoService.salvar(this.evento)
       .then(() => {
-        console.log(evento);
       });
   }
 
-  limpar() {
+  limpar(form: FormControl) {
     // console.log(JSON.stringify(this.eventoForm));
-    console.log(JSON.stringify(this.eventoForm.value));
-    // this.eventoForm.reset();
+    console.log(JSON.stringify(form.value));
+    form.reset();
 
     /**
      * nao eh necessario

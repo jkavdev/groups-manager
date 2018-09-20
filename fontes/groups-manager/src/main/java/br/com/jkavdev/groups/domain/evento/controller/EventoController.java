@@ -40,8 +40,8 @@ public class EventoController implements ServiceMap {
     }
 
     @GetMapping("/ufs")
-    public List<UF> ufs() {
-        return Arrays.asList(UF.values());
+    public UF[] ufs() {
+        return UF.values();
     }
 
 }
