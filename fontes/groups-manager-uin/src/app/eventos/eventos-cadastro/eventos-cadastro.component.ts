@@ -23,13 +23,31 @@ export class EventosCadastroComponent implements OnInit {
   evento = new Evento();
 
   constructor(private fb: FormBuilder,
+              private messageServico: MessageService,
               private eventoService: EventoService,
               private grupoService: GrupoService) {
   }
 
   ngOnInit() {
+    this.eventoForm = this.eventoGroupControl();
+    this.buscarGrupos();
+    this.buscarUFs();
+  }
 
-    const endereco = this.fb.group({
+  private eventoGroupControl() {
+    return this.fb.group({
+      'data': new FormControl('', Validators.required),
+      'descricao': new FormControl('', Validators.required),
+      'valor': new FormControl(''),
+      'objetivo': new FormControl('', Validators.required),
+      'lotacaoMaxima': new FormControl('', Validators.required),
+      'grupoId': new FormControl('', Validators.required),
+      'endereco': this.enderecoGroupControl()
+    });
+  }
+
+  private enderecoGroupControl() {
+    return this.fb.group({
       'uf': new FormControl('', Validators.required),
       'cep': new FormControl('', Validators.required),
       'logradouro': new FormControl('', Validators.required),
@@ -38,20 +56,6 @@ export class EventosCadastroComponent implements OnInit {
       'complemento': new FormControl('', Validators.required),
       'localidade': new FormControl('', Validators.required)
     });
-
-    this.eventoForm = this.fb.group({
-      'data': new FormControl('', Validators.required),
-      'descricao': new FormControl('', Validators.required),
-      'valor': new FormControl(''),
-      'objetivo': new FormControl('', Validators.required),
-      'lotacaoMaxima': new FormControl('', Validators.required),
-      'grupoId': new FormControl('', Validators.required),
-      'endereco': endereco
-    });
-    this.buscarGrupos();
-    this.buscarUFs();
-    console.log(this.grupos);
-    console.log(this.ufs);
   }
 
   buscarGrupos() {
@@ -74,17 +78,15 @@ export class EventosCadastroComponent implements OnInit {
       .catch(erro => console.log((erro)));
   }
 
-  salvar(form: FormControl) {
-    console.log(form);
-    console.log(this.evento);
-    this.eventoService.salvar(this.evento)
+  salvar(evento: any) {
+
+    this.eventoService.salvar(evento)
       .then(() => {
+        this.messageServico.add({severity: 'info', summary: `Sucesso!`, detail: `Evento ${evento.descricao} adicionado!`});
       });
   }
 
   limpar(form: FormControl) {
-    // console.log(JSON.stringify(this.eventoForm));
-    console.log(JSON.stringify(form.value));
     form.reset();
 
     /**
