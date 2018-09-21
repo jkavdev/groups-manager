@@ -1,14 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 
-import {GrupoService} from '../grupo.service';
-import {GrupoFilter} from '../../core/filters';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import {GrupoService} from '../grupo.service';
+import {ErrorHandlerService} from '../../core/error-handler.service';
+
+import {GrupoFilter} from '../../core/filters';
 
 @Component({
   selector: 'app-grupos-pesquisa',
   templateUrl: './grupos-pesquisa.component.html',
   styleUrls: ['./grupos-pesquisa.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ErrorHandlerService]
 })
 export class GruposPesquisaComponent implements OnInit {
 
@@ -17,7 +19,8 @@ export class GruposPesquisaComponent implements OnInit {
 
   constructor(private grupoService: GrupoService,
               private messageService: MessageService,
-              private confirmation: ConfirmationService) {
+              private confirmation: ConfirmationService,
+              private errorhandler: ErrorHandlerService) {
   }
 
   ngOnInit() {
@@ -27,7 +30,7 @@ export class GruposPesquisaComponent implements OnInit {
   pesquisarGrupos() {
     this.grupoService.pesquisar(this.filtro)
       .then(resp => this.grupos = resp)
-      .catch(error => console.log(error));
+      .catch(error => this.errorhandler.handle(error));
   }
 
   excluir(grupo: any) {

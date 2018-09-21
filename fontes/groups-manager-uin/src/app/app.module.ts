@@ -1,12 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
-
-import {ConfirmationService} from 'primeng/api';
-
-import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
 
 import {CoreModule} from './core/core.module';
 import {GruposModule} from './grupos/grupos.module';
@@ -29,12 +25,7 @@ import {AppComponent} from './app.component';
     CoreModule,
     GruposModule,
     EventosModule,
-    IntegrantesModule,
-    ConfirmDialogModule
-  ],
-  providers: [
-    ConfirmationService,
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    IntegrantesModule
   ],
   bootstrap: [AppComponent],
 })
