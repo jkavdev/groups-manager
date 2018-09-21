@@ -8,6 +8,7 @@ import {CoreModule} from './core/core.module';
 import {GruposModule} from './grupos/grupos.module';
 import {EventosModule} from './eventos/eventos.module';
 import {IntegrantesModule} from './integrantes/integrantes.module';
+import {GroupsRoutingModule} from './groups-routing.module';
 
 import {AppComponent} from './app.component';
 
@@ -25,7 +26,8 @@ import {AppComponent} from './app.component';
     CoreModule,
     GruposModule,
     EventosModule,
-    IntegrantesModule
+    IntegrantesModule,
+    GroupsRoutingModule
   ],
   bootstrap: [AppComponent],
 })
