@@ -1,2 +1,11 @@
 <app-navbar></app-navbar>
-<app-integrantes-cadastro></app-integrantes-cadastro>
+<app-grupos-pesquisa></app-grupos-pesquisa>
+
+<p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle" width="425" #confimacao>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" class="ui-button-raised ui-button-danger" label="Sim"
+            (click)="confimacao.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" class="ui-button-raised" label="Não"
+            (click)="confimacao.reject()"></button>
+  </p-footer>
+</p-confirmDialog>

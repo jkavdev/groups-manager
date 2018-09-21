@@ -1,4 +1,7 @@
 <div class="container">
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
   <div class="ui-g">
 
     <div class="ui-g-12">
@@ -54,7 +57,8 @@
               <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
                    style="width: 100%; min-width: 40px;"
-                   pTooltip="Remover Grupo" tooltipPosition="top"></a>
+                   pTooltip="Remover Grupo" tooltipPosition="top"
+                (click)="excluir(grupo)"></a>
               </div>
             </div>
           </div>

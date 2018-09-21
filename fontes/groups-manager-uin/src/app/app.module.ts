@@ -4,6 +4,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
 
+import {ConfirmationService} from 'primeng/api';
+
+import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
+
 import {CoreModule} from './core/core.module';
 import {GruposModule} from './grupos/grupos.module';
 import {EventosModule} from './eventos/eventos.module';
@@ -25,9 +29,10 @@ import {AppComponent} from './app.component';
     CoreModule,
     GruposModule,
     EventosModule,
-    IntegrantesModule
+    IntegrantesModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
