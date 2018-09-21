@@ -32,7 +32,7 @@ public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
             criteria.add(Restrictions.ilike("integrante.nome", filter.getNome(), MatchMode.ANYWHERE));
         }
         if (StringUtils.hasText(filter.getGrupo())) {
-            criteria.add(Restrictions.ilike("grupo.nome", filter.getNome(), MatchMode.ANYWHERE));
+            criteria.add(Restrictions.ilike("grupo.nome", filter.getGrupo(), MatchMode.ANYWHERE));
         }
 
         criteria.setProjection(projectionList()
