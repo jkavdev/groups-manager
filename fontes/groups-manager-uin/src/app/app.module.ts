@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
@@ -32,8 +32,11 @@ import {AppComponent} from './app.component';
     IntegrantesModule,
     ConfirmDialogModule
   ],
-  providers: [ConfirmationService],
-  bootstrap: [AppComponent]
+  providers: [
+    ConfirmationService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
