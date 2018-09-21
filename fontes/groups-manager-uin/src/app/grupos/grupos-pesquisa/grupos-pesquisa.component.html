@@ -6,10 +6,9 @@
     </div>
 
     <div class="ui-g-12 ui-fluid">
-      <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
-    </div>
-
-    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12">
+        <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
+      </div>
       <div class="ui-g-12 ui-md-8">
         <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos"
                 class="ui-button-raised"
@@ -42,17 +41,17 @@
               </div>
             </div>
             <div class="ui-g-12 ui-md-1">
-              <div class="ui-g-12 ui-fluid">
+              <div class="ui-g-12">
                 <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
                         style="width: 100%; min-width: 40px; "
                         pTooltip="Ver Integrantes" tooltipPosition="top"></button>
               </div>
-              <div class="ui-g-12 ui-fluid">
+              <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-calendar" class="ui-button-raised ui-button-secondary"
                    style="width: 100%; min-width: 40px; "
                    pTooltip="Ver Eventos" tooltipPosition="top"></a>
               </div>
-              <div class="ui-g-12 ui-fluid">
+              <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
                    style="width: 100%; min-width: 40px;"
                    pTooltip="Remover Grupo" tooltipPosition="top"></a>
