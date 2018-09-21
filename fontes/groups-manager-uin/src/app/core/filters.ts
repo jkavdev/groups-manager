@@ -6,3 +6,8 @@ export class EventoFilter {
 export class GrupoFilter {
   nome: string;
 }
+
+export class IntegranteFilter {
+  nome: string;
+  grupo: string;
+}

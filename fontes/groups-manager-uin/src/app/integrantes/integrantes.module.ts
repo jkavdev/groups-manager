@@ -14,6 +14,7 @@ import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
 
 import {IntegrantesCadastroComponent} from './integrantes-cadastro/integrantes-cadastro.component';
+import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-pesquisa.component';
 
 @NgModule({
   imports: [
@@ -33,10 +34,12 @@ import {IntegrantesCadastroComponent} from './integrantes-cadastro/integrantes-c
     ToastModule
   ],
   declarations: [
-    IntegrantesCadastroComponent
+    IntegrantesCadastroComponent,
+    IntegrantesPesquisaComponent
   ],
   exports: [
-    IntegrantesCadastroComponent
+    IntegrantesCadastroComponent,
+    IntegrantesPesquisaComponent
   ]
 })
 export class IntegrantesModule {

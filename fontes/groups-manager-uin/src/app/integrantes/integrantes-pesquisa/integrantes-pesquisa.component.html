@@ -15,10 +15,6 @@
     </div>
   </form>
 
-  <div>
-    {{dados}}
-  </div>
-
   <div *ngFor="let g of dados.grupos">
     <div class="ui-g-12">
       <p-fieldset legend="g.nome" [toggleable]="true">
@@ -31,7 +27,7 @@
 
 
   <div class="ui-g-12">
-    <a pButton label="Novo" routerLink="/integrantes/novo"></a>
+    <a pButton label="Novo" ></a>
   </div>
 
 </div>
