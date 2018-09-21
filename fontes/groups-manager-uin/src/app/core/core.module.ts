@@ -1,5 +1,6 @@
 import {LOCALE_ID, NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, registerLocaleData} from '@angular/common';
+import localePt from '@angular/common/locales/pt-PT';
 
 import {ButtonModule} from 'primeng/components/button/button';
 import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
@@ -9,6 +10,8 @@ import {ConfirmationService, ConfirmDialogModule, MessageService} from 'primeng/
 import {ErrorHandlerService} from './error-handler.service';
 
 import {NavbarComponent} from './navbar/navbar.component';
+
+registerLocaleData(localePt, 'pt-BR')
 
 @NgModule({
   imports: [
