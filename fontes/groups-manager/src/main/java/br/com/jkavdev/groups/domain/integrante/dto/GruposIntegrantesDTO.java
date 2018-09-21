@@ -35,11 +35,11 @@ public class GruposIntegrantesDTO {
         this.integrantes = integrantes;
     }
 
-//    @Override
-//    public String toString() {
-//        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-//                .append(grupo)
-//                .append(integrante)
-//                .toString();
-//    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append(grupo)
+                .append(integrante)
+                .toString();
+    }
 }

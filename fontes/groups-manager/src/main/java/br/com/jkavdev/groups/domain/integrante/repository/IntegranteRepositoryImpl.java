@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
 import static org.hibernate.criterion.Projections.*;
 import static org.hibernate.transform.Transformers.aliasToBean;
 
@@ -45,7 +46,7 @@ public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
         List<GruposIntegrantesDTO> integrantesPorGrupo = criteria.list();
 
         Map<String, List<GruposIntegrantesDTO>> collect = integrantesPorGrupo.stream()
-                .collect(Collectors.groupingBy(GruposIntegrantesDTO::getGrupo));
+                .collect(groupingBy(GruposIntegrantesDTO::getGrupo));
 
         return integrantesPorGrupo;
     }

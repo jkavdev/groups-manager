@@ -14,17 +14,14 @@ export class IntegrantesPesquisaComponent implements OnInit {
   filtro = new IntegranteFilter();
   dados = [];
 
-  constructor(
-    private integranteService: IntegranteService
-  ) {
+  constructor(private integranteService: IntegranteService) {
   }
 
   ngOnInit() {
-    this.pesquisar();
-    console.log(this.dados);
+    this.pesquisarIntegrantes();
   }
 
-  pesquisar() {
+  pesquisarIntegrantes() {
     this.integranteService.pesquisar(this.filtro)
       .then(integrantes => this.dados = integrantes);
   }

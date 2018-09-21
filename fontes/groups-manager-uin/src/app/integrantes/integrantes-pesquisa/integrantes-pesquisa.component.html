@@ -1,33 +1,37 @@
 <div class="container">
 
-  <form autocomplete="off">
+  <div class="ui-g">
     <div class="ui-g-12">
       <h1>Integrantes</h1>
     </div>
-
     <div class="ui-g-12 ui-fluid">
-      <input type="text" pInputText name="nome" (change)="pesquisar()" placeholder="Nome do Integrante"
-             [(ngModel)]="filtro.nome"/>
+      <div class="ui-g-12">
+        <input type="text" pInputText placeholder="Nome do Integrante"
+               [(ngModel)]="filtro.nome"/>
+      </div>
+      <div class="ui-g-12">
+        <input type="text" pInputText placeholder="Nome do Grupo"
+               [(ngModel)]="filtro.grupo"/>
+      </div>
+      <div class="ui-g-12 ui-md-8">
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Eventos"
+                class="ui-button-raised" (click)="pesquisarIntegrantes()"></button>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Evento"
+                class="ui-button-raised"></button>
+      </div>
     </div>
-    <div class="ui-g-12 ui-fluid">
-      <input type="text" pInputText name="grupo" (change)="pesquisar()" placeholder="Nome do Grupo"
-             [(ngModel)]="filtro.grupo"/>
-    </div>
-  </form>
+  </div>
 
-  <div *ngFor="let g of dados.grupos">
+  <div class="ui-g">
     <div class="ui-g-12">
-      <p-fieldset legend="g.nome" [toggleable]="true">
-        <div *ngFor="let i of g.integrantes">
-          i.nome
-        </div>
-      </p-fieldset>
+      <div *ngFor="let g of dados">
+        <p-fieldset legend="{{g.grupo}}" [toggleable]="true">
+          {{g.integrante}}
+          {{g.integrantes}}
+        </p-fieldset>
+      </div>
     </div>
   </div>
-
-
-  <div class="ui-g-12">
-    <a pButton label="Novo" ></a>
-  </div>
-
 </div>
