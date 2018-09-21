@@ -12,6 +12,8 @@ import {SpinnerModule} from 'primeng/spinner';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
+import {PanelModule} from 'primeng/components/panel/panel';
+import {DataViewModule} from 'primeng/components/dataview/dataview';
 
 import {IntegrantesCadastroComponent} from './integrantes-cadastro/integrantes-cadastro.component';
 import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-pesquisa.component';
@@ -31,7 +33,9 @@ import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-p
     SpinnerModule,
     FieldsetModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    PanelModule,
+    DataViewModule
   ],
   declarations: [
     IntegrantesCadastroComponent,

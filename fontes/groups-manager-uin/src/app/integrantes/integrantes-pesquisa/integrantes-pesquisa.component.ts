@@ -12,7 +12,7 @@ import {IntegranteFilter} from '../../core/filters';
 export class IntegrantesPesquisaComponent implements OnInit {
 
   filtro = new IntegranteFilter();
-  dados = [];
+  integrantes = [];
 
   constructor(private integranteService: IntegranteService) {
   }
@@ -23,7 +23,7 @@ export class IntegrantesPesquisaComponent implements OnInit {
 
   pesquisarIntegrantes() {
     this.integranteService.pesquisar(this.filtro)
-      .then(integrantes => this.dados = integrantes);
+      .then(integrantes => this.integrantes = integrantes);
   }
 
 }

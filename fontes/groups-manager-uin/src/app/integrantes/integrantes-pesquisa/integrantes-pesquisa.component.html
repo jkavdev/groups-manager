@@ -14,11 +14,11 @@
                [(ngModel)]="filtro.grupo"/>
       </div>
       <div class="ui-g-12 ui-md-8">
-        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Eventos"
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Integrantes"
                 class="ui-button-raised" (click)="pesquisarIntegrantes()"></button>
       </div>
       <div class="ui-g-12 ui-md-4">
-        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Evento"
+        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Integrante"
                 class="ui-button-raised"></button>
       </div>
     </div>
@@ -26,12 +26,37 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <div *ngFor="let g of dados">
-        <p-fieldset legend="{{g.grupo}}" [toggleable]="true">
-          {{g.integrante}}
-          {{g.integrantes}}
-        </p-fieldset>
-      </div>
+      <p-dataView #dv [value]="integrantes" [paginator]="true" [rows]="5" paginatorPosition="both"
+                  emptyMessage="Nenhum integrante encontrado.">
+        <ng-template let-integrante pTemplate="listItem">
+          <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <img src="assets/images/integrantes/avatar2.png" style="width: 120px;">
+            </div>
+            <div class="ui-g-12 ui-md-8">
+              <div class="ui-g">
+                <div class="ui-g-2 ui-sm-6">Nome:</div>
+                <div class="ui-g-10 ui-sm-6"><b>{{integrante.nome}}</b></div>
+                <div class="ui-g-2 ui-sm-6">Idade:</div>
+                <div class="ui-g-10 ui-sm-6"><b>{{integrante.idade}}</b></div>
+                <div class="ui-g-2 ui-sm-6">Celular:</div>
+                <div class="ui-g-10 ui-sm-6"><b>{{integrante.celular}}</b></div>
+              </div>
+            </div>
+            <div class="ui-g-12 ui-md-1">
+              <div class="ui-g-12">
+                <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
+                        style="width: 100%; min-width: 40px; "
+                ></button>
+              </div>
+              <div class="ui-g-12">
+                <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
+                   style="width: 100%; min-width: 40px;"></a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
     </div>
   </div>
 </div>

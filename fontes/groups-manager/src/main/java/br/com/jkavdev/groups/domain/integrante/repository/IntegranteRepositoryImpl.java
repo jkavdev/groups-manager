@@ -1,6 +1,6 @@
 package br.com.jkavdev.groups.domain.integrante.repository;
 
-import br.com.jkavdev.groups.domain.integrante.dto.GruposIntegrantesDTO;
+import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,11 +11,9 @@ import org.springframework.util.StringUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
-import static org.hibernate.criterion.Projections.*;
+import static org.hibernate.criterion.Projections.projectionList;
+import static org.hibernate.criterion.Projections.property;
 import static org.hibernate.transform.Transformers.aliasToBean;
 
 public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
@@ -25,7 +23,7 @@ public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
 
     @SuppressWarnings({"deprecation", "unchecked"})
     @Override
-    public List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter) {
+    public List<IntegranteDTO> filtrar(IntegranteFilter filter) {
         Session session = manager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Integrante.class, "integrante");
         criteria.createAlias("integrante.grupos", "grupo");
@@ -38,17 +36,18 @@ public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
         }
 
         criteria.setProjection(projectionList()
-                .add(groupProperty("grupo.nome"))
-                .add(property("grupo.nome"), "grupo")
-                .add(property("integrante.nome"), "integrante")
-        ).setResultTransformer(aliasToBean(GruposIntegrantesDTO.class));
+                .add(property("integrante.id"), "id")
+                .add(property("integrante.nome"), "nome")
+                .add(property("integrante.idade"), "idade")
+                .add(property("integrante.celular"), "celular")
+                .add(property("integrante.senha"), "senha")
+                .add(property("integrante.sexo"), "sexo")
+                .add(property("integrante.dataNascimento"), "dataNascimento")
+                .add(property("integrante.cpf"), "cpf")
+                .add(property("integrante.cadastroEfetivado"), "cadastroEfetivado")
+        ).setResultTransformer(aliasToBean(IntegranteDTO.class));
 
-        List<GruposIntegrantesDTO> integrantesPorGrupo = criteria.list();
-
-        Map<String, List<GruposIntegrantesDTO>> collect = integrantesPorGrupo.stream()
-                .collect(groupingBy(GruposIntegrantesDTO::getGrupo));
-
-        return integrantesPorGrupo;
+        return criteria.list();
     }
 
 }
