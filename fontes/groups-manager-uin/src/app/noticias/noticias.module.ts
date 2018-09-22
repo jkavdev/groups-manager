@@ -14,6 +14,7 @@ import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
 import {ToastModule} from 'primeng/components/toast/toast';
 
 import {NoticiasPesquisaComponent} from './noticias-pesquisa/noticias-pesquisa.component';
+import {NoticiasCadastroComponent} from './noticias-cadastro/noticias-cadastro.component';
 
 @NgModule({
   imports: [
@@ -32,10 +33,12 @@ import {NoticiasPesquisaComponent} from './noticias-pesquisa/noticias-pesquisa.c
     ToastModule
   ],
   declarations: [
-    NoticiasPesquisaComponent
+    NoticiasPesquisaComponent,
+    NoticiasCadastroComponent
   ],
   exports: [
-    NoticiasPesquisaComponent
+    NoticiasPesquisaComponent,
+    NoticiasCadastroComponent
   ]
 })
 export class NoticiasModule {

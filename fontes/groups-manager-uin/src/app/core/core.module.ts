@@ -5,13 +5,14 @@ import localePt from '@angular/common/locales/pt-PT';
 import {ButtonModule} from 'primeng/components/button/button';
 import {MegaMenuModule} from 'primeng/components/megamenu/megamenu';
 import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
+
 import {ConfirmationService, ConfirmDialogModule, MessageService} from 'primeng/primeng';
 
 import {ErrorHandlerService} from './error-handler.service';
 
 import {NavbarComponent} from './navbar/navbar.component';
 
-registerLocaleData(localePt, 'pt-BR')
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   imports: [

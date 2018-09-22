@@ -8,6 +8,7 @@ import {IntegrantesCadastroComponent} from './integrantes/integrantes-cadastro/i
 import {EventosPesquisaComponent} from './eventos/eventos-pesquisa/eventos-pesquisa.component';
 import {EventosCadastroComponent} from './eventos/eventos-cadastro/eventos-cadastro.component';
 import {NoticiasPesquisaComponent} from './noticias/noticias-pesquisa/noticias-pesquisa.component';
+import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-cadastro.component';
 
 const routes: Routes = [
   {path: 'grupos', component: GruposPesquisaComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'eventos', component: EventosPesquisaComponent},
   {path: 'eventos/novo', component: EventosCadastroComponent},
   {path: 'noticias', component: NoticiasPesquisaComponent},
-  {path: 'noticias/nova', component: NoticiasPesquisaComponent}
+  {path: 'noticias/nova', component: NoticiasCadastroComponent}
 ];
 
 @NgModule({

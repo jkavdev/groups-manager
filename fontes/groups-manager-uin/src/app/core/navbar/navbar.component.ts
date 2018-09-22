@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-bookmark',
         items: [
           {label: 'Notícias', icon: 'pi pi-fw pi-search', routerLink: '/noticias'},
-          {label: 'Notícia', icon: 'pi pi-fw pi-plus', routerLink: '/noticias/novo'}
+          {label: 'Notícia', icon: 'pi pi-fw pi-plus', routerLink: '/noticias/nova'}
         ]
       },
     ];
