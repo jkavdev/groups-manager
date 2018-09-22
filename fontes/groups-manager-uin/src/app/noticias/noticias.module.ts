@@ -10,6 +10,7 @@ import {AccordionModule} from 'primeng/components/accordion/accordion';
 import {CardModule} from 'primeng/components/card/card';
 import {ToggleButtonModule} from 'primeng/components/togglebutton/togglebutton';
 import {TooltipModule} from 'primeng/components/tooltip/tooltip';
+import {FieldsetModule} from 'primeng/components/fieldset/fieldset';
 
 import {NoticiasPesquisaComponent} from './noticias-pesquisa/noticias-pesquisa.component';
 
@@ -26,6 +27,7 @@ import {NoticiasPesquisaComponent} from './noticias-pesquisa/noticias-pesquisa.c
     CardModule,
     TooltipModule,
     ToggleButtonModule,
+    FieldsetModule
   ],
   declarations: [
     NoticiasPesquisaComponent
