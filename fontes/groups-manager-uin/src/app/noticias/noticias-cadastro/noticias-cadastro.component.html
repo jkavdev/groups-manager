@@ -1,3 +1,56 @@
-<p>
-  noticias-cadastro works!
-</p>
+<div class="container">
+
+    <form autocomplete="off" [formGroup]="noticiaForm" (ngSubmit)="salvar(noticiaForm.value)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Nova Notícia</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Título</label>
+        <input type="text" pInputText formControlName="titulo"/>
+      </div>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Exibir notícia a público</label>
+        <p-toggleButton name="publica" pTooltip="{{publica ? 'Qualquer um terá acesso a esta notícia' : 'Somente integrantes do grupo terão acesso a esta notícia'}}" tooltipPosition="top"
+                        onLabel="Sim" offLabel="Não" onIcon="fas fa-eye" offIcon="fas fa-eye-slash"></p-toggleButton>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tópicos</label>
+        <p-multiSelect [options]="topicos" name="topicos" required></p-multiSelect>
+        <!-- <app-message [control]="topicos" error="required" text="Informe o tópico da notícia"></app-message> -->
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Grupo</label>
+        <p-dropdown [autoWidth]="false" [options]="grupos" placeholder="Selecione" name="grupo" ></p-dropdown>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <ul class="actions fit">
+          <a (click)="verNoticia = false" class="button fit small">Escrever</a>
+          <a (click)="verNoticia = true" class="button fit small">Ver</a>
+        </ul>
+      </div>
+      <div class="ui-g-12 ui-fluid" [hidden]="verNoticia">
+        <label>Notícia</label>
+        <p-editor [style]="{'height':'320px'}" name="corpoNoticia" ></p-editor>
+      </div>
+
+      <div class="ui-g-12 ui-fluid" [hidden]="!verNoticia">
+        <div [innerHTML]="corpo"></div>
+      </div>
+
+      <div class="ui-g-12">
+        <ul class="actions fit small">
+          <button class="button fit large" type="submit" [disabled]="noticiaForm.invalid">Salvar Notícia</button>
+          <a class="button fit large" (click)="limpar(noticiaForm)">Limpar Formulário</a>
+          <a class="button fit large" routerLink="/noticias">Voltar para a Pesquisa</a>
+        </ul>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

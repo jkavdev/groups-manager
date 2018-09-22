@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
@@ -16,9 +17,12 @@ import {ToastModule} from 'primeng/components/toast/toast';
 import {NoticiasPesquisaComponent} from './noticias-pesquisa/noticias-pesquisa.component';
 import {NoticiasCadastroComponent} from './noticias-cadastro/noticias-cadastro.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
 
     ButtonModule,
     InputTextModule,
