@@ -7,6 +7,7 @@ import {IntegrantesPesquisaComponent} from './integrantes/integrantes-pesquisa/i
 import {IntegrantesCadastroComponent} from './integrantes/integrantes-cadastro/integrantes-cadastro.component';
 import {EventosPesquisaComponent} from './eventos/eventos-pesquisa/eventos-pesquisa.component';
 import {EventosCadastroComponent} from './eventos/eventos-cadastro/eventos-cadastro.component';
+import {NoticiasPesquisaComponent} from './noticias/noticias-pesquisa/noticias-pesquisa.component';
 
 const routes: Routes = [
   {path: 'grupos', component: GruposPesquisaComponent},
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},
-  {path: 'eventos/novo', component: EventosCadastroComponent}
+  {path: 'eventos/novo', component: EventosCadastroComponent},
+  {path: 'noticias', component: NoticiasPesquisaComponent},
+  {path: 'noticias/nova', component: NoticiasPesquisaComponent}
 ];
 
 @NgModule({

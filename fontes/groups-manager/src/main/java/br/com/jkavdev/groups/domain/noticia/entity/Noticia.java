@@ -93,6 +93,9 @@ public class Noticia {
 	public void setTopicos(Set<Topico> topicos) {
 		this.topicos = topicos;
 	}
+	public Grupo getGrupo() {
+		return grupo;
+	}
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}

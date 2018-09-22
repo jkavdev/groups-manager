@@ -11,6 +11,7 @@ import {IntegrantesModule} from './integrantes/integrantes.module';
 import {GroupsRoutingModule} from './groups-routing.module';
 
 import {AppComponent} from './app.component';
+import {NoticiasModule} from './noticias/noticias.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {AppComponent} from './app.component';
     GruposModule,
     EventosModule,
     IntegrantesModule,
+    NoticiasModule,
     GroupsRoutingModule
   ],
   bootstrap: [AppComponent],
