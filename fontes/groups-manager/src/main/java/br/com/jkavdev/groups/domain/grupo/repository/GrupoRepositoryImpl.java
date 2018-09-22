@@ -1,10 +1,5 @@
 package br.com.jkavdev.groups.domain.grupo.repository;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -12,6 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.util.StringUtils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public class GrupoRepositoryImpl implements GrupoRepositoryQuery {
 
