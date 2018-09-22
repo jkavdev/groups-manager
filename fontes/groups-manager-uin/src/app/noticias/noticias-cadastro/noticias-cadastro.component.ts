@@ -33,6 +33,7 @@ export class NoticiasCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.noticiaForm = this.noticiaGroupControl();
+    console.log(this.noticiaForm);
     this.buscarTopicos();
     this.buscarGrupos();
   }
@@ -54,6 +55,7 @@ export class NoticiasCadastroComponent implements OnInit {
   }
 
   salvar(noticia: any) {
+    console.log(noticia);
     this.noticiaService.adicionar(noticia)
       .then(() => this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Notícia adicionada!`}))
       .catch(erro => this.errorHandler.handle(erro));
@@ -75,8 +77,8 @@ export class NoticiasCadastroComponent implements OnInit {
       }).catch(erro => this.errorHandler.handle(erro));
   }
 
-  limpar(form: FormControl) {
-    form.reset();
+  limpar() {
+    this.noticiaForm.reset();
     this.verNoticia = false;
   }
 
