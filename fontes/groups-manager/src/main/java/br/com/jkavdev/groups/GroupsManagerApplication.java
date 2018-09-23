@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GroupsManagerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GroupsManagerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GroupsManagerApplication.class, args);
+    }
 }
