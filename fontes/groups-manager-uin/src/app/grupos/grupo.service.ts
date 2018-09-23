@@ -3,15 +3,17 @@ import {Http} from '@angular/http';
 
 import {Grupo} from '../core/model';
 import {GrupoFilter} from '../core/filters';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GrupoService {
 
-  gruposUrl = 'http://localhost:8086/grupos';
+  gruposUrl: string;
 
   constructor(private http: Http) {
+    this.gruposUrl = `${environment.apiUrl}/grupos`;
   }
 
   pesquisar(filtro: GrupoFilter): Promise<any> {

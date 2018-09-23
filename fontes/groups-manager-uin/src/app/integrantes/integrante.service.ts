@@ -2,15 +2,17 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
 import {IntegranteFilter} from '../core/filters';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IntegranteService {
 
-  integrantesUrl = 'http://localhost:8086/integrantes';
+  integrantesUrl: string;
 
   constructor(private http: Http) {
+    this.integrantesUrl = `${environment.apiUrl}/integrantes`;
   }
 
   salvar(integrante: any): Promise<any> {

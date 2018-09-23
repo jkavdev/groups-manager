@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiaService {
 
-  noticiasUrl = 'http://localhost:8086/noticias';
+  noticiasUrl: string;
 
   constructor(private http: Http) {
+    this.noticiasUrl = `${environment.apiUrl}/noticias`;
   }
 
   adicionar(noticia: any): Promise<any> {

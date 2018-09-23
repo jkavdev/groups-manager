@@ -2,15 +2,17 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
 import {EventoFilter} from '../core/filters';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventoService {
 
-  eventosUrl = 'http://localhost:8086/eventos';
+  eventosUrl: string;
 
   constructor(private http: Http) {
+    this.eventosUrl = `${environment.apiUrl}/eventos`;
   }
 
   pesquisar(filtro: EventoFilter): Promise<any> {
