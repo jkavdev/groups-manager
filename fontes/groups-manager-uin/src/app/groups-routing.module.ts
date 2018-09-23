@@ -12,6 +12,7 @@ import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-c
 import {GruposEventosComponent} from './grupos/grupos-eventos/grupos-eventos.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'eventos', pathMatch: 'full'},
   {path: 'grupos', component: GruposPesquisaComponent},
   {path: 'grupos/novo', component: GruposCadastroComponent},
   {path: 'grupos/:id/eventos', component: GruposEventosComponent},
