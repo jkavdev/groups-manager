@@ -10,6 +10,7 @@ import {EventosCadastroComponent} from './eventos/eventos-cadastro/eventos-cadas
 import {NoticiasPesquisaComponent} from './noticias/noticias-pesquisa/noticias-pesquisa.component';
 import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-cadastro.component';
 import {GruposEventosComponent} from './grupos/grupos-eventos/grupos-eventos.component';
+import {PaginaNaoEncontradaComponent} from './core/pagina-nao-encontrada.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'eventos', pathMatch: 'full'},
@@ -21,7 +22,9 @@ const routes: Routes = [
   {path: 'eventos', component: EventosPesquisaComponent},
   {path: 'eventos/novo', component: EventosCadastroComponent},
   {path: 'noticias', component: NoticiasPesquisaComponent},
-  {path: 'noticias/nova', component: NoticiasCadastroComponent}
+  {path: 'noticias/nova', component: NoticiasCadastroComponent},
+  {path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
+  {path: '**', redirectTo: 'pagina-nao-encontrada'},
 ];
 
 @NgModule({
