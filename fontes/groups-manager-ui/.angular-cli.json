@@ -32,7 +32,11 @@
         "../node_modules/quill/dist/quill.js",
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/moment/min/moment.min.js",
-        "../node_modules/fullcalendar/dist/fullcalendar.min.js"
+        "../node_modules/fullcalendar/dist/fullcalendar.min.js",
+        "../src/assets/assets/js/browser.min.js",
+        "../src/assets/assets/js/breakpoints.min.js",
+        "../src/assets/assets/js/util.js",
+        "../src/assets/assets/js/main.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

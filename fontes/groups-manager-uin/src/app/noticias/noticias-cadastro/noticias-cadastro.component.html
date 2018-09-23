@@ -1,0 +1,71 @@
+<div class="container">
+
+  <form autocomplete="off" [formGroup]="noticiaForm" (ngSubmit)="salvar(noticiaForm.value)">
+
+    <div class="ui-g ui-fluid">
+
+      <div class="ui-g-12">
+        <h1>Nova Notícia</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Título</label>
+        <input type="text" pInputText formControlName="titulo"/>
+      </div>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Exibir notícia a público</label>
+        <p-toggleButton formControlName="publica"
+                        pTooltip="{{noticiaForm.value.publica ? 'Qualquer um terá acesso a esta notícia' : 'Somente integrantes do grupo terão acesso a esta notícia'}}"
+                        tooltipPosition="top"
+                        onLabel="Sim" offLabel="Não" onIcon="fas fa-eye" offIcon="fas fa-eye-slash"></p-toggleButton>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Tópicos</label>
+        <p-multiSelect [options]="topicos" formControlName="topicos"></p-multiSelect>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Grupo</label>
+        <div formGroupName="grupo">
+          <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="id" placeholder="Selecione"></p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-12 ui-md-4" style="padding-left: 0">
+          <button pButton icon="pi pi-pencil" iconPos="left" label="Escrever"
+                  class="ui-button-raised ui-button-secondary" (click)="verNoticia = false"></button>
+        </div>
+        <div class="ui-g-12 ui-md-4" style="padding-left: 0">
+          <button pButton icon="pi pi-copy" iconPos="left" label="Ver"
+                  class="ui-button-raised ui-button-secondary" (click)="verNoticia = true"></button>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-fluid" [hidden]="verNoticia">
+        <label>Notícia</label>
+        <p-editor [style]="{'height':'320px'}" formControlName="corpo"></p-editor>
+      </div>
+
+      <div class="ui-g-12 ui-fluid" [hidden]="!verNoticia">
+        <div [innerHTML]="noticiaForm.value.corpo"></div>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12 ui-md-3">
+          <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Notícia"
+                  class="ui-button-raised"
+                  [disabled]="!noticiaForm.valid"></button>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                  class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
+        </div>
+        <div class="ui-g-12 ui-md-5">
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
+                  class="ui-button-raised"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

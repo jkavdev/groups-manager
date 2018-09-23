@@ -1,10 +1,10 @@
 package br.com.jkavdev.groups.domain.noticia.controller;
 
-import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
 import br.com.jkavdev.groups.domain.noticia.entity.Noticia;
-import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
 import br.com.jkavdev.groups.domain.noticia.entity.Topico;
+import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/noticias")
@@ -48,8 +50,10 @@ public class NoticiaController implements ServiceMap {
     }
 
     @GetMapping("/agrupadas")
-    public List<Grupo> agrupadas() {
-        return grupoRepository.gruposComNoticias();
+    public List<GrupoDTO> agrupadas() {
+        return grupoRepository.gruposComNoticias().stream()
+                .map(g -> GrupoDTO.comNoticias(g))
+                .collect(toList());
     }
 
     @PutMapping("{id}/marcar")

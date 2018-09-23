@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { IntegranteService, IntegranteFiltro } from '../integrante.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import {Grupo} from "../../core/model";
+
+interface dataset {
+  grupos: Grupo[];
+}
 
 @Component({
   selector: 'app-integrante-pesquisa',
@@ -13,7 +18,7 @@ export class IntegrantePesquisaComponent implements OnInit {
 
   filtro = new IntegranteFiltro();
   integrantes = [];
-  dataset = [];
+  dataset: dataset;
 
 
   constructor(

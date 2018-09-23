@@ -1,11 +1,11 @@
 package br.com.jkavdev.groups.domain.integrante.repository;
 
-import br.com.jkavdev.groups.domain.integrante.dto.GruposIntegrantesDTO;
+import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 
 import java.util.List;
 
 public interface IntegranteRepositoryQuery {
 
-	List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter);
+    List<IntegranteDTO> filtrar(IntegranteFilter filter);
 
 }

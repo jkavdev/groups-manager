@@ -1,0 +1,70 @@
+<div class="container">
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <div class="ui-g">
+
+    <div class="ui-g-12">
+      <h1>Grupos</h1>
+    </div>
+
+    <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12">
+        <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
+      </div>
+      <div class="ui-g-12 ui-md-8">
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos"
+                class="ui-button-raised"
+                (click)="pesquisarGrupos()"></button>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo"
+                class="ui-button-raised"></button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataView #dv [value]="grupos" [paginator]="true" [rows]="5" paginatorPosition="both"
+                  emptyMessage="Nenhum grupo encontrado.">
+        <ng-template let-grupo pTemplate="listItem">
+          <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
+            </div>
+            <div class="ui-g-12 ui-md-8">
+              <div class="ui-g">
+                <div class="ui-g-2 ui-sm-6">Nome:</div>
+                <div class="ui-g-10 ui-sm-6"><b>{{grupo.nome}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Objetivo:</div>
+                <div class="ui-g-10 ui-sm-6"><b>{{grupo.objetivo}}</b></div>
+              </div>
+            </div>
+            <div class="ui-g-12 ui-md-1">
+              <div class="ui-g-12">
+                <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
+                        style="width: 100%; min-width: 40px; "
+                        pTooltip="Ver Integrantes" tooltipPosition="top"></button>
+              </div>
+              <div class="ui-g-12">
+                <a pButton type="button" icon="pi pi-calendar" class="ui-button-raised ui-button-secondary"
+                   style="width: 100%; min-width: 40px; " pTooltip="Ver Eventos" tooltipPosition="top"
+                   [routerLink]="['/grupos', grupo.id, 'eventos']"></a>
+              </div>
+              <div class="ui-g-12">
+                <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
+                   style="width: 100%; min-width: 40px;"
+                   pTooltip="Remover Grupo" tooltipPosition="top"
+                (click)="excluir(grupo)"></a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+  </div>
+
+</div>

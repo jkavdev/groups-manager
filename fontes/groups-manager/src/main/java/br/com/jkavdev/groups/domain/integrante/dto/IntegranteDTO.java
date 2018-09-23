@@ -5,6 +5,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.time.LocalDate;
+import java.time.Period;
+
+import static java.time.LocalDate.now;
 
 public class IntegranteDTO {
 
@@ -36,6 +39,12 @@ public class IntegranteDTO {
     }
 
     public Integer getIdade() {
+        if (idade == null) {
+            int years = Period.between(dataNascimento, now()).getYears();
+            if (years < 1)
+                return 1;
+            return years;
+        }
         return idade;
     }
 

@@ -1,10 +1,9 @@
 package br.com.jkavdev.groups.domain.integrante.controller;
 
-import br.com.jkavdev.groups.domain.integrante.repository.IntegranteFilter;
-import br.com.jkavdev.groups.domain.integrante.service.IntegranteService;
-import br.com.jkavdev.groups.domain.integrante.dto.GruposIntegrantesDTO;
 import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
+import br.com.jkavdev.groups.domain.integrante.repository.IntegranteFilter;
+import br.com.jkavdev.groups.domain.integrante.service.IntegranteService;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.hibernate.validator.constraints.br.CPF;
@@ -30,7 +29,7 @@ public class IntegranteController implements ServiceMap {
     private ApplicationEventPublisher publisher;
 
     @GetMapping(params = "pesquisa")
-    public List<GruposIntegrantesDTO> filtrar(IntegranteFilter filter) {
+    public List<IntegranteDTO> filtrar(IntegranteFilter filter) {
         return integranteService.filtrar(filter);
     }
 

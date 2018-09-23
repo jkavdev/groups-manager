@@ -1,8 +1,20 @@
 package br.com.jkavdev.groups.domain.evento.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Stream.of;
+
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
+//caso queiramos montar um enum UF
+//@JsonDeserialize(using = EventoJsonDeserializer.class)
 public enum UF {
 
     AC("AC", "Acre"),
@@ -33,12 +45,24 @@ public enum UF {
     SE("SE", "Sergipe"),
     TO("TO", "Tocantins");
 
+    private static Map<String, UF> namesMap;
+
+    static {
+        namesMap = of(UF.values())
+                    .collect(toMap(UF::getSigla, identity()));
+    }
+
     private final String descricao;
     private final String sigla;
 
-    UF(String descricao, String sigla) {
+    UF(String sigla, String descricao) {
         this.descricao = descricao;
         this.sigla = sigla;
+    }
+
+    @JsonCreator
+    public static Optional<UF> forValue(String value) {
+        return Optional.ofNullable(namesMap.get(value));
     }
 
     public String getDescricao() {

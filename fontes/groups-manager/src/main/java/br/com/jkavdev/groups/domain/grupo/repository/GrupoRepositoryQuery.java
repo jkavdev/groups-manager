@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface GrupoRepositoryQuery {
 
-	List<Grupo> filtrar(GrupoFilter filter);
+    List<Grupo> filtrar(GrupoFilter filter);
 
 }

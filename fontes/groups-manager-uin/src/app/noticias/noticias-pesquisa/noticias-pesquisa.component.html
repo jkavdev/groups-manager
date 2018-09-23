@@ -1,0 +1,53 @@
+<div class="container">
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <h1>Notícias</h1>
+      </div>
+      <div class="ui-g-12">
+        <a class="ui-button-raised" pButton label="Nova" routerLink="/noticias/nova"></a>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div *ngFor="let grupo of noticias">
+        <div class="ui-g-12 ui-md-12 ui-lg-6">
+          <p-fieldset legend="{{grupo.nome}}" [toggleable]="true" [collapsed]="true">
+            <p-accordion>
+              <div *ngFor="let noticia of grupo.noticias">
+                <p-accordionTab>
+                  <p-header>
+                <span #header>
+                  {{noticia.titulo}}
+                </span>
+                  </p-header>
+                  <div class="image-box-content">
+                    <img src="assets/images/gradient-waters.png" style="width: 100%;">
+                    <h3>{{noticia.titulo}}</h3>
+                    <div class="image-box-tag">
+                      <div *ngFor="let topico of noticia.topicos">
+                        {{topico.descricao}}
+                      </div>
+                    </div>
+                    <div [innerHTML]="noticia.corpo"></div>
+                  </div>
+                  <p-footer>
+                    <div class="image-box-footer">
+                      <a pButton class="ui-button-raised ui-button-success" icon="pi pi-arrow-circle-up"
+                         pTooltip="Marcar como útil" tooltipPosition="top"
+                         (click)="marcarComoUtil(noticia.id)"></a>
+                      <a pButton style="margin-left: 10px" class="ui-button-raised ui-button-warning"
+                         icon="pi pi-arrow-circle-down"
+                         pTooltip="Marcar não como útil" tooltipPosition="top"
+                         (click)="marcarComoNaoUtil(noticia.id)"></a>
+                    </div>
+                  </p-footer>
+                </p-accordionTab>
+              </div>
+            </p-accordion>
+          </p-fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

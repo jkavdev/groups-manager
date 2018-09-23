@@ -1,0 +1,168 @@
+<div class="container">
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <form autocomplete="off" [formGroup]="eventoForm" (ngSubmit)="salvar(eventoForm.value)">
+
+    <div class="ui-g">
+
+      <div class="ui-g-12">
+        <h1>Novo Evento</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <div class="ui-g-12">
+          <label>Data do Evento</label>
+        </div>
+        <div class="ui-g-12">
+          <p-calendar showTime="true" hourFormat="24" dateFormat="dd/mm/yy" formControlName="data"></p-calendar>
+          <p-message severity="error" text="Informe a data!"
+                     *ngIf="!eventoForm.controls['data'].valid && eventoForm.controls['data'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <div class="ui-g-12">
+          <label>Descrição do Evento</label>
+        </div>
+        <div class="ui-g-12">
+          <input pInputText formControlName="descricao"/>
+          <p-message severity="error" text="Informe a descrição!"
+                     *ngIf="!eventoForm.controls['descricao'].valid && eventoForm.controls['descricao'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+        <div class="ui-g-12">
+          <label>Valor</label>
+        </div>
+        <div class="ui-g-12">
+          <input pInputText formControlName="valor"/>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <div class="ui-g-12">
+          <label>Lotação Máxima</label>
+        </div>
+        <div class="ui-g-12">
+          <p-spinner size="100" formControlName="lotacaoMaxima"></p-spinner>
+          <p-message severity="error" text="Informe a lotação máxima!"
+                     *ngIf="!eventoForm.controls['lotacaoMaxima'].valid && eventoForm.controls['lotacaoMaxima'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-7 ui-fluid">
+        <div class="ui-g-12">
+          <label>Grupo</label>
+        </div>
+        <div class="ui-g-12">
+          <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="grupoId"></p-dropdown>
+          <p-message severity="error" text="Informe o Grupo!"
+                     *ngIf="!eventoForm.controls['grupoId'].valid && eventoForm.controls['grupoId'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <div class="ui-g-12">
+          <label>Objetivo do Evento</label>
+        </div>
+        <div class="ui-g-12">
+          <textarea pInputTextarea autoResize="false" formControlName="objetivo"></textarea>
+          <p-message severity="error" text="Informe o objetivo!"
+                     *ngIf="!eventoForm.controls['objetivo'].valid && eventoForm.controls['objetivo'].dirty"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-g-12" style="margin-left: 10px">
+        <h2>Endereço do Evento</h2>
+      </div>
+
+      <div formGroupName="endereco" class="ui-g">
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <div class="ui-g-12">
+            <label>CEP</label>
+          </div>
+          <div class="ui-g-12">
+            <input pInputText formControlName="cep"/>
+            <p-message severity="error" text="Informe o cep!"
+                       *ngIf="!eventoForm.get('endereco.cep').valid && eventoForm.get('endereco.cep').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-9 ui-fluid">
+          <div class="ui-g-12">
+            <label>Logradouro</label>
+          </div>
+          <div class="ui-g-12">
+            <input pInputText formControlName="logradouro"/>
+            <p-message severity="error" text="Informe o logradouro!"
+                       *ngIf="!eventoForm.get('endereco.logradouro').valid && eventoForm.get('endereco.logradouro').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-2 ui-fluid">
+          <div class="ui-g-12">
+            <label>Unidade</label>
+          </div>
+          <div class="ui-g-12">
+            <input pInputText formControlName="unidade"/>
+            <p-message severity="error" text="Informe a unidade!"
+                       *ngIf="!eventoForm.get('endereco.unidade').valid && eventoForm.get('endereco.unidade').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-10 ui-fluid">
+          <div class="ui-g-12">
+            <label>Bairro</label>
+          </div>
+          <div class="ui-g-12">
+            <input pInputText formControlName="bairro"/>
+            <p-message severity="error" text="Informe o bairro!"
+                       *ngIf="!eventoForm.get('endereco.bairro').valid && eventoForm.get('endereco.bairro').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <div class="ui-g-12">
+            <label>Cidade</label>
+          </div>
+          <div class="ui-g-12">
+            <input pInputText formControlName="localidade"/>
+            <p-message severity="error" text="Informe a cidade!"
+                       *ngIf="!eventoForm.get('endereco.localidade').valid && eventoForm.get('endereco.localidade').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <div class="ui-g-12">
+            <label>UF</label>
+          </div>
+          <div class="ui-g-12">
+            <p-dropdown [options]="ufs" formControlName="uf" [autoWidth]="false"></p-dropdown>
+            <p-message severity="error" text="Informe o estado!"
+                       *ngIf="!eventoForm.get('endereco.uf').valid && eventoForm.get('endereco.uf').dirty"></p-message>
+          </div>
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-12">
+            <label>Complemento</label>
+          </div>
+          <div class="ui-g-12">
+            <textarea pInputTextarea autoResize="false" formControlName="complemento"></textarea>
+          </div>
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <div class="ui-g-12 ui-md-3">
+            <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Grupo"
+                    class="ui-button-raised"
+                    [disabled]="!eventoForm.valid"></button>
+          </div>
+          <div class="ui-g-12 ui-md-4">
+            <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                    class="ui-button-raised ui-button-secondary" (click)="limpar(eventoForm)"></button>
+          </div>
+          <div class="ui-g-12 ui-md-5">
+            <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
+                    class="ui-button-raised"></button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>

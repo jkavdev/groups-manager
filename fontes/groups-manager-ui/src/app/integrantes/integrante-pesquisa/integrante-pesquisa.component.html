@@ -15,7 +15,11 @@
     </div>
   </form>
 
-  <div *ngFor="let g of dataset.grupos">
+  <div>
+    {{dados}}
+  </div>
+
+  <div *ngFor="let g of dados.grupos">
     <div class="ui-g-12">
       <p-fieldset legend="g.nome" [toggleable]="true">
         <div *ngFor="let i of g.integrantes">
