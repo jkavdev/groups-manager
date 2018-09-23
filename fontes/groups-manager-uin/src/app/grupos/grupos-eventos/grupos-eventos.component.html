@@ -1,20 +1,17 @@
 <div class="container">
-
   <div class="ui-g">
-
     <div class="ui-g-12 ui-fluid">
-      <div class="ui-g-12 ui-md-10">
-        <h1>Eventos do {{grupo.nome}}</h1>
+      <div class="ui-g-12 ui-md-9 ui-lg-10" style="margin-left: 0">
+        <h1>Eventos {{grupo.nome}}</h1>
       </div>
-      <div class="ui-g-12 ui-md-2" style="padding: auto">
-        <a pButton type="button" label="adicionar Evento" icon="pi pi-check" ></a>
+      <div class="ui-g-12 ui-md-3 ui-lg-2">
+        <!--<h1>-->
+          <a pButton type="button" label="Novo Evento" class="ui-button-raised" icon="pi pi-plus"></a>
+        <!--</h1>-->
+      </div>
+      <div class="ui-g-12">
+        <p-schedule [events]="events" [header]="header" locale="pt-br"></p-schedule>
       </div>
     </div>
-
-    <div class="ui-fluid">
-      <p-schedule [events]="events"></p-schedule>
-    </div>
-
   </div>
-
 </div>

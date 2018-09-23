@@ -45,9 +45,8 @@ export class GruposEventosComponent implements OnInit {
   preencherDados(eventos: any[]) {
     eventos.forEach(e => this.events.push({'title': e.descricao, 'start': e.data}));
     this.header = {
-      left: 'prev,next',
-      center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      left: 'title',
+      right: 'today prev,next month,agendaWeek,agendaDay'
     };
   }
 
