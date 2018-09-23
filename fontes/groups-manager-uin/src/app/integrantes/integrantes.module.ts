@@ -41,10 +41,7 @@ import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-p
     IntegrantesCadastroComponent,
     IntegrantesPesquisaComponent
   ],
-  exports: [
-    IntegrantesCadastroComponent,
-    IntegrantesPesquisaComponent
-  ]
+  exports: []
 })
 export class IntegrantesModule {
 }

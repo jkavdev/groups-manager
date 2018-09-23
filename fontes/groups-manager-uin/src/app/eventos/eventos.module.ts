@@ -37,10 +37,7 @@ import {EventosCadastroComponent} from './eventos-cadastro/eventos-cadastro.comp
     EventosPesquisaComponent,
     EventosCadastroComponent
   ],
-  exports: [
-    EventosPesquisaComponent,
-    EventosCadastroComponent
-  ]
+  exports: []
 })
 export class EventosModule {
 }

@@ -41,11 +41,7 @@ import {GruposEventosComponent} from './grupos-eventos/grupos-eventos.component'
     GruposPesquisaComponent,
     GruposEventosComponent
   ],
-  exports: [
-    GruposCadastroComponent,
-    GruposPesquisaComponent,
-    GruposEventosComponent
-  ]
+  exports: []
 })
 export class GruposModule {
 }

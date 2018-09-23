@@ -40,10 +40,7 @@ import {NoticiasCadastroComponent} from './noticias-cadastro/noticias-cadastro.c
     NoticiasPesquisaComponent,
     NoticiasCadastroComponent
   ],
-  exports: [
-    NoticiasPesquisaComponent,
-    NoticiasCadastroComponent
-  ]
+  exports: []
 })
 export class NoticiasModule {
 }
