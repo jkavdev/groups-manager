@@ -86,7 +86,7 @@ export class EventosCadastroComponent implements OnInit {
       });
   }
 
-  limpar(form: FormControl) {
+  limpar(form: FormGroup) {
     form.reset();
 
     /**

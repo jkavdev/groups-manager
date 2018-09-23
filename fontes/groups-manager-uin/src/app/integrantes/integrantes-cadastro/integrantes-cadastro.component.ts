@@ -39,7 +39,7 @@ export class IntegrantesCadastroComponent implements OnInit {
       .catch(erro => this.messageServico.add({severity: 'error', summary: `Erro!`, detail: erro}));
   }
 
-  limpar(form: FormControl) {
+  limpar(form: FormGroup) {
     form.reset();
   }
 
