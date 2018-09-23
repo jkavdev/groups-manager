@@ -46,6 +46,9 @@ public class Noticia {
 	@Column(columnDefinition = "text")
 	private String corpo;
 
+	@Column()
+	private byte[] corpoFoda;
+
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "grupo_id", foreignKey = @ForeignKey(name = "fk_noticia_grupo_id"))

@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
+import {MessageService} from 'primeng/api';
+
 import {TopicoService} from '../../topicos/topico.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {NoticiaService} from '../noticia.service';
 import {GrupoService} from '../../grupos/grupo.service';
+
 import {GrupoFilter} from '../../core/filters';
-import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-noticias-cadastro',
@@ -33,7 +35,6 @@ export class NoticiasCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.noticiaForm = this.noticiaGroupControl();
-    console.log(this.noticiaForm);
     this.buscarTopicos();
     this.buscarGrupos();
   }

@@ -37,4 +37,10 @@ export class GrupoService {
       .toPromise()
       .then(resp => resp.json());
   }
+
+  comEventos(id: number): Promise<any> {
+    return this.http.get(`${this.gruposUrl}/${id}/eventos`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }

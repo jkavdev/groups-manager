@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 import {InputTextModule} from 'primeng/components/inputtext/inputtext';
 import {ButtonModule} from 'primeng/components/button/button';
@@ -11,15 +12,18 @@ import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
+import {ScheduleModule} from 'primeng/components/schedule/schedule';
 
 import {GruposCadastroComponent} from './grupos-cadastro/grupos-cadastro.component';
 import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.component';
+import {GruposEventosComponent} from './grupos-eventos/grupos-eventos.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -29,15 +33,18 @@ import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.compone
     DropdownModule,
     InputTextareaModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    ScheduleModule
   ],
   declarations: [
     GruposCadastroComponent,
-    GruposPesquisaComponent
+    GruposPesquisaComponent,
+    GruposEventosComponent
   ],
   exports: [
     GruposCadastroComponent,
-    GruposPesquisaComponent
+    GruposPesquisaComponent,
+    GruposEventosComponent
   ]
 })
 export class GruposModule {

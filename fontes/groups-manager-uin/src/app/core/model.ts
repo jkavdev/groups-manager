@@ -4,6 +4,7 @@ export class Grupo {
   igreja: string;
   objetivo: string;
   statusGrupoId: number;
+  eventos: Evento[] = [];
 }
 
 export class Endereco {

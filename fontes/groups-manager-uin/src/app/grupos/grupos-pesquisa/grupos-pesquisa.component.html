@@ -37,7 +37,7 @@
             <div class="ui-g-12 ui-md-8">
               <div class="ui-g">
                 <div class="ui-g-2 ui-sm-6">Nome:</div>
-                <div class="ui-g-10 ui-sm-6"><b>{{grupo.imageName}}</b></div>
+                <div class="ui-g-10 ui-sm-6"><b>{{grupo.nome}}</b></div>
 
                 <div class="ui-g-2 ui-sm-6">Objetivo:</div>
                 <div class="ui-g-10 ui-sm-6"><b>{{grupo.objetivo}}</b></div>
@@ -51,8 +51,8 @@
               </div>
               <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-calendar" class="ui-button-raised ui-button-secondary"
-                   style="width: 100%; min-width: 40px; "
-                   pTooltip="Ver Eventos" tooltipPosition="top"></a>
+                   style="width: 100%; min-width: 40px; " pTooltip="Ver Eventos" tooltipPosition="top"
+                   [routerLink]="['/grupos', grupo.id, 'eventos']"></a>
               </div>
               <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"

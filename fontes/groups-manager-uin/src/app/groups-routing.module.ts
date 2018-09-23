@@ -9,10 +9,12 @@ import {EventosPesquisaComponent} from './eventos/eventos-pesquisa/eventos-pesqu
 import {EventosCadastroComponent} from './eventos/eventos-cadastro/eventos-cadastro.component';
 import {NoticiasPesquisaComponent} from './noticias/noticias-pesquisa/noticias-pesquisa.component';
 import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-cadastro.component';
+import {GruposEventosComponent} from './grupos/grupos-eventos/grupos-eventos.component';
 
 const routes: Routes = [
   {path: 'grupos', component: GruposPesquisaComponent},
   {path: 'grupos/novo', component: GruposCadastroComponent},
+  {path: 'grupos/:id/eventos', component: GruposEventosComponent},
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},
