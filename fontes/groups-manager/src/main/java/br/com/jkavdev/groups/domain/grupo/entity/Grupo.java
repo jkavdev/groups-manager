@@ -9,10 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Grupo {
@@ -44,7 +41,7 @@ public class Grupo {
     private Collection<Evento> eventos = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")
-    private Collection<Noticia> noticias = new HashSet<>();
+    private Set<Noticia> noticias = new HashSet<>();
 
     private Grupo() {
     }
@@ -105,7 +102,7 @@ public class Grupo {
         return eventos;
     }
 
-    public Collection<Noticia> getNoticias() {
+    public Set<Noticia> getNoticias() {
         return noticias;
     }
 
