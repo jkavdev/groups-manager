@@ -11,4 +11,4 @@ app.get('*/', function (req, resp) {
 });
 
 //porta do servidor
-app.listen(4200);
+app.listen(process.env.PORT || 4200);
