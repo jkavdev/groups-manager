@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="fontes/groups-manager/src/main/java"/>
-	<classpathentry kind="src" path="fontes/groups-manager/src/test/java"/>
-	<classpathentry kind="lib" path="fontes/groups-manager/.mvn/wrapper/maven-wrapper.jar"/>
-	<classpathentry kind="lib" path="fontes/groups-manager/bin/.mvn/wrapper/maven-wrapper.jar"/>
-	<classpathentry kind="output" path="fontes/groups-manager/target/classes"/>
-</classpath>
