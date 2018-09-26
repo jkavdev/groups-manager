@@ -52,11 +52,11 @@
       </div>
       <div class="ui-g-12 ui-md-6">
         <div class="ui-g-12 ui-md-4">
-          <button pButton icon="pi pi-pencil" iconPos="left" label="Escrever"
+          <button pButton type="button" icon="pi pi-pencil" iconPos="left" label="Escrever"
                   class="ui-button-raised ui-button-secondary" (click)="verNoticia = false"></button>
         </div>
         <div class="ui-g-12 ui-md-4">
-          <button pButton icon="pi pi-copy" iconPos="left" label="Ver"
+          <button pButton type="button" icon="pi pi-copy" iconPos="left" label="Ver"
                   class="ui-button-raised ui-button-secondary" (click)="verNoticia = true"></button>
         </div>
       </div>
@@ -70,7 +70,9 @@
       </div>
 
       <div class="ui-g-12" [hidden]="!verNoticia">
-        <div [innerHTML]="noticiaForm.value.corpo"></div>
+        <div class="ui-g-12">
+          <div [innerHTML]="noticiaForm.value.corpo"></div>
+        </div>
       </div>
 
       <div class="ui-g-12">
