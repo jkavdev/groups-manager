@@ -14,7 +14,6 @@ import {Grupo} from '../../core/model';
 export class GruposEventosComponent implements OnInit {
 
   grupo: Grupo = new Grupo();
-
   events: any[] = [];
   header: any;
 
@@ -38,8 +37,7 @@ export class GruposEventosComponent implements OnInit {
       .then(grupo => {
         this.grupo = grupo;
         this.preencherDados(this.grupo.eventos);
-      })
-      .catch(erro => this.errorHandler.handle(erro));
+      }).catch(erro => this.errorHandler.handle(erro));
   }
 
   preencherDados(eventos: any[]) {
