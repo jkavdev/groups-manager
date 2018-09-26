@@ -20,3 +20,11 @@ h3 small {
   line-height: 1;
   color: #777;
 }
+
+.eventoRow{
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.imagemGrupo {
+  width: 210px;
+}

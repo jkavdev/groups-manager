@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 import {CalendarModule} from 'primeng/components/calendar/calendar';
 import {ButtonModule} from 'primeng/components/button/button';
@@ -21,6 +22,7 @@ import {EventosCadastroComponent} from './eventos-cadastro/eventos-cadastro.comp
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
 
     CalendarModule,
     ButtonModule,

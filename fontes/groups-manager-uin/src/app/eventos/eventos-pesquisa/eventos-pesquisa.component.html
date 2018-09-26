@@ -1,9 +1,17 @@
 <div class="container">
+
   <div class="ui-g">
-    <div class="ui-g-12 ui-fluid">
+    <div class="ui-g-12">
       <div class="ui-g-12">
         <h1>Eventos</h1>
       </div>
+    </div>
+  </div>
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <div class="ui-g">
+    <div class="ui-g-12 ui-fluid">
       <div class="ui-g-12">
         <p-calendar showTime="true" [locale]="pt" hourFormat="24" dataType="string" dateFormat="dd/mm/yy"
                     name="de" [(ngModel)]="filtro.de" #de="ngModel" placeholder="Data início do evento"></p-calendar>
@@ -21,12 +29,15 @@
       </div>
       <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Evento"
-                class="ui-button-raised"></button>
+                class="ui-button-raised" routerLink="/eventos/novo"></button>
       </div>
     </div>
-    <div *ngFor="let evento of eventos" class="ui-g-12">
+  </div>
+
+  <div class="ui-g">
+    <div *ngFor="let evento of eventos" class="ui-g-12" class="eventoRow">
       <div class="ui-g-12 ui-md-4" style="text-align: center;">
-        <img src="assets/images/icon-evento.png" style="width: 210px;">
+        <img src="assets/images/icon-evento.png" class="imagemGrupo">
       </div>
       <div class="ui-g-12 ui-md-8">
         <h3>
