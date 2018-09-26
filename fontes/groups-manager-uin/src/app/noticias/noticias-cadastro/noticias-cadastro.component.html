@@ -1,54 +1,79 @@
 <div class="container">
 
-  <form autocomplete="off" [formGroup]="noticiaForm" (ngSubmit)="salvar(noticiaForm.value)">
-
-    <div class="ui-g ui-fluid">
-
+  <div class="ui-g">
+    <div class="ui-g-12">
       <div class="ui-g-12">
         <h1>Nova Notícia</h1>
       </div>
+    </div>
+  </div>
 
-      <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Título</label>
-        <input type="text" pInputText formControlName="titulo"/>
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <form autocomplete="off" [formGroup]="noticiaForm" (ngSubmit)="salvar(noticiaForm.value)">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-8">
+        <div class="ui-g-12">
+          <label>Título</label>
+        </div>
+        <div class="ui-g-12">
+          <input type="text" pInputText formControlName="titulo"/>
+        </div>
       </div>
-      <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label>Exibir notícia a público</label>
-        <p-toggleButton formControlName="publica"
-                        pTooltip="{{noticiaForm.value.publica ? 'Qualquer um terá acesso a esta notícia' : 'Somente integrantes do grupo terão acesso a esta notícia'}}"
-                        tooltipPosition="top"
-                        onLabel="Sim" offLabel="Não" onIcon="fas fa-eye" offIcon="fas fa-eye-slash"></p-toggleButton>
-      </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Tópicos</label>
-        <p-multiSelect [options]="topicos" formControlName="topicos"></p-multiSelect>
-      </div>
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Grupo</label>
-        <div formGroupName="grupo">
-          <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="id" placeholder="Selecione"></p-dropdown>
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-g-12">
+          <label>Exibir notícia a público</label>
+        </div>
+        <div class="ui-g-12">
+          <p-toggleButton formControlName="publica"
+                          pTooltip="{{noticiaForm.value.publica ? 'Qualquer um terá acesso a esta notícia' : 'Somente integrantes do grupo terão acesso a esta notícia'}}"
+                          tooltipPosition="top"
+                          onLabel="Sim" offLabel="Não" onIcon="pi pi-users" offIcon="pi pi-user-minus"></p-toggleButton>
         </div>
       </div>
       <div class="ui-g-12 ui-md-6">
-        <div class="ui-g-12 ui-md-4" style="padding-left: 0">
+        <div class="ui-g-12">
+          <label>Tópicos</label>
+        </div>
+        <div class="ui-g-12">
+          <p-multiSelect [options]="topicos" formControlName="topicos"
+                         [filter]="false" defaultLabel="Selecione os Tópicos"></p-multiSelect>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-12">
+          <label>Grupo</label>
+        </div>
+        <div class="ui-g-12">
+          <div formGroupName="grupo">
+            <p-dropdown [autoWidth]="false" [options]="grupos" formControlName="id"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ui-g-12 ui-md-4">
           <button pButton icon="pi pi-pencil" iconPos="left" label="Escrever"
                   class="ui-button-raised ui-button-secondary" (click)="verNoticia = false"></button>
         </div>
-        <div class="ui-g-12 ui-md-4" style="padding-left: 0">
+        <div class="ui-g-12 ui-md-4">
           <button pButton icon="pi pi-copy" iconPos="left" label="Ver"
                   class="ui-button-raised ui-button-secondary" (click)="verNoticia = true"></button>
         </div>
       </div>
-      <div class="ui-g-12 ui-fluid" [hidden]="verNoticia">
-        <label>Notícia</label>
-        <p-editor [style]="{'height':'320px'}" formControlName="corpo"></p-editor>
+      <div class="ui-g-12" [hidden]="verNoticia">
+        <div class="ui-g-12">
+          <label>Corpo da Notícia</label>
+        </div>
+        <div class="ui-g-12">
+          <p-editor [style]="{'height':'320px'}" formControlName="corpo"></p-editor>
+        </div>
       </div>
 
-      <div class="ui-g-12 ui-fluid" [hidden]="!verNoticia">
+      <div class="ui-g-12" [hidden]="!verNoticia">
         <div [innerHTML]="noticiaForm.value.corpo"></div>
       </div>
 
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12">
         <div class="ui-g-12 ui-md-3">
           <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Notícia"
                   class="ui-button-raised"
@@ -60,12 +85,9 @@
         </div>
         <div class="ui-g-12 ui-md-5">
           <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
-                  class="ui-button-raised"></button>
+                  class="ui-button-raised" routerLink="/noticias"></button>
         </div>
       </div>
-
     </div>
-
   </form>
-
 </div>
