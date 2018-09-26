@@ -3,12 +3,13 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {MessageService} from 'primeng/api';
 import {IntegranteService} from '../integrante.service';
+import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-integrantes-cadastro',
   templateUrl: './integrantes-cadastro.component.html',
   styleUrls: ['./integrantes-cadastro.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ErrorHandlerService]
 })
 export class IntegrantesCadastroComponent implements OnInit {
 
@@ -16,7 +17,8 @@ export class IntegrantesCadastroComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private messageServico: MessageService,
-              private integranteService: IntegranteService) {
+              private integranteService: IntegranteService,
+              private errorhandler: ErrorHandlerService) {
   }
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class IntegrantesCadastroComponent implements OnInit {
   private integranteGroupControl() {
     return this.fb.group({
       'nome': new FormControl('', Validators.required),
-      'idade': new FormControl('', Validators.required)
+      'idade': new FormControl('7', Validators.compose([Validators.required, Validators.minLength(7)]))
     });
   }
 
@@ -36,11 +38,11 @@ export class IntegrantesCadastroComponent implements OnInit {
         this.messageServico.add({severity: 'info', summary: `Sucesso!`, detail: `Integrante ${integrante.nome} adicionado!`});
         this.integranteForm.reset();
       })
-      .catch(erro => this.messageServico.add({severity: 'error', summary: `Erro!`, detail: erro}));
+      .catch(error => this.errorhandler.handle(error));
   }
 
-  limpar(form: FormGroup) {
-    form.reset();
+  limpar() {
+    this.integranteForm.reset();
   }
 
 }

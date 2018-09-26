@@ -10,7 +10,7 @@
 
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
-  <form [formGroup]="grupoForm" (ngSubmit)="salvar(grupoForm.value)">
+  <form autocomplete="off" [formGroup]="grupoForm" (ngSubmit)="salvar(grupoForm.value)">
     <div class="ui-g ui-fluid">
       <div class="ui-g-12">
         <div class="ui-g-12">

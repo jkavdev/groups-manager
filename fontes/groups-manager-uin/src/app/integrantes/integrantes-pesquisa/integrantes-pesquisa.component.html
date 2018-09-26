@@ -1,19 +1,22 @@
 <div class="container">
 
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <h1>Integrantes</h1>
+      </div>
+    </div>
+  </div>
+
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Integrantes</h1>
-    </div>
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-12">
-        <input type="text" pInputText placeholder="Nome do Integrante"
-               [(ngModel)]="filtro.nome"/>
+        <input type="text" pInputText placeholder="Nome do Integrante" [(ngModel)]="filtro.nome"/>
       </div>
       <div class="ui-g-12">
-        <input type="text" pInputText placeholder="Nome do Grupo"
-               [(ngModel)]="filtro.grupo"/>
+        <input type="text" pInputText placeholder="Nome do Grupo" [(ngModel)]="filtro.grupo"/>
       </div>
       <div class="ui-g-12 ui-md-8">
         <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Integrantes"
@@ -21,7 +24,7 @@
       </div>
       <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Integrante"
-                class="ui-button-raised"></button>
+                class="ui-button-raised" routerLink="/integrantes/novo"></button>
       </div>
     </div>
   </div>
@@ -31,7 +34,7 @@
       <p-dataView #dv [value]="integrantes" [paginator]="true" [rows]="5" paginatorPosition="both"
                   emptyMessage="Nenhum integrante encontrado.">
         <ng-template let-integrante pTemplate="listItem">
-          <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
               <img src="assets/images/integrantes/avatar2.png" style="width: 120px;">
             </div>
@@ -48,7 +51,7 @@
             <div class="ui-g-12 ui-md-1">
               <div class="ui-g-12">
                 <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
-                        style="width: 100%; min-width: 40px; "
+                        style="width: 100%; min-width: 40px;"
                 ></button>
               </div>
               <div class="ui-g-12">
