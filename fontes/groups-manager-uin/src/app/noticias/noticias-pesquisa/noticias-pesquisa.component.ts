@@ -8,7 +8,7 @@ import {ErrorHandlerService} from '../../core/error-handler.service';
   selector: 'app-noticias-pesquisa',
   templateUrl: './noticias-pesquisa.component.html',
   styleUrls: ['./noticias-pesquisa.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ErrorHandlerService]
 })
 export class NoticiasPesquisaComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class NoticiasPesquisaComponent implements OnInit {
       .then(noticias => {
         this.noticias = noticias;
         this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Buscada realizada!`});
-      });
+      }).catch(erro => this.errorHander.handle(erro));
   }
 
   marcarComoUtil(id: number) {

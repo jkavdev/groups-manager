@@ -1,13 +1,16 @@
 <div class="container">
 
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <h1>Grupos</h1>
+      </div>
+    </div>
+  </div>
+
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
   <div class="ui-g">
-
-    <div class="ui-g-12">
-      <h1>Grupos</h1>
-    </div>
-
     <div class="ui-g-12 ui-fluid">
       <div class="ui-g-12">
         <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
@@ -19,10 +22,9 @@
       </div>
       <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo"
-                class="ui-button-raised"></button>
+                class="ui-button-raised" routerLink="/grupos/novo"></button>
       </div>
     </div>
-
   </div>
 
   <div class="ui-g">
@@ -38,7 +40,6 @@
               <div class="ui-g">
                 <div class="ui-g-2 ui-sm-6">Nome:</div>
                 <div class="ui-g-10 ui-sm-6"><b>{{grupo.nome}}</b></div>
-
                 <div class="ui-g-2 ui-sm-6">Objetivo:</div>
                 <div class="ui-g-10 ui-sm-6"><b>{{grupo.objetivo}}</b></div>
               </div>
@@ -58,7 +59,7 @@
                 <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
                    style="width: 100%; min-width: 40px;"
                    pTooltip="Remover Grupo" tooltipPosition="top"
-                (click)="excluir(grupo)"></a>
+                   (click)="excluir(grupo)"></a>
               </div>
             </div>
           </div>

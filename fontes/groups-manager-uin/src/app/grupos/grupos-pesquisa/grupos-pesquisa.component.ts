@@ -18,7 +18,7 @@ export class GruposPesquisaComponent implements OnInit {
   filtro = new GrupoFilter();
 
   constructor(private grupoService: GrupoService,
-              private messageService: MessageService,
+              private msgService: MessageService,
               private confirmation: ConfirmationService,
               private errorhandler: ErrorHandlerService) {
   }
@@ -29,7 +29,10 @@ export class GruposPesquisaComponent implements OnInit {
 
   pesquisarGrupos() {
     this.grupoService.pesquisar(this.filtro)
-      .then(resp => this.grupos = resp)
+      .then(resp => {
+        this.grupos = resp;
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Busca realizada!`});
+      })
       .catch(error => this.errorhandler.handle(error));
   }
 
@@ -40,7 +43,7 @@ export class GruposPesquisaComponent implements OnInit {
         const index: number = this.grupos.indexOf(grupo, 0);
         if (index !== -1) {
           this.grupos.splice(index, 1);
-          this.messageService.add({severity: 'info', summary: `Sucesso!`, detail: `Grupo ${grupo.nome} removido!`});
+          this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Grupo ${grupo.nome} removido!`});
         }
       }
     });

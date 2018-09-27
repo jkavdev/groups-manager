@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 import {DataTableModule} from 'primeng/datatable';
 import {ButtonModule} from 'primeng/button';
@@ -23,6 +24,7 @@ import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-p
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
 
     ButtonModule,
     DataTableModule,

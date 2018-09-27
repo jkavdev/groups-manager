@@ -1,47 +1,55 @@
 <div class="container">
 
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <h1>Novo Integrante</h1>
+      </div>
+    </div>
+  </div>
+
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
   <form autocomplete="off" [formGroup]="integranteForm" (ngSubmit)="salvar(integranteForm.value)">
-    <div class="ui-g">
-      <div class="ui-g-12 ui-fluid">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12">
         <div class="ui-g-12">
-          <h1>Novo Integrante</h1>
+          <label>Nome</label>
         </div>
-        <div class="ui-g-12 ui-md-8">
-          <div class="ui-g-12">
-            <label>Nome</label>
-          </div>
-          <div class="ui-g-12">
-            <input pInputText formControlName="nome" placeholder="Nome do Integrante"/>
-            <p-message severity="error" text="Informe o nome do Integrante!"
-                       *ngIf="!integranteForm.controls['nome'].valid && integranteForm.controls['nome'].dirty"></p-message>
-          </div>
+        <div class="ui-g-12">
+          <input pInputText formControlName="nome" placeholder="Nome do Integrante"/>
+          <p-message severity="error" text="Informe o nome do Integrante!"
+                     *ngIf="!integranteForm.controls['nome'].valid && integranteForm.controls['nome'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-12">
+          <label>Idade</label>
+        </div>
+        <div class="ui-g-12">
+          <p-spinner [min]="7" [max]="100" formControlName="idade" placeholder="Idade do Integrante"
+                     pTooltip="Idade mínima do Integrante é 7 anos de idade!"></p-spinner>
+          <p-message severity="error"
+                     [text]="integranteForm.controls['idade'].errors['required']
+                     ? 'Informe a idade do Integrante'
+                     : integranteForm.controls['idade'].errors['minlength']
+                     ? 'Idade mínima do Integrante é 7 anos de idade!' : ''"
+                     *ngIf="!integranteForm.controls['idade'].valid && integranteForm.controls['idade'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Integrante"
+                  class="ui-button-raised" [disabled]="integranteForm.invalid"></button>
         </div>
         <div class="ui-g-12 ui-md-4">
-          <div class="ui-g-12">
-            <label>Idade</label>
-          </div>
-          <div class="ui-g-12">
-            <p-spinner [min]="7" [max]="100" formControlName="idade" placeholder="Idade do Integrante"></p-spinner>
-            <p-message severity="error" text="Informe a idade do Integrante!"
-                       *ngIf="!integranteForm.controls['idade'].valid && integranteForm.controls['idade'].dirty"></p-message>
-          </div>
+          <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                  class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
         </div>
-      </div>
-    </div>
-    <div class="ui-g-12 ui-fluid">
-      <div class="ui-g-12 ui-md-3">
-        <button pButton icon="pi pi-plus" iconPos="left" type="submit" label="Salvar Integrante"
-                class="ui-button-raised" [disabled]="integranteForm.invalid"></button>
-      </div>
-      <div class="ui-g-12 ui-md-4">
-        <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
-                class="ui-button-raised ui-button-secondary" (click)="limpar(integranteForm)"></button>
-      </div>
-      <div class="ui-g-12 ui-md-5">
-        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
-                class="ui-button-raised"></button>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton icon="pi pi-search" iconPos="left" type="button" label="Voltar para Pesquisa"
+                  class="ui-button-raised" routerLink="/integrantes"></button>
+        </div>
       </div>
     </div>
   </form>

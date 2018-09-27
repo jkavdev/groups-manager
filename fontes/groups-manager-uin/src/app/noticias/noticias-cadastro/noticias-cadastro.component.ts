@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {MessageService} from 'primeng/api';
-
 import {TopicoService} from '../../topicos/topico.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {NoticiaService} from '../noticia.service';
@@ -14,7 +13,8 @@ import {GrupoFilter} from '../../core/filters';
   selector: 'app-noticias-cadastro',
   templateUrl: './noticias-cadastro.component.html',
   styleUrls: ['./noticias-cadastro.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ErrorHandlerService],
+  encapsulation: ViewEncapsulation.None
 })
 export class NoticiasCadastroComponent implements OnInit {
 
@@ -56,7 +56,6 @@ export class NoticiasCadastroComponent implements OnInit {
   }
 
   salvar(noticia: any) {
-    console.log(noticia);
     this.noticiaService.adicionar(noticia)
       .then(() => this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Notícia adicionada!`}))
       .catch(erro => this.errorHandler.handle(erro));

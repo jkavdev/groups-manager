@@ -1,11 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+
 import {EventoService} from '../evento.service';
 import {EventoFilter} from '../../core/filters';
+import {MessageService} from 'primeng/api';
+import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-eventos-pesquisa',
   templateUrl: './eventos-pesquisa.component.html',
-  styleUrls: ['./eventos-pesquisa.component.css']
+  styleUrls: ['./eventos-pesquisa.component.css'],
+  providers: [MessageService, ErrorHandlerService]
 })
 export class EventosPesquisaComponent implements OnInit {
 
@@ -13,7 +17,9 @@ export class EventosPesquisaComponent implements OnInit {
   eventos = [];
   pt: any;
 
-  constructor(private eventoService: EventoService) {
+  constructor(private eventoService: EventoService,
+              private msgService: MessageService,
+              private errorhandler: ErrorHandlerService) {
   }
 
   ngOnInit() {
@@ -32,8 +38,11 @@ export class EventosPesquisaComponent implements OnInit {
 
   pesquisarEventos() {
     this.eventoService.pesquisar(this.filtro)
-      .then(eventos => this.eventos = eventos)
-      .catch(erro => console.log(erro));
+      .then(eventos => {
+        this.eventos = eventos;
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Busca realizada!`});
+      })
+      .catch(error => this.errorhandler.handle(error));
   }
 
 }
