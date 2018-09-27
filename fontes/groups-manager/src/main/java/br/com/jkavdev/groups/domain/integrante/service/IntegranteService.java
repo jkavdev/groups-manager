@@ -40,4 +40,7 @@ public class IntegranteService {
         return integranteRepository.filtrar(filter);
     }
 
+    public Integrante buscarGrupos(Long id) {
+        return integranteRepository.integrantesComGrupos(id);
+    }
 }

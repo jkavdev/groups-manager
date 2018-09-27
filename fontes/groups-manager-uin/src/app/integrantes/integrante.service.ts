@@ -27,5 +27,10 @@ export class IntegranteService {
       .then(resp => resp.json());
   }
 
+  buscarGrupos(idIntegrante: number) {
+    return this.http.get(`${this.integrantesUrl}/${idIntegrante}/grupos`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }
 

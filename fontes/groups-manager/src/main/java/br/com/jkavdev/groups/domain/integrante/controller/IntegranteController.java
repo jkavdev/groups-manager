@@ -1,5 +1,6 @@
 package br.com.jkavdev.groups.domain.integrante.controller;
 
+import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
 import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteFilter;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
@@ -31,6 +34,14 @@ public class IntegranteController implements ServiceMap {
     @GetMapping(params = "pesquisa")
     public List<IntegranteDTO> filtrar(IntegranteFilter filter) {
         return integranteService.filtrar(filter);
+    }
+
+    @GetMapping("{id}/grupos")
+    public List<GrupoDTO> buscarGrupos(@PathVariable("id") Long id) {
+        return integranteService.buscarGrupos(id)
+                .getGrupos().stream()
+                .map(g -> GrupoDTO.from(g))
+                .collect(toList());
     }
 
     @PutMapping("/{id}/efetivar")

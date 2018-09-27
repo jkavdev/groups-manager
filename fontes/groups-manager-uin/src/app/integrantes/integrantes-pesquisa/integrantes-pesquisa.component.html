@@ -51,7 +51,9 @@
             <div class="ui-g-12 ui-md-1">
               <div class="ui-g-12">
                 <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
+                        pTooltip="Ver Grupos" tooltipPosition="top"
                         style="width: 100%; min-width: 40px;"
+                        (click)="exibirGrupos(integrante.id)"
                 ></button>
               </div>
               <div class="ui-g-12">
@@ -64,4 +66,25 @@
       </p-dataView>
     </div>
   </div>
+
+  <p-dialog header="Grupos vinculados" [(visible)]="display" [modal]="true">
+    <p-scrollPanel [style]="{width: '100%', height: '200px'}">
+      <div *ngFor="let grupo of grupos">
+        <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-12 ui-md-3" style="text-align:center">
+            <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
+          </div>
+          <div class="ui-g-12 ui-md-8">
+            <div class="ui-g">
+              <div class="ui-g-2 ui-md-6">Nome:</div>
+              <div class="ui-g-10 ui-md-6"><b>{{grupo.nome}}</b></div>
+              <div class="ui-g-2 ui-md-6">Objetivo:</div>
+              <div class="ui-g-10 ui-md-6"><b>{{grupo.objetivo}}</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-scrollPanel>
+  </p-dialog>
+
 </div>
