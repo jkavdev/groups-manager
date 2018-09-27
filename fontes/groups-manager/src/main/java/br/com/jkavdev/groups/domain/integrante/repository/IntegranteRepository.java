@@ -7,6 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface IntegranteRepository extends JpaRepository<Integrante, Long>, IntegranteRepositoryQuery {
 
-    @Query("SELECT i FROM Integrante i JOIN FETCH i.grupos g WHERE i.id = :id")
+    @Query("SELECT i FROM Integrante i LEFT JOIN FETCH i.grupos g WHERE i.id = :id")
     Integrante integrantesComGrupos(@Param("id") Long id);
 }
