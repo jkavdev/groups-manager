@@ -2,51 +2,54 @@ package br.com.jkavdev.groups.domain.evento.repository;
 
 import br.com.jkavdev.groups.domain.evento.dto.EventoDTO;
 import br.com.jkavdev.groups.domain.evento.entity.Evento;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Projections;
-import org.hibernate.transform.Transformers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static org.hibernate.criterion.Projections.property;
-import static org.hibernate.criterion.Restrictions.*;
 
 public class EventoRepositoryImpl implements EventoRepositoryQuery {
 
     @PersistenceContext
     private EntityManager manager;
 
-    @SuppressWarnings({"deprecation", "unchecked"})
     @Override
     public List<EventoDTO> filtrar(EventoFilter filter) {
-        Session session = manager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Evento.class);
 
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<EventoDTO> cq = cb.createQuery(EventoDTO.class);
+
+        Root<Evento> eventoRoot = cq.from(Evento.class);
+
+        List<Predicate> pd = new ArrayList<>();
         if (nonNull(filter.getDe()) && isNull(filter.getAte())) {
-            criteria.add(ge("data", filter.getDe()));
+            pd.add(cb.greaterThanOrEqualTo(eventoRoot.get("data"), filter.getDe()));
         }
         if (nonNull(filter.getAte()) && isNull(filter.getDe())) {
-            criteria.add(le("data", filter.getAte()));
+            pd.add(cb.lessThanOrEqualTo(eventoRoot.get("data"), filter.getAte()));
         }
         if (nonNull(filter.getDe()) && nonNull(filter.getAte())) {
-            criteria.add(between("data", filter.getDe(), filter.getAte()));
+            pd.add(cb.between(eventoRoot.get("data"), filter.getDe(), filter.getAte()));
         }
 
-        criteria.setProjection(Projections.projectionList()
-                .add(property("id"), "id")
-                .add(property("data"), "data")
-                .add(property("descricao"), "descricao")
-                .add(property("objetivo"), "objetivo")
-                .add(property("valor"), "valor"));
+        cq.select(cb.construct(EventoDTO.class,
+                eventoRoot.get("id"),
+                eventoRoot.get("data"),
+                eventoRoot.get("descricao"),
+                eventoRoot.get("objetivo"),
+                eventoRoot.get("valor")
+        )).where(pd.toArray(new Predicate[]{}));
 
-        return criteria
-                .setResultTransformer(Transformers.aliasToBean(EventoDTO.class))
-                .list();
+        TypedQuery<EventoDTO> query = manager.createQuery(cq);
+
+        return query.getResultList();
     }
-
 }
