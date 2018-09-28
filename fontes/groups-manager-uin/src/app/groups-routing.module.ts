@@ -11,12 +11,14 @@ import {NoticiasPesquisaComponent} from './noticias/noticias-pesquisa/noticias-p
 import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-cadastro.component';
 import {GruposEventosComponent} from './grupos/grupos-eventos/grupos-eventos.component';
 import {PaginaNaoEncontradaComponent} from './core/pagina-nao-encontrada.component';
+import {GruposIntegrantesComponent} from './grupos/grupos-integrantes/grupos-integrantes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'eventos', pathMatch: 'full'},
   {path: 'grupos', component: GruposPesquisaComponent},
   {path: 'grupos/novo', component: GruposCadastroComponent},
   {path: 'grupos/:id/eventos', component: GruposEventosComponent},
+  {path: 'grupos/:id/integrantes', component: GruposIntegrantesComponent},
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},

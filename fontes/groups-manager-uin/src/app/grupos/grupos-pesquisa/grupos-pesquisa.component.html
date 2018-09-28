@@ -48,7 +48,8 @@
               <div class="ui-g-12">
                 <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
                         style="width: 100%; min-width: 40px; "
-                        pTooltip="Ver Integrantes" tooltipPosition="top"></button>
+                        pTooltip="Ver Integrantes" tooltipPosition="top"
+                        [routerLink]="['/grupos', grupo.id, 'integrantes']"></button>
               </div>
               <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-calendar" class="ui-button-raised ui-button-secondary"

@@ -17,6 +17,7 @@ import {ScheduleModule} from 'primeng/components/schedule/schedule';
 import {GruposCadastroComponent} from './grupos-cadastro/grupos-cadastro.component';
 import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.component';
 import {GruposEventosComponent} from './grupos-eventos/grupos-eventos.component';
+import {GruposIntegrantesComponent} from './grupos-integrantes/grupos-integrantes.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,9 @@ import {GruposEventosComponent} from './grupos-eventos/grupos-eventos.component'
   declarations: [
     GruposCadastroComponent,
     GruposPesquisaComponent,
-    GruposEventosComponent
+    GruposEventosComponent,
+    GruposIntegrantesComponent,
+    GruposIntegrantesComponent
   ],
   exports: []
 })
