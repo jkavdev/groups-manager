@@ -31,7 +31,7 @@ export class GruposPesquisaComponent implements OnInit {
     this.grupoService.pesquisar(this.filtro)
       .then(resp => {
         this.grupos = resp;
-        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Busca realizada!`});
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Grupos buscados!`});
       })
       .catch(error => this.errorhandler.handle(error));
   }
@@ -40,13 +40,20 @@ export class GruposPesquisaComponent implements OnInit {
     this.confirmation.confirm({
       message: `Deseja remover o Grupo ${grupo.nome}?`,
       accept: () => {
-        const index: number = this.grupos.indexOf(grupo, 0);
-        if (index !== -1) {
-          this.grupos.splice(index, 1);
-          this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Grupo ${grupo.nome} removido!`});
-        }
+        this.grupoService.remover(grupo.id)
+          .then(() => {
+            this.removerDoArray(grupo);
+          }).catch(error => this.errorhandler.handle(error));
       }
     });
+  }
+
+  private removerDoArray(grupo: any) {
+    const index: number = this.grupos.indexOf(grupo, 0);
+    if (index !== -1) {
+      this.grupos.splice(index, 1);
+      this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Grupo ${grupo.nome} removido!`});
+    }
   }
 
 }

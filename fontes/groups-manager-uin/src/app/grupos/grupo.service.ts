@@ -45,4 +45,10 @@ export class GrupoService {
       .toPromise()
       .then(resp => resp.json());
   }
+
+  remover(id: number) {
+    return this.http.delete(`${this.gruposUrl}/${id}`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }
