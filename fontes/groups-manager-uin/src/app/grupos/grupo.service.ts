@@ -46,9 +46,16 @@ export class GrupoService {
       .then(resp => resp.json());
   }
 
+  comIntegrantes(id: number) {
+    return this.http.get(`${this.gruposUrl}/${id}/integrantes`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
   remover(id: number) {
     return this.http.delete(`${this.gruposUrl}/${id}`)
       .toPromise()
       .then(resp => resp.json());
   }
+
 }

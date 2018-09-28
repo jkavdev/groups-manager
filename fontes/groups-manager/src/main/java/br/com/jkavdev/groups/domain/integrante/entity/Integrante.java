@@ -63,20 +63,6 @@ public class Integrante {
         this.idade = idade;
     }
 
-    public static Integrante empty() {
-        Integrante empty = new Integrante();
-        empty.nome = "";
-        empty.celular = "";
-        empty.email = "";
-        empty.senha = "";
-        empty.celular = "";
-        empty.sexo = Sexo.MASCULINO;
-        empty.cpf = "";
-        empty.dataNascimento = LocalDate.now();
-        empty.cadastroEfetivado = Boolean.FALSE;
-        return empty;
-    }
-
     public Long getId() {
         return id;
     }
@@ -107,6 +93,14 @@ public class Integrante {
 
     public Collection<Grupo> getGrupos() {
         return grupos;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
     }
 
     public void efetivarCadastro() {

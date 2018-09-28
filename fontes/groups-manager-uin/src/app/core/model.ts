@@ -5,6 +5,7 @@ export class Grupo {
   objetivo: string;
   statusGrupoId: number;
   eventos: Evento[] = [];
+  integrantes: Integrante[] = [];
 }
 
 export class Endereco {
@@ -27,4 +28,19 @@ export class Evento {
   endereco = new Endereco();
   grupo: Grupo;
   grupoId: number;
+}
+
+export class Integrante {
+  nome: string;
+  celular: string;
+  idade: number;
+  email: string;
+  senha: string;
+  sexo: string;
+  dataNascimento: Date;
+  cpf: string;
+  membroOutraIgreja: boolean;
+  membroDaIgreja: boolean;
+  nomeDaOutraIgreja: string;
+  cadastroEfetivado: boolean;
 }

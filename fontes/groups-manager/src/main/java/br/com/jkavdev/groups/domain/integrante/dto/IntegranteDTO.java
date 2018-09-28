@@ -1,5 +1,6 @@
 package br.com.jkavdev.groups.domain.integrante.dto;
 
+import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.entity.Sexo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -21,6 +22,28 @@ public class IntegranteDTO {
     private LocalDate dataNascimento;
     private String cpf;
     private Boolean cadastroEfetivado;
+
+    public IntegranteDTO() {
+    }
+
+    public IntegranteDTO(Long id, String nome, Integer idade, String celular, String email, Sexo sexo,
+                         LocalDate dataNascimento, String cpf, Boolean cadastroEfetivado) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.celular = celular;
+        this.email = email;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.cadastroEfetivado = cadastroEfetivado;
+    }
+
+    public static IntegranteDTO from(Integrante i) {
+        IntegranteDTO dto = new IntegranteDTO(i.getId(), i.getNome(), i.getIdade(), i.getCelular(), i.getEmail(),
+                i.getSexo(), i.getDataNascimento(), i.getCpf(), i.getCadastroEfetivado());
+        return dto;
+    }
 
     public Long getId() {
         return id;

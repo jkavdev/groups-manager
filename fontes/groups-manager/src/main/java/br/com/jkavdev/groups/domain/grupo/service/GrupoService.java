@@ -42,6 +42,10 @@ public class GrupoService {
         return grupoRepository.findByIdFetchEventos(id);
     }
 
+    public Optional<Grupo> comIntegrantes(Long groupoId) {
+        return grupoRepository.findByIdFetchIntegrantes(groupoId);
+    }
+
     public void adicionarIntegrante(Long idGrupo, Long idIntegrante) {
         Optional<Grupo> opGrupo = grupoRepository.findByIdFetchIntegrantes(idGrupo);
         opGrupo.orElseThrow(() -> new EmptyResultDataAccessException(1));

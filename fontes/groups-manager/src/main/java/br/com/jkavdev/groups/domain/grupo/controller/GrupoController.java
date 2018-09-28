@@ -48,6 +48,16 @@ public class GrupoController implements ServiceMap {
         return GrupoDTO.comEventos(opGrupo.get());
     }
 
+    @GetMapping("/{grupoId}/integrantes")
+    public GrupoDTO getIntegrantes(@PathVariable("grupoId") Long groupoId) {
+        Optional<Grupo> opGrupo = grupoService.comIntegrantes(groupoId);
+
+        if (!opGrupo.isPresent())
+            throw new EmptyResultDataAccessException(1);
+
+        return GrupoDTO.comIntegrantes(opGrupo.get());
+    }
+
     @GetMapping("/status")
     public List<StatusGrupo> todosStatus() {
         return Arrays.asList(StatusGrupo.values());
