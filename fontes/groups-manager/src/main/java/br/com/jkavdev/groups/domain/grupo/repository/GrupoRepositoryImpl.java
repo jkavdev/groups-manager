@@ -38,4 +38,23 @@ public class GrupoRepositoryImpl implements GrupoRepositoryQuery {
         return criteria.list();
     }
 
+
+//    @Override
+//    public List<Grupo> filtrar(GrupoFilter filter) {
+//
+//        CriteriaBuilder cb = manager.getCriteriaBuilder();
+//        CriteriaQuery<Grupo> cq = cb.createQuery(Grupo.class);
+//
+//        Root<Grupo> grupoRoot = cq.from(Grupo.class);
+////        grupoRoot.join("igreja", INNER);
+//        grupoRoot.join("statusGrupo", INNER);
+//
+//        if (hasText(filter.getNome())) {
+//            cb.like(grupoRoot.get("nome"), filter.getNome());
+//        }
+//
+//        TypedQuery<Grupo> query = manager.createQuery(cq);
+//
+//        return query.getResultList();
+//    }
 }
