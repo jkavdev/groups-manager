@@ -5,6 +5,8 @@ import {EventoFilter} from '../../core/filters';
 import {MessageService} from 'primeng/api';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 
+import {Evento} from '../../core/model';
+
 @Component({
   selector: 'app-eventos-pesquisa',
   templateUrl: './eventos-pesquisa.component.html',
@@ -16,6 +18,8 @@ export class EventosPesquisaComponent implements OnInit {
   filtro = new EventoFilter();
   eventos = [];
   pt: any;
+  evento = new Evento();
+  display = false;
 
   constructor(private eventoService: EventoService,
               private msgService: MessageService,
@@ -43,6 +47,11 @@ export class EventosPesquisaComponent implements OnInit {
         this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Busca realizada!`});
       })
       .catch(error => this.errorhandler.handle(error));
+  }
+
+  exibirEvento(evento: any) {
+    this.evento = evento;
+    this.display = true;
   }
 
 }

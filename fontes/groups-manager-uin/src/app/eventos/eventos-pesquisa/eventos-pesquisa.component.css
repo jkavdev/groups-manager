@@ -21,10 +21,34 @@ h3 small {
   color: #777;
 }
 
-.eventoRow{
+.eventoRow {
   border-bottom: 1px solid #d9d9d9;
 }
 
 .imagemGrupo {
   width: 210px;
+}
+
+.ln p, .post-snippet.ln p {
+  line-height: 2;
+  text-align: justify !important;
+}
+p {
+  color: #787f8d !important;
+}
+p {
+  font-size: 17px;
+  letter-spacing: .3px;
+  line-height: 29px;
+}
+p, span {
+  font-weight: 400;
+}
+h1, h2, h3, h4, h5, h6, p, ul, ol, pre, table, blockquote, input, button, select, textarea {
+  margin-bottom: 24px;
+  margin-top: 0;
+  padding: 0;
+}
+p {
+  margin: 0px 0 10px;
 }

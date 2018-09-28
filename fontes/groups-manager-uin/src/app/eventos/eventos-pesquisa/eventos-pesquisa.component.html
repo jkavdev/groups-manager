@@ -46,7 +46,23 @@
           <small>{{evento.data | date:'HH:mm dd/MM/yyyy'}}</small>
         </h3>
         <p>{{evento.objetivo}}</p>
+        <button pButton type="button" label="Leia Mais..." class="ui-button-rounded ui-button-secondary"
+                (click)="exibirEvento(evento)"></button>
       </div>
     </div>
   </div>
+
+  <p-dialog header="Evento" [(visible)]="display" [modal]="true">
+    <p-scrollPanel>
+      <div class="ui-g">
+
+        <div class="post-title" style="line-height: 2.2;">
+          <h4 class="inline-block mb0 block">{{evento.descricao}}</h4>
+          <span class="f16 nnn"><i class="fa fa-calendar" aria-hidden="true"></i>{{evento.data | date:'HH:mm dd/MM/yyyy'}}</span>
+        </div>
+
+        <p>{{evento.objetivo}}</p>
+      </div>
+    </p-scrollPanel>
+  </p-dialog>
 </div>

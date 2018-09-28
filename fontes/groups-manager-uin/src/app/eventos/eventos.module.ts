@@ -13,6 +13,8 @@ import {TooltipModule} from 'primeng/components/tooltip/tooltip';
 import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
+import {ScrollPanelModule} from 'primeng/components/scrollpanel/scrollpanel';
+import {DialogModule} from 'primeng/components/dialog/dialog';
 
 import {EventosPesquisaComponent} from './eventos-pesquisa/eventos-pesquisa.component';
 import {EventosCadastroComponent} from './eventos-cadastro/eventos-cadastro.component';
@@ -33,7 +35,9 @@ import {EventosCadastroComponent} from './eventos-cadastro/eventos-cadastro.comp
     InputTextareaModule,
     TooltipModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    ScrollPanelModule
   ],
   declarations: [
     EventosPesquisaComponent,
