@@ -1,12 +1,43 @@
 <div class="container">
 
-  <div>
-    {{grupo.nome}}
+  <div class="ui-g titulo">
+    <div class="ui-g-12 tituloConteudo">
+      <h1>Integrantes do grupo {{grupo.nome}}</h1>
+    </div>
   </div>
 
-  <div *ngFor="let integrante of grupo.integrantes">
-    {{integrante.nome}}
-    {{integrante.idade}}
-    {{integrante.celular}}
+  <div class="ui-g integranteDiv">
+    <div class="integranteInsert" *ngFor="let integrante of grupo.integrantes">
+      <div class="ui-g-12 ui-md-3 ui-lg-4">
+        <p-card title="{{integrante.nome}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+          <p-header>
+            <img class="imagemIntegrante" src="assets/images/integrantes/avatar2.png">
+          </p-header>
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <div class="ui-g-12 ui-md-6">Idade</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.idade}}</div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-12 ui-md-6">Celular</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.celular}}</div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-12 ui-md-6">Data Nascimento</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.dataNascimento}}</div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-12 ui-md-6">Email</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.email}}</div>
+            </div>
+            <div class="ui-g-12">
+              <div class="ui-g-12 ui-md-6">Sexo</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.sexo}}</div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
   </div>
+
 </div>

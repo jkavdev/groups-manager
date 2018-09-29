@@ -1,0 +1,19 @@
+.titulo {
+  margin-bottom: 100px;
+}
+
+.tituloConteudo {
+  text-align: center;
+}
+
+.integranteDiv {
+  text-align: center;
+}
+
+.imagemIntegrante {
+  width: 120px;
+}
+
+.integranteInsert {
+  margin: 0 auto;
+}

@@ -13,6 +13,7 @@ import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextare
 import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
 import {ScheduleModule} from 'primeng/components/schedule/schedule';
+import {CardModule} from 'primeng/components/card/card';
 
 import {GruposCadastroComponent} from './grupos-cadastro/grupos-cadastro.component';
 import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.component';
@@ -35,7 +36,8 @@ import {GruposIntegrantesComponent} from './grupos-integrantes/grupos-integrante
     InputTextareaModule,
     MessageModule,
     ToastModule,
-    ScheduleModule
+    ScheduleModule,
+    CardModule
   ],
   declarations: [
     GruposCadastroComponent,
