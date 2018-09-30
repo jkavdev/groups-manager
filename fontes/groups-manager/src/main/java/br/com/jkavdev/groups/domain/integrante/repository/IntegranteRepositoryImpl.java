@@ -1,56 +1,49 @@
 package br.com.jkavdev.groups.domain.integrante.repository;
 
+import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.sql.JoinType;
-import org.springframework.util.StringUtils;
+import br.com.jkavdev.groups.utils.RootRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.hibernate.criterion.Projections.groupProperty;
-import static org.hibernate.criterion.Projections.projectionList;
-import static org.hibernate.criterion.Projections.property;
-import static org.hibernate.transform.Transformers.aliasToBean;
+import static org.springframework.util.StringUtils.hasText;
 
-public class IntegranteRepositoryImpl implements IntegranteRepositoryQuery {
+public class IntegranteRepositoryImpl extends RootRepository implements IntegranteRepositoryQuery {
 
-    @PersistenceContext
-    private EntityManager manager;
-
-    @SuppressWarnings({"deprecation", "unchecked"})
     @Override
     public List<IntegranteDTO> filtrar(IntegranteFilter filter) {
-        Session session = manager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Integrante.class, "integrante");
-        criteria.createAlias("integrante.grupos", "grupo", JoinType.LEFT_OUTER_JOIN);
 
-        if (StringUtils.hasText(filter.getNome())) {
-            criteria.add(Restrictions.ilike("integrante.nome", filter.getNome(), MatchMode.ANYWHERE));
+        CriteriaQuery<IntegranteDTO> cq = cb().createQuery(IntegranteDTO.class);
+        Root<Integrante> integranteRoot = cq.from(Integrante.class);
+
+        List<Predicate> pd = new ArrayList<>();
+        if (hasText(filter.getNome())) {
+            pd.add(cb().like(integranteRoot.get("nome"), "%" + filter.getNome() + "%"));
         }
-        if (StringUtils.hasText(filter.getGrupo())) {
-            criteria.add(Restrictions.ilike("grupo.nome", filter.getGrupo(), MatchMode.ANYWHERE));
+        if (hasText(filter.getGrupo())) {
+            Join<Integrante, Grupo> grupoRoot = integranteRoot.join("grupos", JoinType.INNER);
+            pd.add(cb().like(grupoRoot.get("nome"), "%" + filter.getGrupo() + "%"));
         }
 
-        criteria.setProjection(projectionList()
-                .add(groupProperty("integrante.id"))
-                .add(property("integrante.id"), "id")
-                .add(property("integrante.nome"), "nome")
-                .add(property("integrante.idade"), "idade")
-                .add(property("integrante.celular"), "celular")
-                .add(property("integrante.senha"), "senha")
-                .add(property("integrante.sexo"), "sexo")
-                .add(property("integrante.dataNascimento"), "dataNascimento")
-                .add(property("integrante.cpf"), "cpf")
-                .add(property("integrante.cadastroEfetivado"), "cadastroEfetivado")
-        ).setResultTransformer(aliasToBean(IntegranteDTO.class));
+        cq
+                .select(cb().construct(IntegranteDTO.class,
+                        integranteRoot.get("id"),
+                        integranteRoot.get("nome"),
+                        integranteRoot.get("idade"),
+                        integranteRoot.get("celular"),
+                        integranteRoot.get("sexo"),
+                        integranteRoot.get("email"),
+                        integranteRoot.get("dataNascimento"),
+                        integranteRoot.get("cpf"),
+                        integranteRoot.get("cadastroEfetivado")
+                ))
+                .where(pd.toArray(new Predicate[]{}))
+                .groupBy(integranteRoot.get("id"));
 
-        return criteria.list();
+        return manager().createQuery(cq).getResultList();
     }
 
 }

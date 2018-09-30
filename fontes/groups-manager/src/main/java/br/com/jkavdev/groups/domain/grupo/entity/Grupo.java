@@ -24,11 +24,11 @@ public class Grupo {
     @NotBlank
     private String objetivo;
 
-    @Column(name = "igreja_id", nullable = false)
-    private Long igreja;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Igreja igreja;
 
-    @Column(name = "status_grupo_id", nullable = false)
-    private Long statusGrupoId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Status statusGrupo;
 
     @ManyToMany
     @JoinTable(
@@ -43,7 +43,7 @@ public class Grupo {
     @OneToMany(mappedBy = "grupo")
     private Set<Noticia> noticias = new HashSet<>();
 
-    private Grupo() {
+    public Grupo() {
     }
 
     public Grupo(Long id) {
@@ -51,11 +51,11 @@ public class Grupo {
     }
 
     public Grupo(String nome, String objetivo, Long statusId) {
-        statusGrupoId = StatusGrupo.idValidado(statusId);
+        statusGrupo = new Status(StatusGrupo.idValidado(statusId));
         this.nome = nome;
         this.objetivo = objetivo;
-        this.igreja = Igrejas.MENINO_DEUS.getId();
-        this.statusGrupoId = statusId;
+        this.igreja = new Igreja(Igrejas.MENINO_DEUS.getId());
+        this.statusGrupo = new Status(statusId);
     }
 
     public static Grupo from(GrupoDTO dto) {
@@ -91,7 +91,7 @@ public class Grupo {
     }
 
     public Long getStatusGrupoId() {
-        return statusGrupoId;
+        return statusGrupo.getId();
     }
 
     public Collection<Integrante> getIntegrantes() {

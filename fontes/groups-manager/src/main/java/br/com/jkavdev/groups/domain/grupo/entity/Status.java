@@ -25,4 +25,13 @@ public class Status {
     @JoinColumn(name = "status_grupo_id", foreignKey = @ForeignKey(name = "fk_grupo_status_grupo_id"))
     private Collection<Grupo> grupos;
 
+    protected Status(){}
+
+    public Status(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
