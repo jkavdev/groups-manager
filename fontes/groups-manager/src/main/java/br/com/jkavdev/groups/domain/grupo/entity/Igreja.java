@@ -20,4 +20,9 @@ public class Igreja {
     @JoinColumn(name = "igreja_id", foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
     private Collection<Grupo> grupos;
 
+    protected Igreja(){}
+
+    public Igreja(Long id) {
+        this.id = id;
+    }
 }
