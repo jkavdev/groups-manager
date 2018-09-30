@@ -22,6 +22,22 @@ public class IntegranteDTO {
     private String cpf;
     private Boolean cadastroEfetivado;
 
+    public IntegranteDTO() {
+
+    }
+
+    public IntegranteDTO(Long id, String nome, Integer idade, String celular, Sexo sexo, String email, LocalDate dataNascimento, String cpf, Boolean cadastroEfetivado) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.celular = celular;
+        this.email = email;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.cadastroEfetivado = cadastroEfetivado;
+    }
+
     public Long getId() {
         return id;
     }
