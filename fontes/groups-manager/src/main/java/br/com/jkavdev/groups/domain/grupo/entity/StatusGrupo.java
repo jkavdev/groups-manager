@@ -13,9 +13,12 @@ import static java.util.stream.Collectors.toMap;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusGrupo {
 
-    MOVIMENTO("MOVIMENTO", "Movimento", "São grupos específico com organização específica muitas vezes independente.", 2L, "MOVIMENTO"),
-    PASTORAIS("PASTORAL", "Pastoral", "Projeto de evangelização que é distribuído a vários grupos em diferentes setores.", 1L, "PASTORAIS"),
-    GRUPO("GRUPO", "Grupo", "Formados por fiéis, que se reúnem de forma espontânea, porém sempre com a licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.", 3L, "GRUPO");
+    MOVIMENTO("MOVIMENTO", "Movimento", "São grupos específico com organização específica muitas vezes independente.",
+            2L, "MOVIMENTO"),
+    PASTORAIS("PASTORAL", "Pastoral", "Projeto de evangelização que é distribuído a vários grupos em diferentes setores.",
+            1L, "PASTORAL"),
+    GRUPO("GRUPO", "Grupo", "Formados por fiéis, que se reúnem de forma espontânea, porém sempre com a licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.",
+            3L, "GRUPO");
 
     public static final Map<Long, StatusGrupo> statuses =
             Stream.of(StatusGrupo.values())
