@@ -13,17 +13,13 @@ import static java.util.stream.Collectors.toMap;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusGrupo {
 
-    PASTORAL_DO_DIZIMO("PASTORAIS", "Pastoral do Dizimo", "descricao", 1L, "PASTORAL_DO_DIZIMO"),
-    PASTORAL_FAMILIAR("PASTORAIS", "Pastoral Familiar", "descricao", 2L, "PASTORAL_FAMILIAR"),
-    PASTORAL_DA_CRIANCA("PASTORAIS", "Pastoral da Criança", "descricao", 3L, "PASTORAL_DA_CRIANCA"),
-    VICENTINOS("PASTORAIS", "Vicentinos", "descricao", 4L, "VICENTINOS"),
-    GAM("MOVIMENTO", "GAM", "descricao", 5L, "GAM"),
-    EJOC("MOVIMENTO", "EJOC", "descricao", 6L, "EJOC"),
-    AJUC("MOVIMENTO", "AJUC", "descricao", 7L, "AJUC");
+    MOVIMENTO("MOVIMENTO", "Movimento", "São grupos específico com organização específica muitas vezes independente.", 2L, "MOVIMENTO"),
+    PASTORAIS("PASTORAL", "Pastoral", "Projeto de evangelização que é distribuído a vários grupos em diferentes setores.", 1L, "PASTORAIS"),
+    GRUPO("GRUPO", "Grupo", "Formados por fiéis, que se reúnem de forma espontânea, porém sempre com a licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.", 3L, "GRUPO");
 
     public static final Map<Long, StatusGrupo> statuses =
             Stream.of(StatusGrupo.values())
-            .collect(toMap(StatusGrupo::getId, identity()));
+                    .collect(toMap(StatusGrupo::getId, identity()));
 
     private final String status;
     private final String nome;

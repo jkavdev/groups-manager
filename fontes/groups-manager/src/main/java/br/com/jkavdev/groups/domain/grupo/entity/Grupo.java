@@ -24,10 +24,18 @@ public class Grupo {
     @NotBlank
     private String objetivo;
 
+    @Column(name = "igreja_id", nullable = false)
+    private Long igrejaId;
+
+    @Column(name = "status_grupo_id", nullable = false)
+    private Long statusGrupoId;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "igreja_id", insertable = false, updatable = false)
     private Igreja igreja;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_grupo_id", insertable = false, updatable = false)
     private Status statusGrupo;
 
     @ManyToMany
@@ -51,11 +59,10 @@ public class Grupo {
     }
 
     public Grupo(String nome, String objetivo, Long statusId) {
-        statusGrupo = new Status(StatusGrupo.idValidado(statusId));
+        this.statusGrupoId = StatusGrupo.idValidado(statusId);
         this.nome = nome;
         this.objetivo = objetivo;
-        this.igreja = new Igreja(Igrejas.MENINO_DEUS.getId());
-        this.statusGrupo = new Status(statusId);
+        this.igrejaId = Igrejas.MENINO_DEUS.getId();
     }
 
     public static Grupo from(GrupoDTO dto) {
@@ -70,20 +77,8 @@ public class Grupo {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Igrejas getIgreja() {
-        return Igrejas.MENINO_DEUS;
     }
 
     public String getObjetivo() {
@@ -91,7 +86,7 @@ public class Grupo {
     }
 
     public Long getStatusGrupoId() {
-        return statusGrupo.getId();
+        return statusGrupoId;
     }
 
     public Collection<Integrante> getIntegrantes() {
@@ -117,6 +112,8 @@ public class Grupo {
                 .append("id", id)
                 .append("nome", nome)
                 .append("objetivo", objetivo)
+                .append("igreja", Igrejas.MENINO_DEUS.getIgreja())
+                .append("status", StatusGrupo.from(statusGrupoId))
                 .toString();
     }
 }

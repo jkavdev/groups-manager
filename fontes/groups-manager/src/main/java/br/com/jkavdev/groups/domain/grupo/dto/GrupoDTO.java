@@ -149,7 +149,7 @@ public class GrupoDTO {
                 .append("nome", nome)
                 .append("objetivo", objetivo)
                 .append("igreja", igreja)
-                .append("statusGrupoId", statusGrupoId)
+                .append("statusGrupo", StatusGrupo.from(statusGrupoId))
                 .toString();
     }
 }

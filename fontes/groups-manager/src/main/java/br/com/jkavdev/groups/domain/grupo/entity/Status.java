@@ -2,7 +2,10 @@ package br.com.jkavdev.groups.domain.grupo.entity;
 
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Collection;
 
 //Apenas para gerar o ddl com o hibernate
@@ -21,17 +24,10 @@ public class Status {
 
     private String descricao;
 
-    @OneToMany
-    @JoinColumn(name = "status_grupo_id", foreignKey = @ForeignKey(name = "fk_grupo_status_grupo_id"))
+    @OneToMany(mappedBy = "statusGrupo")
     private Collection<Grupo> grupos;
 
-    protected Status(){}
-
-    public Status(Long id) {
-        this.id = id;
+    protected Status() {
     }
 
-    public Long getId() {
-        return id;
-    }
 }

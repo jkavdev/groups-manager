@@ -16,8 +16,7 @@ public class Igreja {
 
     private String nome;
 
-    @OneToMany
-    @JoinColumn(name = "igreja_id", foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
+    @OneToMany(mappedBy = "igreja")
     private Collection<Grupo> grupos;
 
     protected Igreja(){}

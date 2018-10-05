@@ -70,10 +70,10 @@ public class GrupoController implements ServiceMap {
     }
 
     @PostMapping
-    public ResponseEntity<GrupoDTO> criar(@Valid @RequestBody GrupoDTO grupo, HttpServletResponse response) {
-        Grupo grupoSalvo = grupoService.salvar(Grupo.from(grupo));
+    public ResponseEntity<GrupoDTO> criar(@Valid @RequestBody GrupoDTO dto, HttpServletResponse response) {
+        Grupo grupoSalvo = grupoService.salvar(Grupo.from(dto));
         publisher.publishEvent(new RecursoCriadoEvent(this, response, grupoSalvo.getId()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(GrupoDTO.from(grupoSalvo));
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
     @PutMapping("{idGrupo}/adicionarintegrante/{idIntegrante}")
