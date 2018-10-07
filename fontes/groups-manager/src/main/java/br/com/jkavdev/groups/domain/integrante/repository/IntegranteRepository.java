@@ -14,6 +14,6 @@ public interface IntegranteRepository extends JpaRepository<Integrante, Long>, I
 
     @Transactional
     @Modifying
-    @Query(nativeQuery = true, value = "DELETE FROM GRUPO_INTEGRANTE WHERE integrante_id = :id")
+    @Query(nativeQuery = true, value = "DELETE FROM grupo_integrante WHERE integrante_id = :id")
     void removeGruposIntegrantes(@Param("id") Long id);
 }
