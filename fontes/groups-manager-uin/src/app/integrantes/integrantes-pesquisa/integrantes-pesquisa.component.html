@@ -50,6 +50,12 @@
             </div>
             <div class="ui-g-12 ui-md-1">
               <div class="ui-g-12">
+                <button pButton type="button" icon="pi pi-pencil" class="ui-button-raised"
+                        style="width: 100%; min-width: 40px; "
+                        pTooltip="Alterar Informações" tooltipPosition="left"
+                        [routerLink]="['/integrantes', integrante.id]"></button>
+              </div>
+              <div class="ui-g-12">
                 <button pButton type="button" icon="pi pi-users" class="ui-button-raised"
                         style="width: 100%; min-width: 40px;"
                 ></button>
@@ -57,7 +63,7 @@
               <div class="ui-g-12">
                 <a pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
                    style="width: 100%; min-width: 40px;"
-                   pTooltip="Remover Integrante" tooltipPosition="top"
+                   pTooltip="Remover Integrante" tooltipPosition="left"
                    (click)="remover(integrante)"></a>
               </div>
             </div>

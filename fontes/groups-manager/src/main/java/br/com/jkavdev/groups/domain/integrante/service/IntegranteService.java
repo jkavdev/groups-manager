@@ -4,6 +4,7 @@ import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteFilter;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,7 @@ public class IntegranteService {
 
     public Integrante buscarPeloId(Long id) {
         Optional<Integrante> integrante = integranteRepository.findById(id);
-
-        if (!integrante.isPresent())
-            throw new EmptyResultDataAccessException(1);
-
+        integrante.orElseThrow(() -> new EmptyResultDataAccessException(1));
         return integrante.get();
     }
 
@@ -41,8 +39,12 @@ public class IntegranteService {
     }
 
     public void remover(Long id) {
-        Optional<Integrante> op = integranteRepository.findById(id);
-        op.orElseThrow(() -> new EmptyResultDataAccessException(1));
-        integranteRepository.delete(op.get());
+        integranteRepository.delete(buscarPeloId(id));
+    }
+
+    public void atualizar(Long id, Integrante integrante) {
+        Integrante integranteSalvo = buscarPeloId(id);
+        BeanUtils.copyProperties(integrante, integranteSalvo, "id");
+        integranteRepository.save(integranteSalvo);
     }
 }

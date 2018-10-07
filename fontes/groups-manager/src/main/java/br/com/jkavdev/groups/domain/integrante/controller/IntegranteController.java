@@ -33,6 +33,11 @@ public class IntegranteController implements ServiceMap {
         return integranteService.filtrar(filter);
     }
 
+    @GetMapping("{id}")
+    public IntegranteDTO buscarPor(@PathVariable Long id) {
+        return IntegranteDTO.from(integranteService.buscarPeloId(id));
+    }
+
     @PutMapping("/{id}/efetivar")
     @ResponseStatus(NO_CONTENT)
     public void efetivarCadastro(@PathVariable Long id) {
@@ -48,8 +53,14 @@ public class IntegranteController implements ServiceMap {
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
-    public void remover(@PathVariable("id") Long id){
+    public void remover(@PathVariable("id") Long id) {
         integranteService.remover(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<IntegranteDTO> atualizar(@PathVariable Long id, @Valid @RequestBody IntegranteDTO dto) {
+        integranteService.atualizar(id, Integrante.from(dto));
+        return ResponseEntity.ok(dto);
     }
 
     /***

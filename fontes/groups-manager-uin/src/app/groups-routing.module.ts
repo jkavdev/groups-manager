@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'grupos/:id/eventos', component: GruposEventosComponent},
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
+  {path: 'integrantes/:id', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},
   {path: 'eventos/novo', component: EventosCadastroComponent},
   {path: 'noticias', component: NoticiasPesquisaComponent},

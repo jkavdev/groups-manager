@@ -63,18 +63,15 @@ public class Integrante {
         this.idade = idade;
     }
 
-    public static Integrante empty() {
-        Integrante empty = new Integrante();
-        empty.nome = "";
-        empty.celular = "";
-        empty.email = "";
-        empty.senha = "";
-        empty.celular = "";
-        empty.sexo = Sexo.MASCULINO;
-        empty.cpf = "";
-        empty.dataNascimento = LocalDate.now();
-        empty.cadastroEfetivado = Boolean.FALSE;
-        return empty;
+    public static Integrante from(IntegranteDTO dto) {
+        return new Integrante(dto.getNome(), dto.getIdade());
+    }
+
+    public static IntegranteDTO toDTO(Integrante integrante) {
+        IntegranteDTO dto = new IntegranteDTO();
+        dto.setNome(integrante.nome);
+        dto.setIdade(integrante.idade);
+        return dto;
     }
 
     public Long getId() {
@@ -85,12 +82,24 @@ public class Integrante {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getCelular() {
         return celular;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
     public String getCpf() {
@@ -103,6 +112,10 @@ public class Integrante {
 
     public Integer getIdade() {
         return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 
     public Collection<Grupo> getGrupos() {
@@ -137,14 +150,4 @@ public class Integrante {
         return Objects.hash(nome, email, cpf);
     }
 
-    public static Integrante from(IntegranteDTO dto) {
-        return new Integrante(dto.getNome(), dto.getIdade());
-    }
-
-    public static IntegranteDTO toDTO(Integrante integrante) {
-        IntegranteDTO dto = new IntegranteDTO();
-        dto.setNome(integrante.nome);
-        dto.setIdade(integrante.idade);
-        return dto;
-    }
 }
