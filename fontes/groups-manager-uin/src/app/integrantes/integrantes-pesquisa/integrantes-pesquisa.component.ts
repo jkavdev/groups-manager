@@ -36,6 +36,10 @@ export class IntegrantesPesquisaComponent implements OnInit {
       .catch(error => this.errorhandler.handle(error));
   }
 
+  limpar() {
+    this.filtro = new IntegranteFilter();
+  }
+
   remover(integrante: any) {
     this.confirmation.confirm({
       message: `Deseja remover o Integrante ${integrante.nome}?`,

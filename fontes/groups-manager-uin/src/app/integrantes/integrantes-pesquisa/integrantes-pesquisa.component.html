@@ -18,9 +18,13 @@
       <div class="ui-g-12">
         <input type="text" pInputText placeholder="Nome do Grupo" [(ngModel)]="filtro.grupo"/>
       </div>
-      <div class="ui-g-12 ui-md-8">
+      <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Integrantes"
                 class="ui-button-raised" (click)="pesquisarIntegrantes()"></button>
+      </div>
+      <div class="ui-g-12 ui-md-4">
+        <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
       </div>
       <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Integrante"
