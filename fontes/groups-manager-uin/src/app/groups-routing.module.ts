@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'grupos/:id/integrantes', component: GruposIntegrantesComponent},
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
+  {path: 'integrantes/:id', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},
   {path: 'eventos/novo', component: EventosCadastroComponent},
   {path: 'noticias', component: NoticiasPesquisaComponent},

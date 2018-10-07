@@ -39,9 +39,9 @@ public class IntegranteDTO {
         this.cadastroEfetivado = cadastroEfetivado;
     }
 
-    public static IntegranteDTO from(Integrante i) {
-        IntegranteDTO dto = new IntegranteDTO(i.getId(), i.getNome(), i.getIdade(), i.getCelular(), i.getSexo(),
-                i.getEmail(), i.getDataNascimento(), i.getCpf(), i.getCadastroEfetivado());
+    public static IntegranteDTO from(Integrante inte) {
+        IntegranteDTO dto = new IntegranteDTO(inte.getId(), inte.getNome(), inte.getIdade(), inte.getCelular(), inte.getSexo(),
+                inte.getEmail(), inte.getDataNascimento(), inte.getCpf(), inte.getCadastroEfetivado());
         return dto;
     }
 
