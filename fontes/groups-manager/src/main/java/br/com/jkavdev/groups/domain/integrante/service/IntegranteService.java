@@ -40,4 +40,9 @@ public class IntegranteService {
         return integranteRepository.filtrar(filter);
     }
 
+    public void remover(Long id) {
+        Optional<Integrante> op = integranteRepository.findById(id);
+        op.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        integranteRepository.delete(op.get());
+    }
 }

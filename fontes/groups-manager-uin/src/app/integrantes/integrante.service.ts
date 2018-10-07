@@ -27,5 +27,10 @@ export class IntegranteService {
       .then(resp => resp.json());
   }
 
+  remover(id: number) {
+    return this.http.delete(`${this.integrantesUrl}/${id}`)
+      .toPromise()
+      .then(() => null);
+  }
 }
 

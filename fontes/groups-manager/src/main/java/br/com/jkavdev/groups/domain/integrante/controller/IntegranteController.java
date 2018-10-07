@@ -46,6 +46,12 @@ public class IntegranteController implements ServiceMap {
         return ResponseEntity.status(CREATED).body(Integrante.toDTO(integranteSalvo));
     }
 
+    @DeleteMapping("{id}")
+    @ResponseStatus(NO_CONTENT)
+    public void remover(@PathVariable("id") Long id){
+        integranteService.remover(id);
+    }
+
     /***
      * @param filter
      * Como o hibernate tem o validador para o @CPF
