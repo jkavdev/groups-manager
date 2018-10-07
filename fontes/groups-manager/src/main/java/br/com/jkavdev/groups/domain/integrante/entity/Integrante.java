@@ -122,14 +122,6 @@ public class Integrante {
         return grupos;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
     public void efetivarCadastro() {
         this.cadastroEfetivado = Boolean.TRUE;
     }

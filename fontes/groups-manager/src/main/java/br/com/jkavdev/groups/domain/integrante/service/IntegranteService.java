@@ -43,7 +43,9 @@ public class IntegranteService {
     }
 
     public void remover(Long id) {
-        integranteRepository.delete(buscarPeloId(id));
+        Integrante integrante = buscarPeloId(id);
+        integranteRepository.removeGruposIntegrantes(id);
+        integranteRepository.delete(integrante);
     }
 
     public void atualizar(Long id, Integrante integrante) {

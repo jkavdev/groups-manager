@@ -5,7 +5,6 @@ import {IntegranteService} from '../integrante.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 
 import {IntegranteFilter} from '../../core/filters';
-import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-integrantes-pesquisa',
