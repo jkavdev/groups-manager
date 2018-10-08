@@ -39,7 +39,8 @@ public class Endereco {
     protected Endereco() {
     }
 
-    public Endereco(Long id, String logradouro, String localidade, String unidade, UF uf, String cep, String bairro) {
+    public Endereco(Long id, String logradouro, String localidade, String unidade, UF uf, String cep,
+                    String bairro, String complemento) {
         this.id = id;
         this.logradouro = logradouro;
         this.localidade = localidade;
@@ -47,11 +48,12 @@ public class Endereco {
         this.uf = uf;
         this.cep = cep;
         this.bairro = bairro;
+        this.complemento = complemento;
     }
 
     public static Endereco from(EnderecoDTO dto) {
         return new Endereco(dto.getId(), dto.getLogradouro(), dto.getLocalidade(), dto.getUnidade(),
-                dto.getUf(), dto.getCep(), dto.getBairro());
+                dto.getUf(), dto.getCep(), dto.getBairro(), dto.getComplemento());
     }
 
     public Long getId() {
