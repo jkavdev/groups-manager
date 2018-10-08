@@ -38,4 +38,7 @@ public class EventoService {
         eventoRepository.save(eventoSalvo);
     }
 
+    public void remover(Long id) {
+        eventoRepository.delete(buscarPor(id));
+    }
 }

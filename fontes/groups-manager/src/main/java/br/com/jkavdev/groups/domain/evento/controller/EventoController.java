@@ -5,8 +5,6 @@ import br.com.jkavdev.groups.domain.evento.entity.Evento;
 import br.com.jkavdev.groups.domain.evento.entity.UF;
 import br.com.jkavdev.groups.domain.evento.repository.EventoFilter;
 import br.com.jkavdev.groups.domain.evento.service.EventoService;
-import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
-import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 @RestController
 @RequestMapping("/eventos")
@@ -54,6 +54,12 @@ public class EventoController implements ServiceMap {
     public ResponseEntity<EventoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody EventoDTO dto) {
         eventoService.atualizar(id, Evento.from(dto));
         return ResponseEntity.ok(dto);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(NO_CONTENT)
+    public void remover(@PathVariable("id") Long id) {
+        eventoService.remover(id);
     }
 
 }

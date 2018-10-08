@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 
 import {EventoService} from '../evento.service';
-import {EventoFilter} from '../../core/filters';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {ErrorHandlerService} from '../../core/error-handler.service';
+
+import {EventoFilter} from '../../core/filters';
 
 import {Evento} from '../../core/model';
 
@@ -22,6 +23,7 @@ export class EventosPesquisaComponent implements OnInit {
   display = false;
 
   constructor(private eventoService: EventoService,
+              private confirmation: ConfirmationService,
               private msgService: MessageService,
               private errorhandler: ErrorHandlerService) {
   }
@@ -52,6 +54,27 @@ export class EventosPesquisaComponent implements OnInit {
   exibirEvento(evento: any) {
     this.evento = evento;
     this.display = true;
+  }
+
+  remover(evento: any) {
+    this.confirmation.confirm({
+      message: `Deseja remover o Evento ${evento.descricao}?`,
+      accept: () => {
+        this.eventoService.remover(evento.id)
+          .then(() => {
+            this.removerDataLista(evento);
+            this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Evento ${evento.descricao} removido!`});
+          })
+          .catch(error => this.errorhandler.handle(error));
+      }
+    });
+  }
+
+  private removerDataLista(evento: any) {
+    const index: number = this.eventos.indexOf(evento, 0);
+    if (index !== -1) {
+      this.eventos.splice(index, 1);
+    }
   }
 
 }

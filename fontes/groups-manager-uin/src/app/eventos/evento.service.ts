@@ -70,4 +70,10 @@ export class EventoService {
       .toPromise()
       .then(resp => resp.json());
   }
+
+  remover(id: any) {
+    return this.http.delete(`${this.eventosUrl}/${id}`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }
