@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 import {MessageService, SelectItem} from 'primeng/api';
 import {EventoService} from '../evento.service';
@@ -21,9 +22,10 @@ export class EventosCadastroComponent implements OnInit {
   ufs: SelectItem[];
 
   constructor(private fb: FormBuilder,
-              private messageServico: MessageService,
               private eventoService: EventoService,
               private grupoService: GrupoService,
+              private route: ActivatedRoute,
+              private messageServico: MessageService,
               private errorhandler: ErrorHandlerService) {
   }
 
@@ -31,10 +33,17 @@ export class EventosCadastroComponent implements OnInit {
     this.eventoForm = this.eventoGroupControl();
     this.buscarGrupos();
     this.buscarUFs();
+
+    const eventoId = this.route.snapshot.params['id'];
+
+    if (eventoId) {
+      this.buscarEvento(eventoId);
+    }
   }
 
   private eventoGroupControl() {
     return this.fb.group({
+      'id': [],
       'data': new FormControl('', Validators.required),
       'descricao': new FormControl('', Validators.required),
       'valor': new FormControl(''),
@@ -47,6 +56,7 @@ export class EventosCadastroComponent implements OnInit {
 
   private enderecoGroupControl() {
     return this.fb.group({
+      'id': [],
       'uf': new FormControl('', Validators.required),
       'cep': new FormControl('', Validators.required),
       'logradouro': new FormControl('', Validators.required),
@@ -75,10 +85,28 @@ export class EventosCadastroComponent implements OnInit {
       }).catch(error => this.errorhandler.handle(error));
   }
 
-  salvar(evento: any) {
+  salvar() {
+    if (this.editando) {
+      this.alterarEvento();
+    } else {
+      this.adicionarEvento();
+    }
+  }
+
+  private adicionarEvento() {
+    const evento = this.eventoForm.value;
     this.eventoService.salvar(evento)
       .then(() => {
         this.messageServico.add({severity: 'info', summary: `Sucesso!`, detail: `Evento ${evento.descricao} adicionado!`});
+        this.eventoForm.reset();
+      }).catch(error => this.errorhandler.handle(error));
+  }
+
+  private alterarEvento() {
+    const evento = this.eventoForm.value;
+    this.eventoService.atualizar(evento)
+      .then(() => {
+        this.messageServico.add({severity: 'info', summary: `Sucesso!`, detail: `Evento ${evento.descricao} alterado!`});
         this.eventoForm.reset();
       }).catch(error => this.errorhandler.handle(error));
   }
@@ -87,5 +115,15 @@ export class EventosCadastroComponent implements OnInit {
     this.eventoForm.reset();
   }
 
+  private buscarEvento(eventoId: number) {
+    this.eventoService.buscarPor(eventoId)
+      .then(evento => {
+        this.eventoForm.patchValue(evento);
+      })
+      .catch(error => this.errorhandler.handle(error));
+  }
 
+  get editando() {
+    return Boolean(this.eventoForm.get('id').value);
+  }
 }

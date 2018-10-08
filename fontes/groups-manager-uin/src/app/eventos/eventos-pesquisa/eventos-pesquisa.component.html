@@ -37,7 +37,9 @@
   <div class="ui-g">
     <div *ngFor="let evento of eventos" class="ui-g-12" class="eventoRow">
       <div class="ui-g-12 ui-md-4" style="text-align: center;">
-        <img src="assets/images/icon-evento.png" class="imagemGrupo">
+        <a [routerLink]="['/eventos', evento.id]">
+          <img src="assets/images/icon-evento.png" class="imagemGrupo">
+        </a>
       </div>
       <div class="ui-g-12 ui-md-8">
         <h3>

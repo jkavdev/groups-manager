@@ -38,6 +38,14 @@ public class EventoDTO {
         this.id = id;
     }
 
+    public EventoDTO(Long id, LocalDateTime data, String descricao, String objetivo,
+                     Integer lotacaoMaxima, BigDecimal valor, EnderecoDTO endereco) {
+        this(data, descricao, objetivo, valor);
+        this.lotacaoMaxima = lotacaoMaxima;
+        this.endereco = endereco;
+        this.id = id;
+    }
+
     public EventoDTO(LocalDateTime data, String descricao, String objetivo, BigDecimal valor) {
         this.data = data;
         this.descricao = descricao;
@@ -46,7 +54,10 @@ public class EventoDTO {
     }
 
     public static EventoDTO from(Evento evento) {
-        return new EventoDTO(evento.getData(), evento.getDescricao(), evento.getObjetivo(), evento.getValor());
+        EventoDTO dto = new EventoDTO(evento.getId(), evento.getData(), evento.getDescricao(), evento.getObjetivo(),
+                evento.getLotacaoMaxima(), evento.getValor(), EnderecoDTO.from(evento.getEndereco()));
+        dto.setGrupoId(evento.getGrupo().getId());
+        return dto;
     }
 
     public Long getId() {

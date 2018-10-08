@@ -1,5 +1,6 @@
 package br.com.jkavdev.groups.domain.evento.dto;
 
+import br.com.jkavdev.groups.domain.evento.entity.Endereco;
 import br.com.jkavdev.groups.domain.evento.entity.UF;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -31,13 +32,22 @@ public class EnderecoDTO {
         this.id = id;
     }
 
-    public EnderecoDTO(String logradouro, String numero, String localidade, String unidade, UF uf, String cep, String bairro) {
+    public EnderecoDTO(Long id, String logradouro, String numero, String localidade, String unidade, UF uf,
+                       String cep, String bairro, String complemento) {
+        this.id = id;
         this.logradouro = logradouro;
         this.localidade = localidade;
         this.unidade = unidade;
         this.uf = uf;
         this.cep = cep;
         this.bairro = bairro;
+        this.complemento = complemento;
+    }
+
+    public static EnderecoDTO from(Endereco end) {
+        EnderecoDTO dto = new EnderecoDTO(end.getId(), end.getLogradouro(), end.getUnidade(), end.getLocalidade(),
+                end.getUnidade(), end.getUf(), end.getCep(), end.getBairro(), end.getComplemento());
+        return dto;
     }
 
     public Long getId() {

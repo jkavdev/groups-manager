@@ -63,7 +63,8 @@ public class Evento {
         Objects.requireNonNull(dto);
         Objects.requireNonNull(dto.getEndereco());
         Objects.requireNonNull(dto.getGrupoId());
-        return new Evento(dto.getData(), dto.getDescricao(), dto.getObjetivo(), dto.getValor(), dto.getLotacaoMaxima(), Endereco.from(dto.getEndereco()), Grupo.from(dto.getGrupoId()));
+        return new Evento(dto.getData(), dto.getDescricao(), dto.getObjetivo(), dto.getValor(), dto.getLotacaoMaxima(),
+                Endereco.from(dto.getEndereco()), Grupo.from(dto.getGrupoId()));
     }
 
     public Long getId() {

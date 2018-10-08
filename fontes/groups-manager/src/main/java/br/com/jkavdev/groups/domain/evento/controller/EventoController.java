@@ -5,6 +5,8 @@ import br.com.jkavdev.groups.domain.evento.entity.Evento;
 import br.com.jkavdev.groups.domain.evento.entity.UF;
 import br.com.jkavdev.groups.domain.evento.repository.EventoFilter;
 import br.com.jkavdev.groups.domain.evento.service.EventoService;
+import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
+import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,21 @@ public class EventoController implements ServiceMap {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    @GetMapping(params = "pesquisa")
+    public List<EventoDTO> filtrar(EventoFilter filter) {
+        return eventoService.filtrar(filter);
+    }
+
+    @GetMapping("{id}")
+    public EventoDTO buscarPor(@PathVariable("id") Long id) {
+        return EventoDTO.from(eventoService.buscarPor(id));
+    }
+
+    @GetMapping("/ufs")
+    public UF[] ufs() {
+        return UF.values();
+    }
+
     @PostMapping
     public ResponseEntity<EventoDTO> salvar(@Valid @RequestBody EventoDTO evento, HttpServletResponse response) {
         Evento eventoSalvo = eventoService.salvar(Evento.from(evento));
@@ -33,14 +50,10 @@ public class EventoController implements ServiceMap {
         return ResponseEntity.status(HttpStatus.CREATED).body(evento);
     }
 
-    @GetMapping(params = "pesquisa")
-    public List<EventoDTO> filtrar(EventoFilter filter) {
-        return eventoService.filtrar(filter);
-    }
-
-    @GetMapping("/ufs")
-    public UF[] ufs() {
-        return UF.values();
+    @PutMapping("/{id}")
+    public ResponseEntity<EventoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody EventoDTO dto) {
+        eventoService.atualizar(id, Evento.from(dto));
+        return ResponseEntity.ok(dto);
     }
 
 }

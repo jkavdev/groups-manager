@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'integrantes/:id', component: IntegrantesCadastroComponent},
   {path: 'eventos', component: EventosPesquisaComponent},
   {path: 'eventos/novo', component: EventosCadastroComponent},
+  {path: 'eventos/:id', component: EventosCadastroComponent},
   {path: 'noticias', component: NoticiasPesquisaComponent},
   {path: 'noticias/nova', component: NoticiasCadastroComponent},
   {path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent},
