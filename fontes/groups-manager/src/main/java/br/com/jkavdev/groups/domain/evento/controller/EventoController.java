@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 @RestController
 @RequestMapping("/eventos")
 public class EventoController implements ServiceMap {
@@ -26,6 +28,21 @@ public class EventoController implements ServiceMap {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    @GetMapping(params = "pesquisa")
+    public List<EventoDTO> filtrar(EventoFilter filter) {
+        return eventoService.filtrar(filter);
+    }
+
+    @GetMapping("{id}")
+    public EventoDTO buscarPor(@PathVariable("id") Long id) {
+        return EventoDTO.from(eventoService.buscarPor(id));
+    }
+
+    @GetMapping("/ufs")
+    public UF[] ufs() {
+        return UF.values();
+    }
+
     @PostMapping
     public ResponseEntity<EventoDTO> salvar(@Valid @RequestBody EventoDTO evento, HttpServletResponse response) {
         Evento eventoSalvo = eventoService.salvar(Evento.from(evento));
@@ -33,14 +50,16 @@ public class EventoController implements ServiceMap {
         return ResponseEntity.status(HttpStatus.CREATED).body(evento);
     }
 
-    @GetMapping(params = "pesquisa")
-    public List<EventoDTO> filtrar(EventoFilter filter) {
-        return eventoService.filtrar(filter);
+    @PutMapping("/{id}")
+    public ResponseEntity<EventoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody EventoDTO dto) {
+        eventoService.atualizar(id, Evento.from(dto));
+        return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/ufs")
-    public UF[] ufs() {
-        return UF.values();
+    @DeleteMapping("{id}")
+    @ResponseStatus(NO_CONTENT)
+    public void remover(@PathVariable("id") Long id) {
+        eventoService.remover(id);
     }
 
 }

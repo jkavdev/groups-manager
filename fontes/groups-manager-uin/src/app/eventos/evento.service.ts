@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
+import * as moment from 'moment';
+
 import {EventoFilter} from '../core/filters';
 import {environment} from '../../environments/environment';
 
@@ -40,6 +42,37 @@ export class EventoService {
 
   salvar(evento: any): Promise<any> {
     return this.http.post(`${this.eventosUrl}`, evento)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  buscarPor(id: number) {
+    return this.http.get(`${this.eventosUrl}/${id}`)
+      .toPromise()
+      .then(resp => {
+        const evento = resp.json();
+        this.converterStringsParaDatas(evento);
+        this.converterUF(evento.endereco);
+        return evento;
+      });
+  }
+
+  private converterStringsParaDatas(evento: any) {
+    evento.data = moment(evento.data, 'YYYY-MM-DD h:mm:ss').toDate();
+  }
+
+  private converterUF(endereco: any) {
+    endereco.uf = endereco.uf.sigla;
+  }
+
+  atualizar(evento: any) {
+    return this.http.put(`${this.eventosUrl}/${evento.id}`, evento)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
+  remover(id: any) {
+    return this.http.delete(`${this.eventosUrl}/${id}`)
       .toPromise()
       .then(resp => resp.json());
   }
