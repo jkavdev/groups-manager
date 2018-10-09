@@ -95,7 +95,7 @@ public class GrupoDTO {
     }
 
     public String getIgreja() {
-        return igreja.toUpperCase();
+        return igreja != null ? igreja.toUpperCase() : null;
     }
 
     public void setIgreja(String igreja) {
