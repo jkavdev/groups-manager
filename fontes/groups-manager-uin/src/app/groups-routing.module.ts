@@ -16,6 +16,7 @@ import {GruposIntegrantesComponent} from './grupos/grupos-integrantes/grupos-int
 const routes: Routes = [
   {path: '', redirectTo: 'eventos', pathMatch: 'full'},
   {path: 'grupos', component: GruposPesquisaComponent},
+  {path: 'grupos/:id', component: GruposCadastroComponent},
   {path: 'grupos/novo', component: GruposCadastroComponent},
   {path: 'grupos/:id/eventos', component: GruposEventosComponent},
   {path: 'grupos/:id/integrantes', component: GruposIntegrantesComponent},

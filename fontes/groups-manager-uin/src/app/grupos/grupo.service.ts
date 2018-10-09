@@ -40,6 +40,12 @@ export class GrupoService {
       .then(resp => resp.json());
   }
 
+  atualizar(grupo: any) {
+    return this.http.put(`${this.gruposUrl}/${grupo.id}`, grupo)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
   comEventos(id: number): Promise<any> {
     return this.http.get(`${this.gruposUrl}/${id}/eventos`)
       .toPromise()
@@ -58,4 +64,9 @@ export class GrupoService {
       .then(resp => resp.json());
   }
 
+  buscarPor(id: number) {
+    return this.http.get(`${this.gruposUrl}/${id}`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
 }

@@ -5,6 +5,8 @@ import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
+import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
+import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,11 @@ public class GrupoController implements ServiceMap {
         return grupoService.filtrar(filter).stream()
                 .map(g -> GrupoDTO.from(g))
                 .collect(toList());
+    }
+
+    @GetMapping("{id}")
+    public GrupoDTO por(@PathVariable("id") Long id) {
+        return GrupoDTO.from(grupoService.buscarPor(id));
     }
 
     @GetMapping("/{grupoId}/eventos")
@@ -74,6 +81,12 @@ public class GrupoController implements ServiceMap {
         Grupo grupoSalvo = grupoService.salvar(Grupo.from(dto));
         publisher.publishEvent(new RecursoCriadoEvent(this, response, grupoSalvo.getId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GrupoDTO> atualizar(@PathVariable Long id, @Valid @RequestBody GrupoDTO dto) {
+        grupoService.atualizar(id, Grupo.from(dto));
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping("{idGrupo}/adicionarintegrante/{idIntegrante}")

@@ -27,26 +27,26 @@ public class Grupo {
     @Column(name = "igreja_id", nullable = false)
     private Long igrejaId;
 
-    @Column(name = "status_grupo_id", nullable = false)
-    private Long statusGrupoId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "igreja_id", insertable = false, updatable = false)
     private Igreja igreja;
+
+    @Column(name = "status_grupo_id", nullable = false)
+    private Long statusGrupoId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_grupo_id", insertable = false, updatable = false)
     private Status statusGrupo;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(
             name = "grupo_integrante",
             joinColumns = @JoinColumn(name = "grupo_id"), foreignKey = @ForeignKey(name = "fk_grupo_integrante_grupo_id"),
             inverseJoinColumns = @JoinColumn(name = "integrante_id"), inverseForeignKey = @ForeignKey(name = "fk_grupo_integrante_integrante_id"))
-    private Collection<Integrante> integrantes = new HashSet<>();
+    private Set<Integrante> integrantes = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")
-    private Collection<Evento> eventos = new HashSet<>();
+    private Set<Evento> eventos = new HashSet<>();
 
     @OneToMany(mappedBy = "grupo")
     private Set<Noticia> noticias = new HashSet<>();
@@ -58,7 +58,8 @@ public class Grupo {
         this.id = id;
     }
 
-    public Grupo(String nome, String objetivo, Long statusId) {
+    public Grupo(Long id, String nome, String objetivo, Long statusId) {
+        this.id = id;
         this.statusGrupoId = StatusGrupo.idValidado(statusId);
         this.nome = nome;
         this.objetivo = objetivo;
@@ -66,7 +67,7 @@ public class Grupo {
     }
 
     public static Grupo from(GrupoDTO dto) {
-        return new Grupo(dto.getNome(), dto.getObjetivo(), dto.getStatusGrupoId());
+        return new Grupo(dto.getId(), dto.getNome(), dto.getObjetivo(), dto.getStatusGrupoId());
     }
 
     public static Grupo from(Long id) {
@@ -81,19 +82,31 @@ public class Grupo {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getObjetivo() {
         return objetivo;
+    }
+
+    public void setObjetivo(String objetivo) {
+        this.objetivo = objetivo;
     }
 
     public Long getStatusGrupoId() {
         return statusGrupoId;
     }
 
-    public Collection<Integrante> getIntegrantes() {
-        return Collections.unmodifiableCollection(integrantes);
+    public void setStatusGrupoId(Long statusGrupoId) {
+        this.statusGrupoId = statusGrupoId;
     }
 
-    public Collection<Evento> getEventos() {
+    public Set<Integrante> getIntegrantes() {
+        return Collections.unmodifiableSet(integrantes);
+    }
+
+    public Set<Evento> getEventos() {
         return eventos;
     }
 
@@ -115,5 +128,11 @@ public class Grupo {
                 .append("igreja", Igrejas.MENINO_DEUS.getIgreja())
                 .append("status", StatusGrupo.from(statusGrupoId))
                 .toString();
+    }
+
+    public void atualizarDadosBasicos(Grupo grupo) {
+        this.setObjetivo(grupo.getObjetivo());
+        this.setNome(grupo.getNome());
+        this.setStatusGrupoId(grupo.statusGrupoId);
     }
 }

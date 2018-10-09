@@ -3,14 +3,14 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <div class="ui-g-12">
-        <h1>Novo Grupo</h1>
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Grupo</h1>
       </div>
     </div>
   </div>
 
   <p-toast [style]="{marginTop: '80px'}"></p-toast>
 
-  <form autocomplete="off" [formGroup]="grupoForm" (ngSubmit)="salvar(grupoForm.value)">
+  <form autocomplete="off" [formGroup]="grupoForm" (ngSubmit)="salvar()">
     <div class="ui-g ui-fluid">
       <div class="ui-g-12">
         <div class="ui-g-12">

@@ -6,6 +6,7 @@ import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
 import br.com.jkavdev.groups.exceptionhandler.NegocioException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -58,4 +59,13 @@ public class GrupoService {
         grupoRepository.save(grupo);
     }
 
+    public Grupo buscarPor(Long id) {
+        return grupoRepository.findById(id).get();
+    }
+
+    public void atualizar(Long id, Grupo grupo) {
+        Grupo grupoSalvo = buscarPor(id);
+        grupoSalvo.atualizarDadosBasicos(grupo);
+        grupoRepository.save(grupoSalvo);
+    }
 }

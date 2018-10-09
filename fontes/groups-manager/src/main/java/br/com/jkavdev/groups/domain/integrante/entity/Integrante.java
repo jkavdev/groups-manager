@@ -12,6 +12,7 @@ import java.time.Period;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Integrante {
@@ -43,7 +44,7 @@ public class Integrante {
     private Boolean cadastroEfetivado;
 
     @ManyToMany(mappedBy = "integrantes")
-    private Collection<Grupo> grupos = new HashSet<>();
+    private Set<Grupo> grupos = new HashSet<>();
 
     private Integrante() {
     }
@@ -118,7 +119,7 @@ public class Integrante {
         this.idade = idade;
     }
 
-    public Collection<Grupo> getGrupos() {
+    public Set<Grupo> getGrupos() {
         return grupos;
     }
 
