@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -28,8 +27,6 @@ public class Integrante {
     private String celular;
 
     private String email;
-
-    private String senha;
 
     @Enumerated(EnumType.STRING)
     private Sexo sexo;

@@ -20,8 +20,6 @@ public class Status {
 
     private String nome;
 
-    private String status;
-
     private String descricao;
 
     @OneToMany(mappedBy = "statusGrupo")
