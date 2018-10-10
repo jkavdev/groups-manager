@@ -9,7 +9,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Grupo {
@@ -38,7 +41,7 @@ public class Grupo {
     @JoinColumn(name = "status_grupo_id", insertable = false, updatable = false)
     private Status statusGrupo;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(
             name = "grupo_integrante",
             joinColumns = @JoinColumn(name = "grupo_id"), foreignKey = @ForeignKey(name = "fk_grupo_integrante_grupo_id"),

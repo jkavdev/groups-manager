@@ -15,14 +15,18 @@
       <div class="ui-g-12">
         <input type="text" pInputText [(ngModel)]="filtro.nome" placeholder="Informe o nome do grupo"/>
       </div>
-      <div class="ui-g-12 ui-md-8">
+      <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-search" iconPos="left" type="button" label="Pesquisar Grupos"
                 class="ui-button-raised"
                 (click)="pesquisarGrupos()"></button>
       </div>
       <div class="ui-g-12 ui-md-4">
+        <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
+      </div>
+      <div class="ui-g-12 ui-md-4">
         <button pButton icon="pi pi-plus" iconPos="left" type="button" label="Novo Grupo"
-                class="ui-button-raised" routerLink="/grupos/novo"></button>
+                class="ui-button-raised" routerLink="/grupos/novo/"></button>
       </div>
     </div>
   </div>
@@ -34,7 +38,7 @@
         <ng-template let-grupo pTemplate="listItem">
           <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
+              <img src="assets/images/grupos/{{grupo.status.status}}.png" style="width: 120px;">
             </div>
             <div class="ui-g-12 ui-md-8">
               <div class="ui-g">

@@ -33,14 +33,11 @@ export class GruposCadastroComponent implements OnInit {
       'statusGrupoId': new FormControl('', Validators.required)
     });
 
-    const grupoId = this.route.snapshot.params['id'];
+    const grupoId = !(this.route.snapshot.params['id'] === 'novo') && this.route.snapshot.params['id'] ;
 
     if (grupoId) {
       this.buscarGrupo(grupoId);
     }
-
-    this.messageServico.add({severity: 'info', summary: 'Success', detail: 'Submetido'});
-
   }
 
   buscarStatusGrupos() {
@@ -49,8 +46,7 @@ export class GruposCadastroComponent implements OnInit {
         this.statusGrupo = [];
         this.statusGrupo.push({label: 'Selecione um Status Grupo', value: null});
         statuses.forEach(status => this.statusGrupo.push({label: status.nome, value: status.id}));
-      })
-      .catch(erro => this.messageServico.add({severity: 'error', summary: erro, detail: 'Erro ao buscar Status Grupos'}));
+      }).catch(error => this.errorhandler.handle(error));
   }
 
   buscarGrupo(id: number) {

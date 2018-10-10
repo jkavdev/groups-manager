@@ -13,29 +13,30 @@ import static java.util.stream.Collectors.toMap;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusGrupo {
 
-    MOVIMENTO("MOVIMENTO", "Movimento", "São grupos específico com organização específica muitas vezes independente.",
-            2L, "MOVIMENTO"),
-    PASTORAL("PASTORAL", "Pastoral", "Projeto de evangelização que é distribuído a vários grupos em diferentes setores.",
-            1L, "PASTORAL"),
-    GRUPO("GRUPO", "Grupo", "Formados por fiéis, que se reúnem de forma espontânea, porém sempre com a licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.",
-            3L, "GRUPO");
+    PASTORAL("PASTORAL", "Pastoral", "Pastoral, é serviço, ação, trabalho desenvolvido pela Igreja. " +
+            "Ação organizada e dirigida pela Diocese e Paróquia para “atender” determinada situação em uma " +
+            "realidade específica.", 1L),
+    MOVIMENTO("MOVIMENTO", "Movimento", "Movimento, são grupos específico com organização específica muitas vezes " +
+            "independente, não diretamente ligados a uma paróquia. Os movimentos nascem e se formam num contexto " +
+            "externo à igreja local, mas atuam dentro da Paróquia.", 2L),
+    GRUPO("GRUPO", "Grupo", "Grupo, é formados por fiéis, que se reúnem de forma espontânea, porém sempre com a " +
+            "licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.",
+            3L);
 
     public static final Map<Long, StatusGrupo> statuses =
             Stream.of(StatusGrupo.values())
                     .collect(toMap(StatusGrupo::getId, identity()));
 
+    private final Long id;
     private final String status;
     private final String nome;
     private final String descricao;
-    private final Long id;
-    private final String imageName;
 
-    StatusGrupo(String status, String nome, String descricao, Long id, String imageName) {
+    StatusGrupo(String status, String nome, String descricao, Long id) {
         this.status = status;
         this.nome = nome;
         this.descricao = descricao;
         this.id = id;
-        this.imageName = imageName;
     }
 
     public static Long idValidado(Long statusId) {
@@ -46,6 +47,10 @@ public enum StatusGrupo {
 
     public static StatusGrupo from(Long id) {
         return statuses.get(id);
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getStatus() {
@@ -60,11 +65,4 @@ public enum StatusGrupo {
         return descricao;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
 }

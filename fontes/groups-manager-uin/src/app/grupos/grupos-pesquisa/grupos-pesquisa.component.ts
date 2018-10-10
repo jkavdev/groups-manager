@@ -36,6 +36,10 @@ export class GruposPesquisaComponent implements OnInit {
       .catch(error => this.errorhandler.handle(error));
   }
 
+  limpar() {
+    this.filtro = new GrupoFilter();
+  }
+
   excluir(grupo: any) {
     this.confirmation.confirm({
       message: `Deseja remover o Grupo ${grupo.nome}?`,
