@@ -46,7 +46,7 @@ export class EventosCadastroComponent implements OnInit {
       'id': [],
       'data': new FormControl('', Validators.required),
       'descricao': new FormControl('', Validators.required),
-      'valor': new FormControl(''),
+      'valor': new FormControl('1'),
       'objetivo': new FormControl('', Validators.required),
       'lotacaoMaxima': new FormControl('', Validators.required),
       'grupoId': new FormControl('', Validators.required),

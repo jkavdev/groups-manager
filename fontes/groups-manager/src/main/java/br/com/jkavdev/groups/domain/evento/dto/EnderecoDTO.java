@@ -103,7 +103,7 @@ public class EnderecoDTO {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        this.cep = cep.replace("-", "").replace(".", "");
     }
 
     public String getComplemento() {

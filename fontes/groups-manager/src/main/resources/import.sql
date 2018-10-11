@@ -5,7 +5,7 @@ INSERT INTO status_grupo(id, nome, descricao) VALUES (2, 'Movimento', 'Movimento
 INSERT INTO status_grupo(id, nome, descricao) VALUES (3, 'Grupo', 'Grupo, é formados por fiéis, que se reúnem de forma espontânea, porém sempre com a licença e orientação do pároco ou vigário paroquial e tendo como base a oração e a escuta da Palavra.');
 
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('Pastoral da Criança',  1, 'Para que todas as crianças tenham vida em abundância', 1);
-INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('Pastoral da saúde',  1, 'Evangelizar com renovado ardor missionário o mundo da saúde, à luz da opção preferencial pelos pobres e enfermos, participando da construção de uma sociedade justa e solidária a serviço da vida', 1);
+INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('Pastoral da Saúde',  1, 'Evangelizar com renovado ardor missionário o mundo da saúde, à luz da opção preferencial pelos pobres e enfermos, participando da construção de uma sociedade justa e solidária a serviço da vida', 1);
 
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('ECC (Encontro de Casais com Cristo)',  1, 'Discemina ensinamentos e trabalhos religiosos voltado a casais e à instituição do matrimônio. Tradicionalmente ocorre em um final de semana, iniciando na sexta-feira à noite, incluindo-se todo o dia do sábado e encerrando no domingo à noite', 2);
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('Terço dos Homens',  1, 'é a oração do terço realizada pelos homens. A missão deste terço é resgatar para o seio da Igreja de Cristo homens de todas as idades, pois a presença masculina na Igreja é imprescindível para a formação da família e de uma sociedade cristã', 2);
@@ -45,16 +45,16 @@ insert into grupo_integrante(grupo_id, integrante_id) values (5,4);
 insert into grupo_integrante(grupo_id, integrante_id) values (5,5);
 insert into grupo_integrante(grupo_id, integrante_id) values (5,6);
 
-INSERT INTO endereco VALUES (1,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (2,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (3,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (4,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (5,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (6,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (7,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (8,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (9,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
-INSERT INTO endereco VALUES (10,'Itapuã I','73.754-012','Local de festas perto centro','Planaltina','Quadra QR 12','DF','Brasília');
+INSERT INTO endereco VALUES (1,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (2,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (3,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (4,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (5,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (6,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (7,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (8,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (9,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
+INSERT INTO endereco VALUES (10,'Itapuã I','73754012','Local de festas perto centro','Planaltina','Quadra QR 12','GO','15');
 
 INSERT INTO evento VALUES (2, date_add(now(), interval 10 day),'Encontro Luz',120,'Vice-campeão do primeiro hackathon realizado pela Câmara, em 2013, o aplicativo para acompanhamento de gastos e atividades de deputados e senadores se popularizou e cresceu: hoje tem versões para iOS e Android que também permitem o acompanhamento de projetos de lei e outras proposições, tem uma página no Facebook para discussões e notícias de política, e ainda conta com um chatbot em seu site. Um de seus colaboradores é Gustavo Warzocha Cruvinel, servidor da Câmara que fez uma pesquisa muito útil para o projeto do novo serviço de Dados Abertos.',564.56,1,2);
 INSERT INTO evento VALUES (3,date_add(now(), interval 5 day),'Encontro Pego',120,'Vice-campeão do primeiro hackathon realizado pela Câmara, em 2013, o aplicativo para acompanhamento de gastos e atividades de deputados e senadores se popularizou e cresceu: hoje tem versões para iOS e Android que também permitem o acompanhamento de projetos de lei e outras proposições, tem uma página no Facebook para discussões e notícias de política, e ainda conta com um chatbot em seu site. Um de seus colaboradores é Gustavo Warzocha Cruvinel, servidor da Câmara que fez uma pesquisa muito útil para o projeto do novo serviço de Dados Abertos.',564.56,2,2);
