@@ -57,7 +57,7 @@
           <label>Objetivo do Evento</label>
         </div>
         <div class="ui-g-12">
-          <textarea pInputTextarea rows="15" formControlName="objetivo"></textarea>
+          <textarea pInputTextarea rows="7" formControlName="objetivo"></textarea>
           <p-message severity="error" text="Informe o objetivo!"
                      *ngIf="!eventoForm.controls['objetivo'].valid && eventoForm.controls['objetivo'].dirty"></p-message>
         </div>
@@ -73,7 +73,8 @@
             <label>CEP</label>
           </div>
           <div class="ui-g-12">
-            <p-inputMask formControlName="cep" mask="99.999-999"></p-inputMask>
+            <p-inputMask formControlName="cep" mask="99.999-999" unmask="true"
+                         (onComplete)="buscarCEP(eventoForm.get('endereco.cep').value)"></p-inputMask>
             <p-message severity="error" text="Informe o cep!"
                        *ngIf="!eventoForm.get('endereco.cep').valid && eventoForm.get('endereco.cep').dirty"></p-message>
           </div>
@@ -133,7 +134,7 @@
             <label>Complemento</label>
           </div>
           <div class="ui-g-12">
-            <textarea pInputTextarea autoResize="false" formControlName="complemento"></textarea>
+            <textarea pInputTextarea rows="5" formControlName="complemento"></textarea>
           </div>
         </div>
       </div>

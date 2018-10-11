@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {MessageService, SelectItem} from 'primeng/api';
 import {EventoService} from '../evento.service';
 import {GrupoService} from '../../grupos/grupo.service';
+import {CepService} from '../../core/cep.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 
 import {GrupoFilter} from '../../core/filters';
@@ -24,6 +25,7 @@ export class EventosCadastroComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private eventoService: EventoService,
               private grupoService: GrupoService,
+              private cepService: CepService,
               private route: ActivatedRoute,
               private messageServico: MessageService,
               private errorhandler: ErrorHandlerService) {
@@ -83,6 +85,13 @@ export class EventosCadastroComponent implements OnInit {
         this.ufs.push({label: 'Selecione o Estado', value: null});
         ufs1.forEach(uf => this.ufs.push({label: uf.descricao, value: uf.sigla}));
       }).catch(error => this.errorhandler.handle(error));
+  }
+
+  buscarCEP(cep: string) {
+    this.cepService.buscar(cep)
+      .then(endereco => {
+        this.eventoForm.controls['endereco'].patchValue(endereco);
+      });
   }
 
   salvar() {

@@ -9,6 +9,19 @@ export class Grupo {
 }
 
 export class Endereco {
+  id: number;
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  unidade: string;
+}
+
+export class ViaCepEndereco {
+  gia: string;
+  ibge: string;
   cep: string;
   logradouro: string;
   complemento: string;

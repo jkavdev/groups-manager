@@ -34,6 +34,7 @@ public class Endereco {
     @NotBlank
     private String cep;
 
+    @Column(columnDefinition = "text")
     private String complemento;
 
     protected Endereco() {

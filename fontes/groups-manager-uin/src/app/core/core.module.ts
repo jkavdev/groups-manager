@@ -9,6 +9,7 @@ import {TieredMenuModule} from 'primeng/components/tieredmenu/tieredmenu';
 import {ConfirmationService, ConfirmDialogModule, MessageService} from 'primeng/primeng';
 
 import {ErrorHandlerService} from './error-handler.service';
+import {CepService} from './cep.service';
 
 import {NavbarComponent} from './navbar/navbar.component';
 import {PaginaNaoEncontradaComponent} from './pagina-nao-encontrada.component';
@@ -36,6 +37,7 @@ registerLocaleData(localePt, 'pt-BR');
     ErrorHandlerService,
     ConfirmationService,
     MessageService,
+    CepService,
     {provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
