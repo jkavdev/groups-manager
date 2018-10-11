@@ -4,7 +4,6 @@ import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteFilter;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,10 @@ public class IntegranteService {
 
     public void atualizar(Long id, Integrante integrante) {
         Integrante integranteSalvo = buscarPeloId(id);
-        BeanUtils.copyProperties(integrante, integranteSalvo, "id");
+        //por enquanto o cadastro nao esta completo
+        //atualizaremos as informacoes basicas
+//        BeanUtils.copyProperties(integrante, integranteSalvo, "id");
+        integranteSalvo.atualizarDadosBasicos(integrante);
         integranteRepository.save(integranteSalvo);
     }
 }

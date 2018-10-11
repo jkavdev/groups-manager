@@ -37,7 +37,7 @@ export class IntegrantesCadastroComponent implements OnInit {
     return this.fb.group({
       'id': [],
       'nome': new FormControl('', Validators.required),
-      'idade': new FormControl('7', Validators.compose([Validators.required, Validators.minLength(7)]))
+      'idade': new FormControl('7', Validators.compose([Validators.required, Validators.min(7)]))
     });
   }
 

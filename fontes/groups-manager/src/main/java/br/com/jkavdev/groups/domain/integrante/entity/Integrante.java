@@ -148,4 +148,8 @@ public class Integrante {
         return Objects.hash(nome, email, cpf);
     }
 
+    public void atualizarDadosBasicos(Integrante integrante) {
+     this.setNome(integrante.getNome());
+     this.setIdade(integrante.getIdade());
+    }
 }

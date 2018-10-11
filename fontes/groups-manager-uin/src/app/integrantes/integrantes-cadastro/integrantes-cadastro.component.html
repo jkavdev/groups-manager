@@ -32,7 +32,7 @@
           <p-message severity="error"
                      [text]="integranteForm.controls['idade'].errors['required']
                      ? 'Informe a idade do Integrante'
-                     : integranteForm.controls['idade'].errors['minlength']
+                     : integranteForm.controls['idade'].errors['min']
                      ? 'Idade mínima do Integrante é 7 anos de idade!' : ''"
                      *ngIf="!integranteForm.controls['idade'].valid && integranteForm.controls['idade'].dirty"></p-message>
         </div>
