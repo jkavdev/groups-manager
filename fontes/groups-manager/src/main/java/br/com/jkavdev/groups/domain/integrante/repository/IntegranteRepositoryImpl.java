@@ -1,8 +1,10 @@
 package br.com.jkavdev.groups.domain.integrante.repository;
 
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.entity.Grupo_;
 import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
+import br.com.jkavdev.groups.domain.integrante.entity.Integrante_;
 import br.com.jkavdev.groups.utils.RootRepository;
 
 import javax.persistence.criteria.*;
@@ -21,27 +23,27 @@ public class IntegranteRepositoryImpl extends RootRepository implements Integran
 
         List<Predicate> pd = new ArrayList<>();
         if (hasText(filter.getNome())) {
-            pd.add(cb().like(integranteRoot.get("nome"), "%" + filter.getNome() + "%"));
+            pd.add(cb().like(integranteRoot.get(Integrante_.nome), "%" + filter.getNome() + "%"));
         }
         if (hasText(filter.getGrupo())) {
-            Join<Integrante, Grupo> grupoRoot = integranteRoot.join("grupos", JoinType.INNER);
-            pd.add(cb().like(grupoRoot.get("nome"), "%" + filter.getGrupo() + "%"));
+            Join<Integrante, Grupo> grupoRoot = integranteRoot.join(Integrante_.grupos, JoinType.INNER);
+            pd.add(cb().like(grupoRoot.get(Grupo_.nome), "%" + filter.getGrupo() + "%"));
         }
 
         cq
                 .select(cb().construct(IntegranteDTO.class,
-                        integranteRoot.get("id"),
-                        integranteRoot.get("nome"),
-                        integranteRoot.get("idade"),
-                        integranteRoot.get("celular"),
-                        integranteRoot.get("sexo"),
-                        integranteRoot.get("email"),
-                        integranteRoot.get("dataNascimento"),
-                        integranteRoot.get("cpf"),
-                        integranteRoot.get("cadastroEfetivado")
+                        integranteRoot.get(Integrante_.id),
+                        integranteRoot.get(Integrante_.nome),
+                        integranteRoot.get(Integrante_.idade),
+                        integranteRoot.get(Integrante_.celular),
+                        integranteRoot.get(Integrante_.sexo),
+                        integranteRoot.get(Integrante_.email),
+                        integranteRoot.get(Integrante_.dataNascimento),
+                        integranteRoot.get(Integrante_.cpf),
+                        integranteRoot.get(Integrante_.cadastroEfetivado)
                 ))
                 .where(pd.toArray(new Predicate[]{}))
-                .groupBy(integranteRoot.get("id"));
+                .groupBy(integranteRoot.get(Integrante_.id));
 
         return manager().createQuery(cq).getResultList();
     }

@@ -2,6 +2,7 @@ package br.com.jkavdev.groups.domain.evento.repository;
 
 import br.com.jkavdev.groups.domain.evento.dto.EventoDTO;
 import br.com.jkavdev.groups.domain.evento.entity.Evento;
+import br.com.jkavdev.groups.domain.evento.entity.Evento_;
 import br.com.jkavdev.groups.utils.RootRepository;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,21 +23,21 @@ public class EventoRepositoryImpl extends RootRepository implements EventoReposi
 
         List<Predicate> pd = new ArrayList<>();
         if (nonNull(filter.getDe()) && isNull(filter.getAte())) {
-            pd.add(cb().greaterThanOrEqualTo(eventoRoot.get("data"), filter.getDe()));
+            pd.add(cb().greaterThanOrEqualTo(eventoRoot.get(Evento_.data), filter.getDe()));
         }
         if (nonNull(filter.getAte()) && isNull(filter.getDe())) {
-            pd.add(cb().lessThanOrEqualTo(eventoRoot.get("data"), filter.getAte()));
+            pd.add(cb().lessThanOrEqualTo(eventoRoot.get(Evento_.data), filter.getAte()));
         }
         if (nonNull(filter.getDe()) && nonNull(filter.getAte())) {
-            pd.add(cb().between(eventoRoot.get("data"), filter.getDe(), filter.getAte()));
+            pd.add(cb().between(eventoRoot.get(Evento_.data), filter.getDe(), filter.getAte()));
         }
 
         cq.select(cb().construct(EventoDTO.class,
-                eventoRoot.get("id"),
-                eventoRoot.get("data"),
-                eventoRoot.get("descricao"),
-                eventoRoot.get("objetivo"),
-                eventoRoot.get("valor")
+                eventoRoot.get(Evento_.id),
+                eventoRoot.get(Evento_.data),
+                eventoRoot.get(Evento_.descricao),
+                eventoRoot.get(Evento_.objetivo),
+                eventoRoot.get(Evento_.valor)
         )).where(pd.toArray(new Predicate[]{}));
 
         return manager().createQuery(cq).getResultList();

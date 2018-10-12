@@ -1,6 +1,7 @@
 package br.com.jkavdev.groups.domain.grupo.repository;
 
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
+import br.com.jkavdev.groups.domain.grupo.entity.Grupo_;
 import br.com.jkavdev.groups.utils.RootRepository;
 
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,11 +19,11 @@ public class GrupoRepositoryImpl extends RootRepository implements GrupoReposito
         CriteriaQuery<Grupo> cq = cb().createQuery(Grupo.class);
         Root<Grupo> grupoRoot = cq.from(Grupo.class);
 
-        grupoRoot.join("igreja", INNER);
-        grupoRoot.join("statusGrupo", INNER);
+        grupoRoot.join(Grupo_.igreja, INNER);
+        grupoRoot.join(Grupo_.statusGrupo, INNER);
 
         if (hasText(filter.getNome())) {
-            cq.where(cb().like(grupoRoot.get("nome"), "%" + filter.getNome() + "%"));
+            cq.where(cb().like(grupoRoot.get(Grupo_.nome), "%" + filter.getNome() + "%"));
         }
 
 		/*
