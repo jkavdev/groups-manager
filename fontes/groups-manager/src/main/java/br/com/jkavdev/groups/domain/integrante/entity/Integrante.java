@@ -61,15 +61,13 @@ public class Integrante {
         this.idade = idade;
     }
 
-    public static Integrante from(IntegranteDTO dto) {
-        return new Integrante(dto.getNome(), dto.getIdade());
+    public Integrante(String nome, Integer idade, String celular) {
+        this(nome, idade);
+        this.celular = celular;
     }
 
-    public static IntegranteDTO toDTO(Integrante integrante) {
-        IntegranteDTO dto = new IntegranteDTO();
-        dto.setNome(integrante.nome);
-        dto.setIdade(integrante.idade);
-        return dto;
+    public static Integrante from(IntegranteDTO dto) {
+        return new Integrante(dto.getNome(), dto.getIdade(), dto.getCelular());
     }
 
     public Long getId() {
@@ -149,7 +147,8 @@ public class Integrante {
     }
 
     public void atualizarDadosBasicos(Integrante integrante) {
-     this.setNome(integrante.getNome());
-     this.setIdade(integrante.getIdade());
+        this.nome = integrante.getNome();
+        this.idade = integrante.getIdade();
+        this.celular = integrante.getCelular();
     }
 }

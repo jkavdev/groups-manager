@@ -24,6 +24,17 @@
       </div>
       <div class="ui-g-12">
         <div class="ui-g-12">
+          <label>Celular</label>
+        </div>
+        <div class="ui-g-12">
+          <p-inputMask formControlName="celular" placeholder="Contato do Integrante"
+                       mask="(99) 99999-9999"></p-inputMask>
+          <p-message severity="error" text="Informe o contato do Integrante!"
+                     *ngIf="!integranteForm.controls['celular'].valid && integranteForm.controls['celular'].dirty"></p-message>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-12">
           <label>Idade</label>
         </div>
         <div class="ui-g-12">

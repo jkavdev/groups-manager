@@ -40,7 +40,12 @@
         <ng-template let-integrante pTemplate="listItem">
           <div style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <img src="assets/images/integrantes/{{integrante.cpf}}.png" style="width: 120px;">
+              <ng-template [ngIf]="integrante.cpf" [ngIfElse]="semCpf">
+                <img src="assets/images/integrantes/{{integrante.cpf}}.png" style="width: 120px;">
+              </ng-template>
+              <ng-template #semCpf>
+                <img src="assets/images/integrantes/asset-users.svg" style="width: 120px;">
+              </ng-template>
             </div>
             <div class="ui-g-12 ui-md-8">
               <div class="ui-g">
@@ -48,7 +53,7 @@
                 <div class="ui-g-10 ui-sm-6"><b>{{integrante.nome}}</b></div>
                 <div class="ui-g-2 ui-sm-6">Idade:</div>
                 <div class="ui-g-10 ui-sm-6"><b>{{integrante.idade}}</b></div>
-                <div class="ui-g-2 ui-sm-6">Celular:</div>
+                <div class="ui-g-2 ui-sm-6">Contato:</div>
                 <div class="ui-g-10 ui-sm-6"><b>{{integrante.celular}}</b></div>
               </div>
             </div>

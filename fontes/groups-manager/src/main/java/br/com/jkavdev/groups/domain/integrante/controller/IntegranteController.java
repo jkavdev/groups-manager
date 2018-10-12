@@ -59,7 +59,7 @@ public class IntegranteController implements ServiceMap {
     public ResponseEntity<IntegranteDTO> criar(@Valid @RequestBody IntegranteDTO dto, HttpServletResponse response) {
         Integrante integranteSalvo = integranteService.salvar(Integrante.from(dto));
         publisher.publishEvent(new RecursoCriadoEvent(this, response, integranteSalvo.getId()));
-        return ResponseEntity.status(CREATED).body(Integrante.toDTO(integranteSalvo));
+        return ResponseEntity.status(CREATED).body(dto);
     }
 
     @DeleteMapping("{id}")
