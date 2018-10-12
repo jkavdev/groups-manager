@@ -40,7 +40,7 @@
         <ng-template let-integrante pTemplate="listItem">
           <div style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <img src="assets/images/integrantes/avatar2.png" style="width: 120px;">
+              <img src="assets/images/integrantes/{{integrante.cpf}}.png" style="width: 120px;">
             </div>
             <div class="ui-g-12 ui-md-8">
               <div class="ui-g">
@@ -79,20 +79,21 @@
     </div>
   </div>
 
-  <p-dialog header="Grupos vinculados" [(visible)]="display" [modal]="true">
+  <p-dialog header="Grupos vinculados" [(visible)]="exibeGrupos"
+            [modal]="true" [draggable]="false" [resizable]="false">
     <p-scrollPanel [style]="{width: '100%', height: '200px'}">
       <ng-template [ngIf]="grupos && grupos.length > 0" [ngIfElse]="nenhumGrupo">
         <div *ngFor="let grupo of grupos">
           <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
             <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <img src="assets/images/grupos/{{grupo.status.imageName}}.png" style="width: 120px;">
+              <img src="assets/images/grupos/{{grupo.status.status}}.png" style="width: 120px;">
             </div>
             <div class="ui-g-12 ui-md-8">
               <div class="ui-g">
-                <div class="ui-g-2 ui-md-6">Nome:</div>
-                <div class="ui-g-10 ui-md-6"><b>{{grupo.nome}}</b></div>
-                <div class="ui-g-2 ui-md-6">Objetivo:</div>
-                <div class="ui-g-10 ui-md-6"><b>{{grupo.objetivo}}</b></div>
+                <div class="ui-g-12 ui-md-2 ui-lg-3">Nome:</div>
+                <div class="ui-g-12 ui-md-10 ui-lg-9"><b>{{grupo.nome}}</b></div>
+                <div class="ui-g-12 ui-md-2 ui-lg-3">Objetivo:</div>
+                <div class="ui-g-12 ui-md-10 ui-lg-9"><b>{{grupo.objetivo}}</b></div>
               </div>
             </div>
           </div>

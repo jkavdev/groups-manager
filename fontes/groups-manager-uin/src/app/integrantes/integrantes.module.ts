@@ -16,10 +16,10 @@ import {ToastModule} from 'primeng/components/toast/toast';
 import {PanelModule} from 'primeng/components/panel/panel';
 import {DataViewModule} from 'primeng/components/dataview/dataview';
 import {DialogModule} from 'primeng/components/dialog/dialog';
+import {ScrollPanelModule} from 'primeng/primeng';
 
 import {IntegrantesCadastroComponent} from './integrantes-cadastro/integrantes-cadastro.component';
 import {IntegrantesPesquisaComponent} from './integrantes-pesquisa/integrantes-pesquisa.component';
-import {ScrollPanelModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [

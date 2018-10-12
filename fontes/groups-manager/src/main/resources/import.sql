@@ -14,11 +14,18 @@ INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('GAM (Grupo
 INSERT INTO grupo(nome, igreja_id, objetivo, status_grupo_id) VALUES('EJOC (Encontro de Jovens com Cristo)',  1, 'O EJOC realiza reuniões e dias de formação espiritual, momentos de louvor e adoração a Deus, vigílias, promove campanhas de arrecadação de alimentos e brinquedos, visita a creches e asilos e conta com um grupo de canto, o Coral do EJOC', 3);
 
 insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Jhonatan', '12345678', 'jhonatan@gmail.com', 'MASCULINO', date_add('1990/05/09', interval 3030 day), '76732380982', 1);
+
 insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Caic', '12345678', 'caic@gmail.com', 'MASCULINO', date_add('1990/05/09', interval 2000 day), '86568613100', 1);
+
 insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Lucas', '12345678', 'lucas@gmail.com', 'MASCULINO', date_add('1990/05/09', interval 1030 day), '84106522420', 1);
-insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Marcia', '12345678', 'marcia@gmail.com', 'FEMININO', date_add('1990/05/09', interval 830 day), '73130338349', 0);
-insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Gabriela', '12345678', 'gabriela@gmail.com', 'FEMININO', date_add('1990/05/09', interval 930 day), '76955721798', 1);
-insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Gabriela', '12345678', 'gabriela@gmail.com', 'FEMININO', date_add('1990/05/09', interval 830 day), '94727374803', 1);
+
+insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Marcia Souza', '12345678', 'marcia@gmail.com', 'FEMININO', date_add('1990/05/09', interval 830 day), '73130338349', 0);
+
+insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Bruna Carla', '12345678', 'marcia@gmail.com', 'FEMININO', date_add('1990/05/09', interval 830 day), '36965297026', 0);
+
+insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Gabriela Mendes', '12345678', 'gabriela@gmail.com', 'FEMININO', date_add('1990/05/09', interval 930 day), '76955721798', 1);
+
+insert into integrante(nome, celular, email, sexo, data_nascimento, cpf, cadastro_efetivado) values ('Paula Santos', '12345678', 'gabriela@gmail.com', 'FEMININO', date_add('1990/05/09', interval 830 day), '94727374803', 1);
 
 insert into grupo_integrante(grupo_id, integrante_id) values (1,1);
 insert into grupo_integrante(grupo_id, integrante_id) values (1,2);
@@ -31,12 +38,13 @@ insert into grupo_integrante(grupo_id, integrante_id) values (2,1);
 insert into grupo_integrante(grupo_id, integrante_id) values (2,2);
 
 insert into grupo_integrante(grupo_id, integrante_id) values (3,2);
-insert into grupo_integrante(grupo_id, integrante_id) values (3,3);
 insert into grupo_integrante(grupo_id, integrante_id) values (3,4);
+insert into grupo_integrante(grupo_id, integrante_id) values (3,1);
+insert into grupo_integrante(grupo_id, integrante_id) values (3,5);
 
 insert into grupo_integrante(grupo_id, integrante_id) values (4,1);
 insert into grupo_integrante(grupo_id, integrante_id) values (4,3);
-insert into grupo_integrante(grupo_id, integrante_id) values (4,5);
+insert into grupo_integrante(grupo_id, integrante_id) values (4,2);
 
 insert into grupo_integrante(grupo_id, integrante_id) values (5,1);
 insert into grupo_integrante(grupo_id, integrante_id) values (5,2);

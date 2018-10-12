@@ -11,7 +11,7 @@
       <div class="ui-g-12 ui-md-3 ui-lg-4">
         <p-card title="{{integrante.nome}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
           <p-header>
-            <img class="imagemIntegrante" src="assets/images/integrantes/avatar2.png">
+            <img class="imagemIntegrante" src="assets/images/integrantes/{{integrante.cpf}}.png">
           </p-header>
           <div class="ui-g">
             <div class="ui-g-12">
@@ -24,7 +24,7 @@
             </div>
             <div class="ui-g-12">
               <div class="ui-g-12 ui-md-6">Data Nascimento</div>
-              <div class="ui-g-12 ui-md-6">{{integrante.dataNascimento}}</div>
+              <div class="ui-g-12 ui-md-6">{{integrante.dataNascimento | date:'dd/MM/yyyy'}}</div>
             </div>
             <div class="ui-g-12">
               <div class="ui-g-12 ui-md-6">Email</div>

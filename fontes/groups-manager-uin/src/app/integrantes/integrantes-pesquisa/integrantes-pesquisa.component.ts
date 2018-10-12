@@ -17,7 +17,7 @@ export class IntegrantesPesquisaComponent implements OnInit {
   filtro = new IntegranteFilter();
   integrantes = [];
   grupos = [];
-  display = false;
+  exibeGrupos = false;
 
   constructor(private integranteService: IntegranteService,
               private confirmation: ConfirmationService,
@@ -40,6 +40,15 @@ export class IntegrantesPesquisaComponent implements OnInit {
 
   limpar() {
     this.filtro = new IntegranteFilter();
+  }
+
+  exibirGrupos(idIntegrante: number) {
+    this.integranteService.buscarGrupos(idIntegrante)
+      .then(grupos => {
+        this.grupos = grupos;
+        this.exibeGrupos = true;
+      })
+      .catch(error => this.errorhandler.handle(error));
   }
 
   remover(integrante: any) {
