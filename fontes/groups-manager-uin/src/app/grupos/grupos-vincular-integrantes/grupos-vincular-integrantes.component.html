@@ -16,7 +16,8 @@
         <label>Grupos</label>
       </div>
       <div class="ui-g-12">
-        <p-dropdown [options]="grupos" [(ngModel)]="grupoSelecionado" [autoWidth]="false"
+        <p-dropdown [options]="grupos" [(ngModel)]="grupoSelecionado" optionLabel="nome" [autoWidth]="false"
+                    placeholder="Selecione um Grupo"
                     (onChange)="atualizarIntegrantesSelecionados()"></p-dropdown>
       </div>
     </div>
@@ -26,8 +27,8 @@
       </div>
       <div class="ui-g-12">
         <p-pickList [source]="integrantes" [target]="integrantesSelecionados" [responsive]="true"
-                    [showSourceControls]="false"
-                    [showTargetControls]="false">
+                    [showSourceControls]="false" [showTargetControls]="false"
+                    [disabled]="vincular">
           <ng-template let-integrante pTemplate="item">
             <div class="ui-helper-clearfix">
               <ng-template [ngIf]="integrante.cpf" [ngIfElse]="semCpf">

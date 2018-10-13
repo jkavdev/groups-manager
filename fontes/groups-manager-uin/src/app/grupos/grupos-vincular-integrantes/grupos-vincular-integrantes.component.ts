@@ -3,6 +3,7 @@ import {GrupoService} from '../grupo.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {MessageService} from 'primeng/api';
 import {IntegranteService} from '../../integrantes/integrante.service';
+import {Grupo, Integrante} from '../../core/model';
 
 @Component({
   selector: 'app-grupos-vincular-integrantes',
@@ -12,10 +13,11 @@ import {IntegranteService} from '../../integrantes/integrante.service';
 })
 export class GruposVincularIntegrantesComponent implements OnInit {
 
-  grupos: any = [];
-  grupoSelecionado: any;
-  integrantes: any = [];
-  integrantesSelecionados: any = [];
+  grupos: Grupo[] = [];
+  grupoSelecionado = new Grupo();
+  integrantes: Integrante[] = [];
+  integrantesSelecionados: Integrante[] = [];
+  vincular = true;
 
   constructor(
     private grupoService: GrupoService,
@@ -34,8 +36,9 @@ export class GruposVincularIntegrantesComponent implements OnInit {
     this.grupoService.gruposComIntegrantes()
       .then(grupos => {
         this.grupos = [];
-        this.grupos.push({label: 'Selecione um Grupo', value: null});
-        grupos.forEach(grupo => this.grupos.push({label: grupo.nome, value: grupo}));
+        // this.grupos.push({label: 'Selecione um Grupo', value: null});
+        // grupos.forEach(grupo => this.grupos.push({label: grupo.nome, value: grupo}));
+        this.grupos = grupos;
       }).catch(error => this.errorhandler.handle(error));
   }
 
@@ -47,7 +50,11 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   }
 
   atualizarIntegrantesSelecionados() {
-    if (this.integrantesSelecionados) {
+    if (this.grupoSelecionado) {
+      const integrantesGrupo = this.grupoSelecionado.integrantes.map(value => JSON.stringify(value));
+      this.vincular = false;
+      this.integrantes =
+        this.integrantes.filter(value => !integrantesGrupo.includes(JSON.stringify(value)));
       this.integrantesSelecionados = this.grupoSelecionado.integrantes;
     }
   }

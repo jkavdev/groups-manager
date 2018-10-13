@@ -27,7 +27,8 @@ public class IntegranteDTO {
 
     }
 
-    public IntegranteDTO(Long id, String nome, Integer idade, String celular, Sexo sexo, String email, LocalDate dataNascimento, String cpf, Boolean cadastroEfetivado) {
+    public IntegranteDTO(Long id, String nome, Integer idade, String celular, Sexo sexo, String email,
+                         LocalDate dataNascimento, String cpf, Boolean cadastroEfetivado) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -40,8 +41,8 @@ public class IntegranteDTO {
     }
 
     public static IntegranteDTO from(Integrante inte) {
-        IntegranteDTO dto = new IntegranteDTO(inte.getId(), inte.getNome(), inte.getIdade(), inte.getCelular(), inte.getSexo(),
-                inte.getEmail(), inte.getDataNascimento(), inte.getCpf(), inte.getCadastroEfetivado());
+        IntegranteDTO dto = new IntegranteDTO(inte.getId(), inte.getNome(), inte.getIdade(), inte.getCelular(),
+                inte.getSexo(), inte.getEmail(), inte.getDataNascimento(), inte.getCpf(), inte.getCadastroEfetivado());
         return dto;
     }
 
