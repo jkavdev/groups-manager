@@ -14,6 +14,7 @@ import {MessageModule} from 'primeng/components/message/message';
 import {ToastModule} from 'primeng/components/toast/toast';
 import {ScheduleModule} from 'primeng/components/schedule/schedule';
 import {CardModule} from 'primeng/components/card/card';
+import {PickListModule} from 'primeng/components/picklist/picklist';
 
 import {GruposCadastroComponent} from './grupos-cadastro/grupos-cadastro.component';
 import {GruposPesquisaComponent} from './grupos-pesquisa/grupos-pesquisa.component';
@@ -38,7 +39,8 @@ import {GruposVincularIntegrantesComponent} from './grupos-vincular-integrantes/
     MessageModule,
     ToastModule,
     ScheduleModule,
-    CardModule
+    CardModule,
+    PickListModule
   ],
   declarations: [
     GruposCadastroComponent,

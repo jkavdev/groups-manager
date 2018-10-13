@@ -28,6 +28,16 @@ export class GrupoService {
       .then(resp => resp.json());
   }
 
+  todosGrupos() {
+    return this.pesquisar(new GrupoFilter());
+  }
+
+  gruposComIntegrantes() {
+    return this.http.get(`${this.gruposUrl}/gruposComIntegrantes`)
+      .toPromise()
+      .then(resp => resp.json());
+  }
+
   todosStatusGrupos(): Promise<any> {
     return this.http.get(`${this.gruposUrl}/status`)
       .toPromise()

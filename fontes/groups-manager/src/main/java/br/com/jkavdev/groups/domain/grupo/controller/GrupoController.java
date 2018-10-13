@@ -5,8 +5,6 @@ import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
-import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
-import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +61,13 @@ public class GrupoController implements ServiceMap {
             throw new EmptyResultDataAccessException(1);
 
         return GrupoDTO.comIntegrantes(opGrupo.get());
+    }
+
+    @GetMapping("/gruposComIntegrantes")
+    public List<GrupoDTO> gruposComIntegrantes() {
+        return grupoService.gruposComIntegrantes().stream()
+                .map(g -> GrupoDTO.comIntegrantes(g))
+                .collect(toList());
     }
 
     @GetMapping("/status")

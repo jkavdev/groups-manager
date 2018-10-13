@@ -21,6 +21,10 @@ export class IntegranteService {
       .then(resp => resp.json());
   }
 
+  todosIntegrantes() {
+    return this.pesquisar(new IntegranteFilter());
+  }
+
   buscarPor(id: number) {
     return this.http.get(`${this.integrantesUrl}/${id}`)
       .toPromise()

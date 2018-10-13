@@ -1,3 +1,51 @@
-<p>
-  grupos-vincular-integrantes works!
-</p>
+<div class="container">
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <h1>Vincular Integrantes</h1>
+      </div>
+    </div>
+  </div>
+
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <label>Grupos</label>
+      </div>
+      <div class="ui-g-12">
+        <p-dropdown [options]="grupos" [(ngModel)]="grupoSelecionado" [autoWidth]="false"
+                    (onChange)="atualizarIntegrantesSelecionados()"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-12">
+        <label>Integrantes</label>
+      </div>
+      <div class="ui-g-12">
+        <p-pickList [source]="integrantes" [target]="integrantesSelecionados" [responsive]="true"
+                    [showSourceControls]="false"
+                    [showTargetControls]="false">
+          <ng-template let-integrante pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <ng-template [ngIf]="integrante.cpf" [ngIfElse]="semCpf">
+                <img src="assets/images/integrantes/{{integrante.cpf}}.png"
+                     style="display:inline-block;margin:2px 0 2px 2px" width="48">
+              </ng-template>
+              <ng-template #semCpf>
+                <img src="assets/images/integrantes/asset-users.svg"
+                     style="display:inline-block;margin:2px 0 2px 2px" width="48">
+              </ng-template>
+              <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{integrante.nome}} - {{integrante.celular}}
+              </div>
+            </div>
+          </ng-template>
+        </p-pickList>
+      </div>
+    </div>
+  </div>
+
+
+</div>
