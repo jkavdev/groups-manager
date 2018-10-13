@@ -50,8 +50,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
     if (this.grupoSelecionado) {
       this.vincular = false;
       const integrantesGrupo = this.grupoSelecionado.integrantes.map(value => JSON.stringify(value));
-      this.integrantes =
-        this.integrantes.filter(value => !integrantesGrupo.includes(JSON.stringify(value)));
+      this.integrantes = this.integrantes.filter(value => !integrantesGrupo.includes(JSON.stringify(value)));
       this.integrantesGrupo = JSON.parse(JSON.stringify(this.grupoSelecionado.integrantes));
     }
   }
@@ -69,6 +68,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
     this.buscarIntegrantes();
     this.grupoSelecionado = new Grupo();
     this.integrantesGrupo = [];
+    this.vincular = true;
   }
 
 }
