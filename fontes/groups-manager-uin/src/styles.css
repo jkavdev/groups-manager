@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #404C51;
@@ -10,24 +10,29 @@ label {
 }
 
 @media (min-width: 1200px) {
-  .container{
+  .container {
     width: 1170px;
     margin: 0 auto;
   }
 }
-.ui-dataview-content.ui-widget-content{
+
+.ui-tieredmenu {
+  width: 220px;
+}
+
+.ui-dataview-content.ui-widget-content {
   border: none !important;
 }
 
-.ui-paginator-top.ui-paginator{
+.ui-paginator-top.ui-paginator {
   border: none !important;
 }
 
-.ui-dataview-header.ui-widget-header.ui-corner-top{
+.ui-dataview-header.ui-widget-header.ui-corner-top {
   border: none !important;
 }
 
 /*para cadastro de grupo*/
-.ui-message.ui-widget.ui-corner-all.ui-message-error.ng-star-inserted{
+.ui-message.ui-widget.ui-corner-all.ui-message-error.ng-star-inserted {
   margin-top: 4px;
 }

@@ -12,6 +12,7 @@ import {NoticiasCadastroComponent} from './noticias/noticias-cadastro/noticias-c
 import {GruposEventosComponent} from './grupos/grupos-eventos/grupos-eventos.component';
 import {PaginaNaoEncontradaComponent} from './core/pagina-nao-encontrada.component';
 import {GruposIntegrantesComponent} from './grupos/grupos-integrantes/grupos-integrantes.component';
+import {GruposVincularIntegrantesComponent} from './grupos/grupos-vincular-integrantes/grupos-vincular-integrantes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'eventos', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'grupos/novo', component: GruposCadastroComponent},
   {path: 'grupos/:id/eventos', component: GruposEventosComponent},
   {path: 'grupos/:id/integrantes', component: GruposIntegrantesComponent},
+  {path: 'grupos/integrantes/vincular', component: GruposVincularIntegrantesComponent},
   {path: 'integrantes', component: IntegrantesPesquisaComponent},
   {path: 'integrantes/novo', component: IntegrantesCadastroComponent},
   {path: 'integrantes/:id', component: IntegrantesCadastroComponent},

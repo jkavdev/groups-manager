@@ -32,6 +32,11 @@ export class NavbarComponent implements OnInit {
         ]
       },
       {
+        label: 'Vincular Integrantes',
+        icon: 'pi pi pi-user-plus',
+        routerLink: '/grupos/integrantes/vincular'
+      },
+      {
         label: 'Eventos',
         icon: 'pi pi-fw pi-calendar',
         items: [
