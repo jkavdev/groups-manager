@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+
+import {MessageService} from 'primeng/api';
 import {GrupoService} from '../grupo.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
-import {MessageService} from 'primeng/api';
 import {IntegranteService} from '../../integrantes/integrante.service';
+
 import {Grupo, Integrante} from '../../core/model';
 
 @Component({
@@ -16,6 +18,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   grupos: Grupo[] = [];
   grupoSelecionado = new Grupo();
   integrantes: Integrante[] = [];
+  integrantesGrupo: Integrante[] = [];
   vincular = true;
 
   constructor(
@@ -33,24 +36,23 @@ export class GruposVincularIntegrantesComponent implements OnInit {
 
   buscarGrupos() {
     this.grupoService.gruposComIntegrantes()
-      .then(grupos => {
-        this.grupos = grupos;
-      }).catch(error => this.errorhandler.handle(error));
+      .then(grupos => this.grupos = grupos)
+      .catch(error => this.errorhandler.handle(error));
   }
 
   buscarIntegrantes() {
     this.integranteService.todosIntegrantes()
-      .then(integrantes => {
-        this.integrantes = integrantes;
-      }).catch(error => this.errorhandler.handle(error));
+      .then(integrantes => this.integrantes = integrantes)
+      .catch(error => this.errorhandler.handle(error));
   }
 
   atualizarIntegrantesSelecionados() {
     if (this.grupoSelecionado) {
-      const integrantesGrupo = this.grupoSelecionado.integrantes.map(value => JSON.stringify(value));
       this.vincular = false;
+      const integrantesGrupo = this.grupoSelecionado.integrantes.map(value => JSON.stringify(value));
       this.integrantes =
         this.integrantes.filter(value => !integrantesGrupo.includes(JSON.stringify(value)));
+      this.integrantesGrupo = JSON.parse(JSON.stringify(this.grupoSelecionado.integrantes));
     }
   }
 
@@ -58,6 +60,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
     this.grupoService.vincularIntegrantes(this.grupoSelecionado.id, this.grupoSelecionado.integrantes)
       .then(() => {
         this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Dados salvos com sucesso!`});
+        this.integrantesGrupo = JSON.parse(JSON.stringify(this.grupoSelecionado.integrantes));
       }).catch(error => this.errorhandler.handle(error));
   }
 
@@ -65,6 +68,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
     this.buscarGrupos();
     this.buscarIntegrantes();
     this.grupoSelecionado = new Grupo();
+    this.integrantesGrupo = [];
   }
 
 }

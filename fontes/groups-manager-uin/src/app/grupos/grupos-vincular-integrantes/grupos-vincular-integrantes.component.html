@@ -56,7 +56,30 @@
                 class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
       </div>
     </div>
-  </div>
 
+    <div class="ui-g-12" style="margin-top: 20px">
+      <div class="ui-g-12">
+        <label>Integrantes do grupo {{grupoSelecionado.nome}}</label>
+      </div>
+      <div class="ui-g-12">
+        <p-table [value]="integrantesGrupo">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Contato</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-integrante>
+            <tr>
+              <td>{{integrante.nome}}</td>
+              <td>{{integrante.idade}} anos</td>
+              <td>{{integrante.celular}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
 
 </div>
