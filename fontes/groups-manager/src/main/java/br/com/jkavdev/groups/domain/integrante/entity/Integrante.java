@@ -66,8 +66,16 @@ public class Integrante {
         this.celular = celular;
     }
 
+    public Integrante(Long id) {
+        this.id = id;
+    }
+
     public static Integrante from(IntegranteDTO dto) {
         return new Integrante(dto.getNome(), dto.getIdade(), dto.getCelular());
+    }
+
+    public static Integrante comId(IntegranteDTO dto) {
+        return new Integrante(dto.getId());
     }
 
     public Long getId() {
@@ -125,6 +133,7 @@ public class Integrante {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("id", id)
                 .append("nome", nome)
                 .append("idade", idade)
                 .append("email", email)
@@ -136,14 +145,12 @@ public class Integrante {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Integrante that = (Integrante) o;
-        return Objects.equals(nome, that.nome) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(cpf, that.cpf);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, email, cpf);
+        return Objects.hash(id);
     }
 
     public void atualizarDadosBasicos(Integrante integrante) {

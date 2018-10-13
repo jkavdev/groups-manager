@@ -5,6 +5,8 @@ import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.entity.StatusGrupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
+import br.com.jkavdev.groups.domain.integrante.dto.IntegranteDTO;
+import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -98,6 +101,15 @@ public class GrupoController implements ServiceMap {
     @ResponseStatus(HttpStatus.OK)
     public void adicionarIntegrante(@PathVariable Long idGrupo, @PathVariable Long idIntegrante) {
         grupoService.adicionarIntegrante(idGrupo, idIntegrante);
+    }
+
+    @PutMapping("{idGrupo}/vincularIntegrantes/")
+    @ResponseStatus(HttpStatus.OK)
+    public void adicionarIntegrante(@PathVariable Long idGrupo, @RequestBody List<IntegranteDTO> dtos) {
+        List<Integrante> integrantes = dtos.stream().
+                map(i -> Integrante.comId(i))
+                .collect(toList());
+        grupoService.vincularIntegrantes(idGrupo, integrantes);
     }
 
 }

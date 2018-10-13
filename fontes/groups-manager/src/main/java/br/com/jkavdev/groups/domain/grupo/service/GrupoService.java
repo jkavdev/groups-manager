@@ -71,4 +71,14 @@ public class GrupoService {
         grupoSalvo.atualizarDadosBasicos(grupo);
         grupoRepository.save(grupoSalvo);
     }
+
+    public void vincularIntegrantes(Long idGrupo, List<Integrante> integrantes) {
+        Optional<Grupo> opGrupo = grupoRepository.findByIdFetchIntegrantes(idGrupo);
+        opGrupo.orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+        Grupo grupo = opGrupo.get();
+        grupo.adicionar(integrantes);
+
+        grupoRepository.save(grupo);
+    }
 }

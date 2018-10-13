@@ -27,6 +27,10 @@ public class IntegranteDTO {
 
     }
 
+    public IntegranteDTO(Long id) {
+        this.id = id;
+    }
+
     public IntegranteDTO(Long id, String nome, Integer idade, String celular, Sexo sexo, String email,
                          LocalDate dataNascimento, String cpf, Boolean cadastroEfetivado) {
         this.id = id;

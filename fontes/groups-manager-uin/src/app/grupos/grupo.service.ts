@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
-import {Grupo} from '../core/model';
-import {GrupoFilter} from '../core/filters';
 import {environment} from '../../environments/environment';
+
+import {Grupo, Integrante} from '../core/model';
+import {GrupoFilter} from '../core/filters';
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +79,11 @@ export class GrupoService {
     return this.http.get(`${this.gruposUrl}/${id}`)
       .toPromise()
       .then(resp => resp.json());
+  }
+
+  vincularIntegrantes(id: number, integrantes: Integrante[]) {
+    return this.http.put(`${this.gruposUrl}/${id}/vincularIntegrantes/`, integrantes)
+      .toPromise()
+      .then(() => {});
   }
 }

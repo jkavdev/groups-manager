@@ -26,7 +26,7 @@
         <label>Integrantes</label>
       </div>
       <div class="ui-g-12">
-        <p-pickList [source]="integrantes" [target]="integrantesSelecionados" [responsive]="true"
+        <p-pickList [source]="integrantes" [target]="grupoSelecionado.integrantes" [responsive]="true"
                     [showSourceControls]="false" [showTargetControls]="false"
                     [disabled]="vincular">
           <ng-template let-integrante pTemplate="item">
@@ -44,6 +44,16 @@
             </div>
           </ng-template>
         </p-pickList>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-12 ui-md-3">
+        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Salvar Alterações"
+                class="ui-button-raised" (click)="salvarAlteracoes()"></button>
+      </div>
+      <div class="ui-g-12 ui-md-3">
+        <button pButton icon="pi pi-refresh" iconPos="left" type="button" label="Limpar"
+                class="ui-button-raised ui-button-secondary" (click)="limpar()"></button>
       </div>
     </div>
   </div>

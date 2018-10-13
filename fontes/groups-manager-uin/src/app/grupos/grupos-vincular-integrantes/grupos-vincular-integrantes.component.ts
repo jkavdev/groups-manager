@@ -16,7 +16,6 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   grupos: Grupo[] = [];
   grupoSelecionado = new Grupo();
   integrantes: Integrante[] = [];
-  integrantesSelecionados: Integrante[] = [];
   vincular = true;
 
   constructor(
@@ -35,9 +34,6 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   buscarGrupos() {
     this.grupoService.gruposComIntegrantes()
       .then(grupos => {
-        this.grupos = [];
-        // this.grupos.push({label: 'Selecione um Grupo', value: null});
-        // grupos.forEach(grupo => this.grupos.push({label: grupo.nome, value: grupo}));
         this.grupos = grupos;
       }).catch(error => this.errorhandler.handle(error));
   }
@@ -55,16 +51,20 @@ export class GruposVincularIntegrantesComponent implements OnInit {
       this.vincular = false;
       this.integrantes =
         this.integrantes.filter(value => !integrantesGrupo.includes(JSON.stringify(value)));
-      this.integrantesSelecionados = this.grupoSelecionado.integrantes;
     }
   }
 
-  // atualizarIntegrantesSelecionados() {
-  //   if (this.grupoSelecionado) {
-  //     this.integrantesSelecionados = this.grupoSelecionado.integrantes;
-  //   }{
-  //     this.integrantesSelecionados = [];
-  //   }
-  // }
+  salvarAlteracoes() {
+    this.grupoService.vincularIntegrantes(this.grupoSelecionado.id, this.grupoSelecionado.integrantes)
+      .then(() => {
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Dados salvos com sucesso!`});
+      }).catch(error => this.errorhandler.handle(error));
+  }
+
+  limpar() {
+    this.buscarGrupos();
+    this.buscarIntegrantes();
+    this.grupoSelecionado = new Grupo();
+  }
 
 }

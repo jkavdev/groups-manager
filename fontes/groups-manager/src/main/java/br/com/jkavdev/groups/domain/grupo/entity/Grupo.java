@@ -9,10 +9,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Grupo {
@@ -120,6 +117,11 @@ public class Grupo {
     public void adicionar(Integrante integrante) {
         Objects.requireNonNull(integrante);
         integrantes.add(integrante);
+    }
+
+    public void adicionar(Collection<Integrante> integrantes) {
+        Objects.requireNonNull(integrantes);
+        this.integrantes = new HashSet<>(integrantes);
     }
 
     @Override
