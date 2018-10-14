@@ -1,10 +1,12 @@
 package br.com.jkavdev.groups.domain.grupo.service;
 
+import br.com.jkavdev.groups.domain.evento.repository.EventoRepository;
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
 import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
+import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
 import br.com.jkavdev.groups.exceptionhandler.NegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,12 +22,19 @@ public class GrupoService {
     private GrupoRepository grupoRepository;
     @Autowired
     private IntegranteRepository integranteRepository;
+    @Autowired
+    private EventoRepository eventoRepository;
+    @Autowired
+    private NoticiaRepository noticiaRepository;
 
     public void remover(Long id) {
 
         if (grupoRepository.countByIntegrantes(id) > 0) {
             throw new NegocioException("grupo.com-integrantes");
         }
+
+        eventoRepository.removeEventosDoGrupo(id);
+        noticiaRepository.removeNoticiasDoGrupo(id);
 
         grupoRepository.deleteById(id);
     }
