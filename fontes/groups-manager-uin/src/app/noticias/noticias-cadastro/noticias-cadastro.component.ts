@@ -41,6 +41,7 @@ export class NoticiasCadastroComponent implements OnInit {
 
   noticiaGroupControl() {
     return this.fb.group({
+      'id': new FormControl(''),
       'titulo': new FormControl('', Validators.required),
       'publica': new FormControl('', Validators.required),
       'topicos': new FormControl('', Validators.required),
@@ -55,10 +56,33 @@ export class NoticiasCadastroComponent implements OnInit {
     });
   }
 
-  salvar(noticia: any) {
+  salvar() {
+    if (this.editando) {
+      this.alterarNoticia();
+    } else {
+      this.adicionarNoticia();
+    }
+  }
+
+  get editando() {
+    return Boolean(this.noticiaForm.get('id').value);
+  }
+
+  private adicionarNoticia() {
+    const noticia = this.noticiaForm.value;
     this.noticiaService.adicionar(noticia)
-      .then(() => this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Notícia adicionada!`}))
-      .catch(erro => this.errorHandler.handle(erro));
+      .then(noticiaSalva => {
+        this.noticiaForm.patchValue(noticiaSalva);
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Notícia adicionada!`});
+      }).catch(error => this.errorHandler.handle(error));
+  }
+
+  private alterarNoticia() {
+    const noticia = this.noticiaForm.value;
+    this.noticiaService.atualizar(noticia)
+      .then(() => {
+        this.msgService.add({severity: 'info', summary: `Sucesso!`, detail: `Notícia alterada!`});
+      }).catch(error => this.errorHandler.handle(error));
   }
 
   buscarTopicos() {

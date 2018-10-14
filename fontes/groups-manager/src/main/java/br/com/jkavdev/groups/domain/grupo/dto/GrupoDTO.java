@@ -145,6 +145,7 @@ public class GrupoDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
+                .append("id", id)
                 .append("nome", nome)
                 .append("objetivo", objetivo)
                 .append("igreja", igreja)

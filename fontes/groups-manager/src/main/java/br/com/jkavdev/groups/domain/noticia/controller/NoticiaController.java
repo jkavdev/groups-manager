@@ -1,10 +1,12 @@
 package br.com.jkavdev.groups.domain.noticia.controller;
 
 import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
-import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
+import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
+import br.com.jkavdev.groups.domain.noticia.dto.NoticiaDTO;
 import br.com.jkavdev.groups.domain.noticia.entity.Noticia;
 import br.com.jkavdev.groups.domain.noticia.entity.Topico;
 import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
+import br.com.jkavdev.groups.domain.noticia.service.NoticiaService;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,9 @@ import static java.util.stream.Collectors.toList;
 public class NoticiaController implements ServiceMap {
 
     @Autowired
-    private NoticiaRepository noticiaRepository;
+    private NoticiaService noticiaService;
     @Autowired
-    private GrupoRepository grupoRepository;
+    private GrupoService grupoService;
     @Autowired
     private ApplicationEventPublisher publisher;
 
@@ -37,21 +39,28 @@ public class NoticiaController implements ServiceMap {
     }
 
     @PostMapping
-    public ResponseEntity<Noticia> salvar(@RequestBody @Valid Noticia noticia, HttpServletResponse response) {
-        Noticia noticiaSalva = noticiaRepository.save(noticia);
+    public ResponseEntity<NoticiaDTO> salvar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
+        Noticia noticiaSalva = noticiaService.salvar(Noticia.from(noticia));
+        noticia.setId(noticiaSalva.getId());
         publisher.publishEvent(new RecursoCriadoEvent(this, response, noticiaSalva.getId()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(noticiaSalva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(noticia);
+    }
+
+    @PutMapping
+    public ResponseEntity<NoticiaDTO> atualizar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
+        noticiaService.atualizar(Noticia.from(noticia));
+        return ResponseEntity.ok(noticia);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable @Valid @NotNull Long id) {
-        noticiaRepository.deleteById(id);
+        noticiaService.remover(id);
     }
 
     @GetMapping("/agrupadas")
     public List<GrupoDTO> agrupadas() {
-        return grupoRepository.gruposComNoticias().stream()
+        return grupoService.gruposComNoticias().stream()
                 .map(g -> GrupoDTO.comNoticias(g))
                 .collect(toList());
     }
@@ -59,9 +68,7 @@ public class NoticiaController implements ServiceMap {
     @PutMapping("{id}/marcar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void marcar(@PathVariable @Valid @NotNull Long id, @RequestBody Boolean util) {
-        Noticia noticia = noticiaRepository.getOne(id);
-        noticia.adiciona(util);
-        noticiaRepository.save(noticia);
+        noticiaService.marcar(id, util);
     }
 
 }

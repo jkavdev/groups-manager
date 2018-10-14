@@ -30,15 +30,16 @@
                   <div class="image-box-content">
                     <img src="assets/images/gradient-waters.png" style="width: 100%;">
                     <h3>{{noticia.titulo}}</h3>
-                    <div class="image-box-tag">
-                      <div *ngFor="let topico of noticia.topicos">
+                    <div class="image-box-tag" style="font-weight: bold">
+                      <div *ngFor="let topico of noticia.topicos"
+                           class="ui-chips-token" style="padding-left: inherit">
                         {{topico.descricao}}
                       </div>
                     </div>
-                    <div [innerHTML]="noticia.corpo"></div>
+                    <div style="margin-top: 20px" [innerHTML]="noticia.corpo"></div>
                   </div>
                   <p-footer>
-                    <div class="image-box-footer">
+                    <div style="margin-top: 20px" class="image-box-footer">
                       <a pButton class="ui-button-raised ui-button-success" icon="pi pi-arrow-circle-up"
                          pTooltip="Marcar como útil" tooltipPosition="top"
                          (click)="marcarComoUtil(noticia.id)"></a>
