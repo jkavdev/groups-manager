@@ -34,7 +34,7 @@ public class Noticia {
     private String corpo;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo_id", foreignKey = @ForeignKey(name = "fk_noticia_grupo_id"))
     private Grupo grupo;
 
@@ -87,7 +87,7 @@ public class Noticia {
         return grupo;
     }
 
-    public void adiciona(Boolean util) {
+    public void marcar(boolean util) {
         this.informacaoUtil.add(util);
     }
 

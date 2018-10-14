@@ -1,7 +1,7 @@
 package br.com.jkavdev.groups.domain.noticia.controller;
 
 import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
-import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
+import br.com.jkavdev.groups.domain.grupo.service.GrupoService;
 import br.com.jkavdev.groups.domain.noticia.dto.NoticiaDTO;
 import br.com.jkavdev.groups.domain.noticia.entity.Noticia;
 import br.com.jkavdev.groups.domain.noticia.entity.Topico;
@@ -27,11 +27,9 @@ import static java.util.stream.Collectors.toList;
 public class NoticiaController implements ServiceMap {
 
     @Autowired
-    private NoticiaRepository noticiaRepository;
-    @Autowired
-    private GrupoRepository grupoRepository;
-    @Autowired
     private NoticiaService noticiaService;
+    @Autowired
+    private GrupoService grupoService;
     @Autowired
     private ApplicationEventPublisher publisher;
 
@@ -50,12 +48,12 @@ public class NoticiaController implements ServiceMap {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable @Valid @NotNull Long id) {
-        noticiaRepository.deleteById(id);
+        noticiaService.remover(id);
     }
 
     @GetMapping("/agrupadas")
     public List<GrupoDTO> agrupadas() {
-        return grupoRepository.gruposComNoticias().stream()
+        return grupoService.gruposComNoticias().stream()
                 .map(g -> GrupoDTO.comNoticias(g))
                 .collect(toList());
     }
@@ -63,9 +61,7 @@ public class NoticiaController implements ServiceMap {
     @PutMapping("{id}/marcar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void marcar(@PathVariable @Valid @NotNull Long id, @RequestBody Boolean util) {
-        Noticia noticia = noticiaRepository.getOne(id);
-        noticia.adiciona(util);
-        noticiaRepository.save(noticia);
+        noticiaService.marcar(id, util);
     }
 
 }
