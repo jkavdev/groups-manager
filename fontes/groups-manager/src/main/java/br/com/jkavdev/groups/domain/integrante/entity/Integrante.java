@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -123,11 +124,17 @@ public class Integrante {
     }
 
     public Set<Grupo> getGrupos() {
-        return grupos;
+        return Collections.unmodifiableSet(grupos);
     }
 
     public void efetivarCadastro() {
-        this.cadastroEfetivado = Boolean.TRUE;
+        this.cadastroEfetivado = true;
+    }
+
+    public void atualizarDadosBasicos(Integrante integrante) {
+        this.nome = integrante.getNome();
+        this.idade = integrante.getIdade();
+        this.celular = integrante.getCelular();
     }
 
     @Override
@@ -153,9 +160,4 @@ public class Integrante {
         return Objects.hash(id);
     }
 
-    public void atualizarDadosBasicos(Integrante integrante) {
-        this.nome = integrante.getNome();
-        this.idade = integrante.getIdade();
-        this.celular = integrante.getCelular();
-    }
 }

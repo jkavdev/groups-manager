@@ -1,6 +1,9 @@
 package br.com.jkavdev.groups.domain.integrante.repository;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.br.CPF;
+
+import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
 
 public class IntegranteFilter {
 	
@@ -27,10 +30,13 @@ public class IntegranteFilter {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "IntegranteFilter [nome=" + nome + ", grupo=" + grupo + ", cpf=" + cpf + "]";
+		return new ToStringBuilder(this, JSON_STYLE)
+				.append("nome", nome)
+				.append("grupo", grupo)
+				.append("cpf", cpf)
+				.toString();
 	}
-	
 }
