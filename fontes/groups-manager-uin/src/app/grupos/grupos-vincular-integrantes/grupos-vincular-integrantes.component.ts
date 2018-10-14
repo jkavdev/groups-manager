@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 import {MessageService} from 'primeng/api';
 import {GrupoService} from '../grupo.service';
@@ -25,6 +26,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   constructor(
     private grupoService: GrupoService,
     private integranteService: IntegranteService,
+    private route: ActivatedRoute,
     private errorhandler: ErrorHandlerService,
     private msgService: MessageService,
   ) {
@@ -33,6 +35,12 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   ngOnInit() {
     this.buscarGrupos();
     this.buscarIntegrantes();
+
+    const grupoId = this.route.snapshot.params['id'];
+    if (grupoId) {
+      this.buscarGrupo(grupoId);
+    }
+
   }
 
   buscarGrupos() {
@@ -48,6 +56,12 @@ export class GruposVincularIntegrantesComponent implements OnInit {
         this.integrantes = integrantes;
       })
       .catch(error => this.errorhandler.handle(error));
+  }
+
+  buscarGrupo(id: number) {
+    this.grupoService.comIntegrantes(id)
+      .then(grupo => this.grupoSelecionado = grupo)
+      .catch(erro => this.errorhandler.handle(erro));
   }
 
   get editando() {

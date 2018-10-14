@@ -4,6 +4,10 @@
     <div class="ui-g-12 tituloConteudo">
       <h1>Integrantes do grupo {{grupo.nome}}</h1>
     </div>
+    <div class="ui-g-12 tituloConteudo">
+      <a pButton label="Vincular Integrante" class="ui-button-raised" icon="pi pi-plus"
+              [routerLink]="[grupo.id, 'vincular']"></a>
+    </div>
   </div>
 
   <div class="ui-g integranteDiv">
