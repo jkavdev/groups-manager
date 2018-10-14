@@ -3,7 +3,7 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <div class="ui-g-12">
-        <h1>Vincular Integrantes</h1>
+        <h1>Vincular Integrantes {{editando ? 'do ' + grupoSelecionado.nome : ''}}</h1>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="ui-g-12">
       <div class="ui-g-12 ui-md-3">
-        <button pButton icon="pi pi-search" iconPos="left" type="button" label="Salvar Alterações"
+        <button pButton icon="pi pi-save" iconPos="left" type="button" label="Salvar Alterações"
                 class="ui-button-raised" (click)="salvarAlteracoes()"></button>
       </div>
       <div class="ui-g-12 ui-md-3">

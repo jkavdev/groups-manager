@@ -18,6 +18,7 @@ export class GruposVincularIntegrantesComponent implements OnInit {
   grupos: Grupo[] = [];
   grupoSelecionado = new Grupo();
   integrantes: Integrante[] = [];
+  integrantesA: Integrante[] = [];
   integrantesGrupo: Integrante[] = [];
   vincular = true;
 
@@ -42,11 +43,20 @@ export class GruposVincularIntegrantesComponent implements OnInit {
 
   buscarIntegrantes() {
     this.integranteService.todosIntegrantes()
-      .then(integrantes => this.integrantes = integrantes)
+      .then(integrantes => {
+        this.integrantesA = integrantes;
+        this.integrantes = integrantes;
+      })
       .catch(error => this.errorhandler.handle(error));
   }
 
+  get editando() {
+    return Boolean(this.grupoSelecionado.nome);
+  }
+
   atualizarIntegrantesSelecionados() {
+    // resentando o valor de integrantes
+    this.integrantes = this.integrantesA;
     if (this.grupoSelecionado) {
       this.vincular = false;
       const integrantesGrupo = this.grupoSelecionado.integrantes.map(value => JSON.stringify(value));
