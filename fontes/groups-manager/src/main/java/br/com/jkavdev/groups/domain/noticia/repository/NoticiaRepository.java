@@ -12,4 +12,10 @@ public interface NoticiaRepository extends JpaRepository<Noticia, Long> {
     @Query("SELECT n FROM Noticia n LEFT JOIN FETCH n.informacaoUtil i WHERE n.id = :id")
     Optional<Noticia> comInformacoesUtil(@Param("id") Long id);
 
+    @Query("SELECT n FROM Noticia n " +
+            "INNER JOIN FETCH n.topicos t " +
+            "INNER JOIN FETCH n.grupo g " +
+            "WHERE n.id = :id")
+    Optional<Noticia> comTodosDados(@Param("id") Long id);
+
 }

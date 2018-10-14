@@ -39,10 +39,17 @@ public class NoticiaController implements ServiceMap {
     }
 
     @PostMapping
-    public ResponseEntity<@Valid NoticiaDTO> salvar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
+    public ResponseEntity<NoticiaDTO> salvar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
         Noticia noticiaSalva = noticiaService.salvar(Noticia.from(noticia));
+        noticia.setId(noticiaSalva.getId());
         publisher.publishEvent(new RecursoCriadoEvent(this, response, noticiaSalva.getId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(noticia);
+    }
+
+    @PutMapping
+    public ResponseEntity<NoticiaDTO> atualizar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
+        noticiaService.atualizar(Noticia.from(noticia));
+        return ResponseEntity.ok(noticia);
     }
 
     @DeleteMapping("{id}")

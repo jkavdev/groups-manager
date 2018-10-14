@@ -2,6 +2,7 @@ package br.com.jkavdev.groups.domain.noticia.service;
 
 import br.com.jkavdev.groups.domain.noticia.entity.Noticia;
 import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,13 @@ public class NoticiaService {
         noticiaRepository.save(noticia);
     }
 
+    public void atualizar(Noticia noticia) {
+        Optional<Noticia> noticiaOp = noticiaRepository.comTodosDados(noticia.getId());
+        noticiaOp.orElseThrow(() -> new EmptyResultDataAccessException(1));
+
+        Noticia noticiaSalva = noticiaOp.get();
+        noticiaSalva.alterarDados(noticia);
+
+        noticiaRepository.save(noticiaSalva);
+    }
 }

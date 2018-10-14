@@ -53,7 +53,8 @@ public class Noticia {
     public Noticia() {
     }
 
-    public Noticia(String titulo, Set<Topico> topicos, String corpo, Grupo grupo, boolean publica) {
+    public Noticia(Long id, String titulo, Set<Topico> topicos, String corpo, Grupo grupo, boolean publica) {
+        this.id = id;
         this.titulo = titulo;
         this.topicos = topicos;
         this.corpo = corpo;
@@ -62,7 +63,7 @@ public class Noticia {
     }
 
     public static Noticia from(NoticiaDTO dto) {
-        Noticia noticia = new Noticia(dto.getTitulo(), dto.getTopicos(), dto.getCorpo(),
+        Noticia noticia = new Noticia(dto.getId(), dto.getTitulo(), dto.getTopicos(), dto.getCorpo(),
                 Grupo.from(dto.getGrupo().getId()), dto.getPublica());
         return noticia;
     }
@@ -79,7 +80,7 @@ public class Noticia {
         return corpo;
     }
 
-    public Collection<Topico> getTopicos() {
+    public Set<Topico> getTopicos() {
         return Collections.unmodifiableSet(topicos);
     }
 
@@ -91,6 +92,15 @@ public class Noticia {
         this.informacaoUtil.add(util);
     }
 
+    public void alterarDados(Noticia noticia) {
+        this.titulo = noticia.titulo;
+        this.topicos = noticia.topicos;
+        this.corpo = noticia.corpo;
+        this.publica = noticia.publica;
+        this.foto = noticia.foto;
+        this.grupo = noticia.grupo;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
@@ -98,4 +108,5 @@ public class Noticia {
                 .append("titulo", titulo)
                 .toString();
     }
+
 }

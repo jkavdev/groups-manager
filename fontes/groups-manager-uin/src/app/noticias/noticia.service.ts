@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, Http} from '@angular/http';
 import {environment} from '../../environments/environment';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,28 @@ export class NoticiaService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(`${this.noticiasUrl}`,
+      JSON.stringify(noticia), {headers})
+      .toPromise()
+      .then(resp => {
+
+        const noticiaSalva = resp.json();
+
+        this.converterTopicos(noticiaSalva);
+
+        return noticiaSalva;
+      });
+  }
+
+  private converterTopicos(noticia: any) {
+    noticia.topicos = noticia.topicos.map(topico => topico.topico);
+  }
+
+  atualizar(noticia: any) {
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.noticiasUrl}`,
       JSON.stringify(noticia), {headers})
       .toPromise()
       .then(resp => resp.json());
@@ -43,4 +66,5 @@ export class NoticiaService {
       .toPromise()
       .then(resp => resp.json());
   }
+
 }

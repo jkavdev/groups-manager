@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class NoticiaDTO {
 
-    private String id;
+    private Long id;
     @NotNull
     private GrupoDTO grupo;
     @NotBlank
@@ -21,13 +21,13 @@ public class NoticiaDTO {
     @NotBlank
     private String corpo;
     @NotNull
-    private Set<Topico> topicos;
+    private Set<Topico> topicos = new HashSet<>();
     private Boolean publica;
 
     public NoticiaDTO() {
     }
 
-    public NoticiaDTO(GrupoDTO grupo, String id, String titulo, String corpo, Set<Topico> topicos) {
+    public NoticiaDTO(GrupoDTO grupo, Long id, String titulo, String corpo, Set<Topico> topicos) {
         this.grupo = grupo;
         this.id = id;
         this.titulo = titulo;
@@ -36,7 +36,7 @@ public class NoticiaDTO {
     }
 
     public static NoticiaDTO from(Noticia noticia) {
-        NoticiaDTO dto = new NoticiaDTO(GrupoDTO.from(noticia.getGrupo()), noticia.getId().toString(),
+        NoticiaDTO dto = new NoticiaDTO(GrupoDTO.from(noticia.getGrupo()), noticia.getId(),
                 noticia.getTitulo(), noticia.getCorpo(), new HashSet<>(noticia.getTopicos()));
         return dto;
     }
@@ -49,11 +49,11 @@ public class NoticiaDTO {
         this.grupo = grupo;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
