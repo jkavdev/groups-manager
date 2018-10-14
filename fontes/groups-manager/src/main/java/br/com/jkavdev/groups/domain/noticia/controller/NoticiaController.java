@@ -2,9 +2,11 @@ package br.com.jkavdev.groups.domain.noticia.controller;
 
 import br.com.jkavdev.groups.domain.grupo.dto.GrupoDTO;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
+import br.com.jkavdev.groups.domain.noticia.dto.NoticiaDTO;
 import br.com.jkavdev.groups.domain.noticia.entity.Noticia;
 import br.com.jkavdev.groups.domain.noticia.entity.Topico;
 import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
+import br.com.jkavdev.groups.domain.noticia.service.NoticiaService;
 import br.com.jkavdev.groups.event.RecursoCriadoEvent;
 import br.com.jkavdev.groups.utils.ServiceMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class NoticiaController implements ServiceMap {
     @Autowired
     private GrupoRepository grupoRepository;
     @Autowired
+    private NoticiaService noticiaService;
+    @Autowired
     private ApplicationEventPublisher publisher;
 
     @GetMapping("/topicos")
@@ -37,10 +41,10 @@ public class NoticiaController implements ServiceMap {
     }
 
     @PostMapping
-    public ResponseEntity<Noticia> salvar(@RequestBody @Valid Noticia noticia, HttpServletResponse response) {
-        Noticia noticiaSalva = noticiaRepository.save(noticia);
+    public ResponseEntity<@Valid NoticiaDTO> salvar(@RequestBody @Valid NoticiaDTO noticia, HttpServletResponse response) {
+        Noticia noticiaSalva = noticiaService.salvar(Noticia.from(noticia));
         publisher.publishEvent(new RecursoCriadoEvent(this, response, noticiaSalva.getId()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(noticiaSalva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(noticia);
     }
 
     @DeleteMapping("{id}")
