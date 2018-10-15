@@ -15,7 +15,12 @@
       <div class="ui-g-12 ui-md-3 ui-lg-4">
         <p-card title="{{integrante.nome}}" [style]="{width: '360px'}" styleClass="ui-card-shadow">
           <p-header>
-            <img class="imagemIntegrante" src="assets/images/integrantes/{{integrante.cpf}}.png">
+            <ng-template [ngIf]="integrante.cpf" [ngIfElse]="semCpf">
+              <img src="assets/images/integrantes/{{integrante.cpf}}.png" class="imagemIntegrante">
+            </ng-template>
+            <ng-template #semCpf>
+              <img src="assets/images/integrantes/asset-users.svg" class="imagemIntegrante">
+            </ng-template>
           </p-header>
           <div class="ui-g">
             <div class="ui-g-12">

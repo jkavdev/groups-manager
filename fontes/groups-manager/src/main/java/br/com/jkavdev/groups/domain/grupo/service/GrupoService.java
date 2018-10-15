@@ -1,12 +1,12 @@
 package br.com.jkavdev.groups.domain.grupo.service;
 
-import br.com.jkavdev.groups.domain.evento.repository.EventoRepository;
+import br.com.jkavdev.groups.domain.evento.service.EventoService;
 import br.com.jkavdev.groups.domain.grupo.entity.Grupo;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoFilter;
 import br.com.jkavdev.groups.domain.grupo.repository.GrupoRepository;
 import br.com.jkavdev.groups.domain.integrante.entity.Integrante;
-import br.com.jkavdev.groups.domain.integrante.repository.IntegranteRepository;
-import br.com.jkavdev.groups.domain.noticia.repository.NoticiaRepository;
+import br.com.jkavdev.groups.domain.integrante.service.IntegranteService;
+import br.com.jkavdev.groups.domain.noticia.service.NoticiaService;
 import br.com.jkavdev.groups.exceptionhandler.NegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,22 +21,22 @@ public class GrupoService {
     @Autowired
     private GrupoRepository grupoRepository;
     @Autowired
-    private IntegranteRepository integranteRepository;
+    private IntegranteService integranteService;
     @Autowired
-    private EventoRepository eventoRepository;
+    private EventoService eventoService;
     @Autowired
-    private NoticiaRepository noticiaRepository;
+    private NoticiaService noticiaService;
 
     public void remover(Long id) {
-
         if (grupoRepository.countByIntegrantes(id) > 0) {
             throw new NegocioException("grupo.com-integrantes");
         }
 
-        eventoRepository.removeEventosDoGrupo(id);
-        noticiaRepository.removeNoticiasDoGrupo(id);
+        Grupo grupo = grupoRepository.grupoTodosDados(id);
+        grupo.getEventos().forEach(e -> eventoService.remover(e.getId()));
+        grupo.getNoticias().forEach(n -> noticiaService.remover(n.getId()));
 
-        grupoRepository.deleteById(id);
+        grupoRepository.delete(grupo);
     }
 
     public List<Grupo> filtrar(GrupoFilter filter) {
@@ -51,8 +51,10 @@ public class GrupoService {
         return grupoRepository.findByIdFetchEventos(id);
     }
 
-    public Optional<Grupo> comIntegrantes(Long groupoId) {
-        return grupoRepository.findByIdFetchIntegrantes(groupoId);
+    public Grupo comIntegrantes(Long groupoId) {
+        Optional<Grupo> opGrupo = grupoRepository.findByIdFetchIntegrantes(groupoId);
+        opGrupo.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return opGrupo.get();
     }
 
     public List<Grupo> gruposComIntegrantes() {
@@ -64,19 +66,16 @@ public class GrupoService {
     }
 
     public void adicionarIntegrante(Long idGrupo, Long idIntegrante) {
-        Optional<Grupo> opGrupo = grupoRepository.findByIdFetchIntegrantes(idGrupo);
-        opGrupo.orElseThrow(() -> new EmptyResultDataAccessException(1));
-        Optional<Integrante> opIntegrante = integranteRepository.findById(idIntegrante);
-        opIntegrante.orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-        Grupo grupo = opGrupo.get();
-        grupo.adicionar(opIntegrante.get());
-
+        Grupo grupo = comIntegrantes(idGrupo);
+        Integrante integrante = integranteService.buscarPeloId(idIntegrante);
+        grupo.adicionar(integrante);
         grupoRepository.save(grupo);
     }
 
     public Grupo buscarPor(Long id) {
-        return grupoRepository.findById(id).get();
+        Optional<Grupo> op = grupoRepository.findById(id);
+        op.orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return op.get();
     }
 
     public void atualizar(Long id, Grupo grupo) {
@@ -86,12 +85,8 @@ public class GrupoService {
     }
 
     public void vincularIntegrantes(Long idGrupo, List<Integrante> integrantes) {
-        Optional<Grupo> opGrupo = grupoRepository.findByIdFetchIntegrantes(idGrupo);
-        opGrupo.orElseThrow(() -> new EmptyResultDataAccessException(1));
-
-        Grupo grupo = opGrupo.get();
+        Grupo grupo = comIntegrantes(idGrupo);
         grupo.adicionar(integrantes);
-
         grupoRepository.save(grupo);
     }
 }
