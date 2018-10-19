@@ -32,7 +32,7 @@ public class Evento {
     private BigDecimal valor;
 
     @NotNull
-    @Column(name = "lotacao_maxima")
+    @Column(name = "lotacao_maxima", length = 200)
     private Integer lotacaoMaxima;
 
     @NotNull

@@ -21,21 +21,27 @@ public class Integrante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100)
     private String nome;
 
+    @Column(length = 3)
     private Integer idade;
 
+    @Column(length = 15)
     private String celular;
 
+    @Column(length = 100)
     private String email;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 10)
     private Sexo sexo;
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
     @CPF
+    @Column(length = 17)
     private String cpf;
 
     @Column(name = "cadastro_efetivado")

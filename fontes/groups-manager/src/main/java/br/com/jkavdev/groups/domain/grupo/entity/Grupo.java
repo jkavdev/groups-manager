@@ -19,6 +19,7 @@ public class Grupo {
     private Long id;
 
     @NotBlank
+    @Column(length = 100)
     private String nome;
 
     @NotBlank

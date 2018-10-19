@@ -19,19 +19,24 @@ public class Endereco {
     private String logradouro;
 
     @NotBlank
+    @Column(length = 20)
     private String unidade;
 
     @NotBlank
+    @Column(length = 50)
     private String localidade;
 
     @NotBlank
+    @Column(length = 100)
     private String bairro;
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(length = 2)
     private UF uf;
 
     @NotBlank
+    @Column(length = 10)
     private String cep;
 
     @Column(columnDefinition = "text")

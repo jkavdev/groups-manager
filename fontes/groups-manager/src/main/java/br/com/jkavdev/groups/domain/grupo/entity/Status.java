@@ -2,10 +2,7 @@ package br.com.jkavdev.groups.domain.grupo.entity;
 
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collection;
 
 //Apenas para gerar o ddl com o hibernate
@@ -18,6 +15,7 @@ public class Status {
     @Id
     private Long id;
 
+    @Column(length = 20)
     private String nome;
 
     private String descricao;

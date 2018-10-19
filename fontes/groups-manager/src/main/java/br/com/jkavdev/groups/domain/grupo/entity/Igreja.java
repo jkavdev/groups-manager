@@ -14,6 +14,7 @@ public class Igreja {
     @Id
     private Long id;
 
+    @Column(length = 100)
     private String nome;
 
     @OneToMany(mappedBy = "igreja")

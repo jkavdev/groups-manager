@@ -18,6 +18,7 @@ public class Noticia {
     private Long id;
 
     @NotBlank
+    @Column(length = 100)
     private String titulo;
 
     @NotNull
@@ -26,7 +27,7 @@ public class Noticia {
             name = "topico_noticia",
             joinColumns = @JoinColumn(name = "noticia_id"), foreignKey = @ForeignKey(name = "fk_topico_noticia_noticia_id"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "topico", nullable = false)
+    @Column(name = "topico", nullable = false, length = 20)
     private Set<Topico> topicos = new HashSet<>();
 
     @NotBlank

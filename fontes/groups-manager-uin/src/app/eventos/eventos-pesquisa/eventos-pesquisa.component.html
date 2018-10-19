@@ -43,11 +43,11 @@
       </div>
       <div class="ui-g-12 ui-md-8">
         <h3>
-          <span>{{evento.descricao}}</span>
+          <span style="word-wrap: break-word; max-width: 760px;">{{evento.descricao}}</span>
           <br/>
           <small>{{evento.data | date:'HH:mm dd/MM/yyyy'}}</small>
         </h3>
-        <p>{{evento.objetivo}}</p>
+        <p style="word-wrap: break-word; max-width: 760px;">{{evento.objetivo}}</p>
         <button pButton type="button" label="Leia Mais..." class="ui-button-rounded ui-button-secondary"
                 (click)="exibirEvento(evento)"></button>
         <button pButton type="button" icon="pi pi-trash" class="ui-button-rounded ui-button-secondary"
