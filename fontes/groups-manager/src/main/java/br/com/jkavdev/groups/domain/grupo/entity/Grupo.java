@@ -29,14 +29,14 @@ public class Grupo {
     private Long igrejaId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "igreja_id", insertable = false, updatable = false)
+    @JoinColumn(name = "igreja_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fk_grupo_igreja_id"))
     private Igreja igreja;
 
     @Column(name = "status_grupo_id", nullable = false)
     private Long statusGrupoId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_grupo_id", insertable = false, updatable = false)
+    @JoinColumn(name = "status_grupo_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fk_grupo_status_grupo_id"))
     private Status statusGrupo;
 
     @ManyToMany
